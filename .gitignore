@@ -1,0 +1,19 @@
+# Database credentials
+config/database.php
+.env
+.env.*
+
+# Uploaded files
+uploads/*
+!uploads/.gitkeep
+
+# Temporary and debugging files
+test_connection.php
+*.log
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Editor settings
+.vscode/
