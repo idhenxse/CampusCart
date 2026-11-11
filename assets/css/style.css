@@ -1,0 +1,380 @@
+/* =========================================
+   CAMPUSCART - SHARED AUTHENTICATION DESIGN
+   ========================================= */
+
+:root {
+    --primary-blue: #318BD9;
+    --sky-blue: #73B3E0;
+    --soft-blue: #BFDCEF;
+    --light-background: #DEEBF1;
+    --off-white: #F5F9FC;
+    --dark-text: #24384A;
+
+    --white: #FFFFFF;
+    --border-color: #D6E5EF;
+    --shadow: 0 12px 35px rgba(36, 56, 74, 0.14);
+    --radius: 16px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--dark-text);
+    background: var(--light-background);
+}
+
+/* Page background */
+
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 115px 20px 55px;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    background: linear-gradient(
+        145deg,
+        var(--off-white) 0%,
+        var(--soft-blue) 55%,
+        var(--sky-blue) 100%
+    );
+}
+
+/* Decorative green hills from the wireframe */
+
+.auth-landscape {
+    position: absolute;
+    z-index: -1;
+    bottom: -100px;
+    left: -10%;
+    width: 120%;
+    height: 210px;
+    background: #83B95B;
+    border-radius: 50% 50% 0 0;
+    transform: rotate(-3deg);
+}
+
+.auth-landscape::before {
+    content: "";
+    position: absolute;
+    width: 65%;
+    height: 180px;
+    left: 40%;
+    top: -55px;
+    background: #A3CB72;
+    border-radius: 50%;
+}
+
+/* Brand */
+
+.auth-brand {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 22px;
+    text-align: center;
+}
+
+.auth-brand h1 {
+    color: var(--dark-text);
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: 0.4px;
+}
+
+/* Form card */
+
+.auth-card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 430px;
+    padding: 34px;
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.auth-card h2 {
+    color: var(--dark-text);
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.auth-subtitle {
+    color: #64798A;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 24px;
+}
+
+/* Forms */
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.form-group label {
+    color: var(--dark-text);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 9px;
+    background: var(--off-white);
+    color: var(--dark-text);
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(49, 139, 217, 0.14);
+}
+
+/* Primary button */
+
+.auth-button {
+    width: 100%;
+    padding: 13px 16px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(
+        90deg,
+        var(--primary-blue),
+        var(--sky-blue)
+    );
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 5px 14px rgba(49, 139, 217, 0.25);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.auth-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(49, 139, 217, 0.3);
+}
+
+/* Links */
+
+.auth-switch {
+    margin-top: 22px;
+    color: #64798A;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.auth-switch a {
+    color: var(--primary-blue);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.auth-switch a:hover {
+    text-decoration: underline;
+}
+
+/* Feedback messages */
+
+.auth-message {
+    padding: 12px 14px;
+    margin-bottom: 18px;
+    border-radius: 9px;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.auth-error {
+    background: #FDECEC;
+    color: #A52A2A;
+    border: 1px solid #F3CACA;
+}
+
+.auth-success {
+    background: #EAF7EF;
+    color: #246B43;
+    border: 1px solid #C8E8D3;
+}
+
+.auth-message p + p {
+    margin-top: 5px;
+}
+
+/* Footer */
+
+.auth-footer {
+    position: absolute;
+    z-index: 2;
+    bottom: 15px;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    color: var(--dark-text);
+    text-align: center;
+    font-size: 12px;
+}
+
+/* Small screens */
+
+@media (max-width: 480px) {
+    .auth-page {
+        padding: 30px 15px 65px;
+    }
+
+    .auth-card {
+        padding: 26px 21px;
+    }
+
+    .auth-brand h1 {
+        font-size: 27px;
+    }
+}
+
+/* =========================================
+   CAMPUSCART - SCHOOL HEADER BANNER
+   ========================================= */
+
+.site-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 90px;
+    padding: 12px 5.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    background: linear-gradient(
+        100deg,
+        #24384A 0%,
+        #245D83 55%,
+        #318BD9 100%
+    );
+    border-bottom: 3px solid var(--sky-blue);
+    box-shadow: 0 3px 12px rgba(36, 56, 74, 0.18);
+    z-index: 10;
+}
+
+.site-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.site-brand img {
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.site-brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.site-brand-text h1 {
+    color: var(--white);
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.site-brand-text p {
+    color: var(--soft-blue);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+}
+
+.site-institution {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.10);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.site-institution::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #A3CB72;
+    box-shadow: 0 0 6px rgba(163, 203, 114, 0.7);
+}
+
+.auth-page {
+    padding-top: 115px;
+}
+
+@media (max-width: 600px) {
+    .site-header {
+        min-height: 68px;
+        padding: 9px 14px;
+    }
+
+    .site-brand {
+        gap: 8px;
+    }
+
+    .site-brand img {
+        width: 39px;
+        height: 39px;
+    }
+
+    .site-brand-text h1 {
+        font-size: 25px;
+    }
+
+    .site-brand-text p {
+        font-size: 7px;
+        letter-spacing: 0.7px;
+    }
+
+    .site-institution {
+        padding: 7px 9px;
+        font-size: 9px;
+        white-space: normal;
+        text-align: center;
+        max-width: 145px;
+    }
+}
