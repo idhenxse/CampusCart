@@ -787,3 +787,45 @@ body.admin-page {
     margin: 0;
 }
 
+/* =========================================
+   GCASH PAYMENT VERIFICATION BUTTONS
+========================================= */
+
+.admin-payment-actions {
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 10px;
+}
+
+.admin-payment-actions form {
+    margin: 0;
+}
+
+.admin-payment-actions button {
+    padding: 7px 11px;
+    border: none;
+    border-radius: 18px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.admin-payment-approve {
+    background: #DDF3E6;
+    color: #247448;
+}
+
+.admin-payment-approve:hover {
+    background: #C6E9D4;
+}
+
+.admin-payment-reject {
+    background: #FCE5E5;
+    color: #B43D3D;
+}
+
+.admin-payment-reject:hover {
+    background: #F7D0D0;
+}

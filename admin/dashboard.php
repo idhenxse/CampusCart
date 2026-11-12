@@ -460,6 +460,65 @@ function paymentStatusLabel(?string $status): string
                                     <span class="admin-status-badge payment-<?= e($order['payment_status'] ?? 'unknown') ?>">
                                         <?= e(paymentStatusLabel($order['payment_status'])) ?>
                                     </span>
+
+                                    <?php if (
+                                        $order['payment_method'] === 'gcash' &&
+                                        $order['payment_status'] === 'pending'
+                                    ): ?>
+                                        <div class="admin-payment-actions">
+
+                                            <form method="POST" action="update_payment_status.php">
+                                                <input
+                                                    type="hidden"
+                                                    name="csrf_token"
+                                                    value="<?= e($_SESSION['csrf_token']) ?>"
+                                                >
+                                                <input
+                                                    type="hidden"
+                                                    name="order_id"
+                                                    value="<?= (int) $order['order_id'] ?>"
+                                                >
+                                                <input
+                                                    type="hidden"
+                                                    name="payment_status"
+                                                    value="paid"
+                                                >
+                                                <button
+                                                    type="submit"
+                                                    class="admin-payment-approve"
+                                                    onclick="return confirm('Are you sure you want to approve this GCash payment?');"
+                                                >
+                                                    Approve
+                                                </button>
+                                            </form>
+
+                                            <form method="POST" action="update_payment_status.php">
+                                                <input
+                                                    type="hidden"
+                                                    name="csrf_token"
+                                                    value="<?= e($_SESSION['csrf_token']) ?>"
+                                                >
+                                                <input
+                                                    type="hidden"
+                                                    name="order_id"
+                                                    value="<?= (int) $order['order_id'] ?>"
+                                                >
+                                                <input
+                                                    type="hidden"
+                                                    name="payment_status"
+                                                    value="rejected"
+                                                >
+                                                <button
+                                                    type="submit"
+                                                    class="admin-payment-reject"
+                                                    onclick="return confirm('Are you sure you want to reject this GCash payment?');"
+                                                >
+                                                    Reject
+                                                </button>
+                                            </form>
+
+                                        </div>
+                                    <?php endif; ?>
                                 </td>
 
                                 <td>
