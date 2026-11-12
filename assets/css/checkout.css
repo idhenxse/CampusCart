@@ -1,0 +1,760 @@
+/* =========================================
+   CAMPUSCART STUDENT CHECKOUT
+========================================= */
+
+.checkout-page-content {
+    width: calc(100% - 48px);
+    max-width: none;
+    margin: 0 auto;
+    padding: 28px 0 45px;
+}
+
+/* PAGE HEADING */
+
+.checkout-heading {
+    margin-bottom: 24px;
+}
+
+.checkout-heading h2 {
+    margin: 0 0 4px;
+    color: #24577c;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.checkout-heading p {
+    margin: 0;
+    color: #708ba3;
+    font-size: 15px;
+}
+
+/* MAIN TWO-COLUMN LAYOUT */
+
+.checkout-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.8fr) minmax(330px, 0.9fr);
+    gap: 20px;
+    align-items: start;
+}
+
+.checkout-main-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+}
+
+/* GLASS CARD DESIGN */
+
+.checkout-glass-card {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(232, 246, 253, 0.96),
+            rgba(216, 235, 247, 0.94)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+
+    box-shadow:
+        0 12px 30px rgba(44, 94, 125, 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.75);
+
+    padding: 24px;
+}
+
+/* CARD HEADINGS */
+
+.checkout-glass-card h3 {
+    margin: 0 0 18px;
+    padding-bottom: 15px;
+
+    color: #245f87;
+    font-size: 21px;
+    font-weight: 700;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+/* ORDER SUMMARY */
+
+.checkout-order-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.checkout-order-item {
+    display: grid;
+    grid-template-columns: 125px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 18px;
+
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.checkout-order-item:first-child {
+    padding-top: 0;
+}
+
+.checkout-order-item:last-child {
+    border-bottom: none;
+}
+
+.checkout-product-image {
+    position: relative;
+    width: 125px;
+    height: 115px;
+    overflow: hidden;
+
+    border-radius: 12px;
+    background: rgba(224, 240, 250, 0.9);
+    border: 1px solid rgba(205, 228, 242, 0.8);
+}
+
+.checkout-product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.checkout-image-placeholder {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+
+    color: #7897af;
+    font-size: 12px;
+    text-align: center;
+}
+
+.checkout-product-details {
+    min-width: 0;
+}
+
+.checkout-product-details h4 {
+    margin: 0 0 7px;
+    color: #29465e;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.checkout-product-details p {
+    margin: 3px 0;
+    color: #718ba1;
+    font-size: 14px;
+}
+
+.checkout-item-subtotal {
+    color: #287dbb;
+    font-size: 17px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.checkout-total-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    margin-top: 12px;
+    padding-top: 18px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.95);
+
+    color: #29465e;
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.checkout-total-row strong {
+    color: #2687cf;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+/* PICKUP INFORMATION */
+
+.pickup-information-card h3,
+.online-payment-information h3 {
+    text-align: center;
+}
+
+.pickup-information-content,
+.online-payment-content {
+    padding: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.38);
+}
+
+.pickup-information-content p,
+.online-payment-content p {
+    margin: 0 0 12px;
+    color: #496b85;
+    font-size: 15px;
+    line-height: 1.65;
+}
+
+.pickup-information-content p:last-child,
+.online-payment-content p:last-child {
+    margin-bottom: 0;
+}
+
+.pickup-information-content strong {
+    color: #294e6b;
+}
+
+.pickup-reminder {
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+/* PAYMENT METHOD CARD */
+
+.checkout-payment-card {
+    min-width: 0;
+}
+
+.checkout-payment-card h3 {
+    text-align: center;
+}
+
+.checkout-field-label,
+.checkout-form-field label {
+    display: block;
+    margin-bottom: 9px;
+
+    color: #496b85;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.checkout-payment-card select,
+.checkout-form-field input[type="text"],
+.checkout-form-field input[type="file"] {
+    width: 100%;
+    min-width: 0;
+    padding: 13px 14px;
+
+    border: 1px solid #cbdfea;
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.82);
+    color: #29465e;
+
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.checkout-payment-card select:focus,
+.checkout-form-field input:focus {
+    outline: none;
+    border-color: #3594dc;
+    box-shadow: 0 0 0 3px rgba(53, 148, 220, 0.12);
+}
+
+/* CASH PAYMENT */
+
+.cash-payment-details {
+    margin-top: 20px;
+    padding: 20px;
+
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.42);
+}
+
+.cash-payment-details h4,
+.gcash-account-box h4,
+.gcash-instructions h4 {
+    margin: 0 0 12px;
+    color: #285d80;
+    font-size: 17px;
+}
+
+.cash-payment-details p {
+    margin: 0 0 10px;
+    color: #58768d;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.cash-payment-details p:last-child {
+    margin-bottom: 0;
+}
+
+/* GCASH ACCOUNT */
+
+.gcash-payment-details {
+    margin-top: 18px;
+}
+
+.gcash-account-box,
+.gcash-instructions {
+    margin-bottom: 17px;
+    padding: 18px;
+
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.45);
+}
+
+.gcash-account-box {
+    text-align: center;
+}
+
+.gcash-account-box p {
+    margin: 12px 0 3px;
+    color: #718ba1;
+    font-size: 13px;
+}
+
+.gcash-account-box strong {
+    display: block;
+    color: #29465e;
+    font-size: 15px;
+    overflow-wrap: anywhere;
+}
+
+.gcash-instructions ol {
+    margin: 0;
+    padding-left: 22px;
+    color: #58768d;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* GCASH INPUT FIELDS */
+
+.checkout-form-field {
+    margin-bottom: 17px;
+}
+
+.checkout-form-field small {
+    display: block;
+    margin-top: 7px;
+    color: #7891a5;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.checkout-form-field input[type="file"] {
+    padding: 10px;
+}
+
+/* CHECKOUT BUTTONS */
+
+.checkout-payment-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    margin-top: 22px;
+    padding-top: 20px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+.checkout-confirm-button,
+.checkout-return-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-height: 50px;
+    padding: 13px 18px;
+
+    border: none;
+    border-radius: 11px;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.checkout-confirm-button {
+    background: linear-gradient(110deg, #318bd9, #56a8e5);
+    color: #fff;
+    box-shadow: 0 5px 12px rgba(49, 139, 217, 0.16);
+}
+
+.checkout-confirm-button:hover {
+    background: linear-gradient(110deg, #277fc9, #4198dc);
+    transform: translateY(-1px);
+}
+
+.checkout-confirm-button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.checkout-return-button {
+    background: rgba(255, 255, 255, 0.65);
+    color: #347eae;
+    border: 1px solid rgba(255, 255, 255, 0.95);
+}
+
+.checkout-return-button:hover {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+/* BACK TO CART */
+
+.checkout-back-link {
+    display: inline-block;
+    align-self: flex-start;
+
+    color: #318bd9;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.checkout-back-link:hover {
+    text-decoration: underline;
+}
+
+/* ERROR MESSAGE */
+
+.checkout-message {
+    margin-bottom: 20px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    font-size: 14px;
+}
+
+.checkout-message.error {
+    color: #a83232;
+    background: #fff0f0;
+    border: 1px solid #f3caca;
+}
+
+/* HIDDEN PAYMENT SECTIONS */
+
+[hidden] {
+    display: none !important;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .checkout-layout {
+        grid-template-columns: minmax(0, 1.3fr) minmax(300px, 0.9fr);
+    }
+
+    .checkout-glass-card {
+        padding: 20px;
+    }
+
+    .checkout-order-item {
+        grid-template-columns: 105px minmax(0, 1fr);
+    }
+
+    .checkout-product-image {
+        width: 105px;
+        height: 100px;
+    }
+
+    .checkout-item-subtotal {
+        grid-column: 2;
+    }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .checkout-page-content {
+        width: calc(100% - 28px);
+        padding-top: 22px;
+    }
+
+    .checkout-heading h2 {
+        font-size: 24px;
+    }
+
+    .checkout-layout {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .checkout-glass-card {
+        padding: 18px;
+        border-radius: 16px;
+    }
+
+    .checkout-glass-card h3 {
+        font-size: 19px;
+    }
+
+    .checkout-order-item {
+        grid-template-columns: 90px minmax(0, 1fr);
+        gap: 12px;
+    }
+
+    .checkout-product-image {
+        width: 90px;
+        height: 90px;
+    }
+
+    .checkout-product-details h4 {
+        font-size: 16px;
+    }
+
+    .checkout-product-details p {
+        font-size: 13px;
+    }
+
+    .checkout-item-subtotal {
+        grid-column: 2;
+        font-size: 15px;
+    }
+
+    .checkout-total-row {
+        font-size: 16px;
+    }
+
+    .checkout-total-row strong {
+        font-size: 21px;
+    }
+}
+
+/* =========================================
+   CHECKOUT TOP RIGHT BACK LINK
+========================================= */
+
+.checkout-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.checkout-continue-shopping {
+    color: #318bd9;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.checkout-continue-shopping:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   GCASH ACCOUNT CARD - LARGER DISPLAY
+========================================= */
+
+.gcash-account-box {
+    width: 100%;
+    min-height: 180px;
+    padding: 28px 24px;
+    border-radius: 14px;
+    box-sizing: border-box;
+}
+
+.gcash-account-box h3 {
+    font-size: 21px;
+    margin-bottom: 20px;
+}
+
+.gcash-account-box p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.gcash-account-box strong {
+    font-size: 22px;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    color: #245f87;
+}
+
+/* Keep the account details comfortably spaced */
+.gcash-account-box .gcash-account-name {
+    font-size: 19px;
+}
+
+.gcash-account-box .gcash-number {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+/* Mobile adjustment */
+@media (max-width: 600px) {
+    .gcash-account-box {
+        min-height: 160px;
+        padding: 22px 18px;
+    }
+
+    .gcash-account-box strong {
+        font-size: 19px;
+    }
+
+    .gcash-account-box .gcash-number {
+        font-size: 21px;
+    }
+}
+
+/* =========================================
+   CHECKOUT PRODUCT CARDS
+   Match the larger Shopping Cart appearance
+   Applies to Cash and GCash
+========================================= */
+
+.checkout-order-item {
+    grid-template-columns: 200px minmax(0, 1fr) auto;
+    gap: 22px;
+    min-height: 220px;
+    padding: 24px 0;
+}
+
+.checkout-product-image {
+    width: 200px;
+    height: 190px;
+    border-radius: 14px;
+}
+
+.checkout-image-placeholder {
+    font-size: 15px;
+}
+
+.checkout-product-details h4 {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.checkout-product-details p {
+    font-size: 18px;
+    margin: 6px 0;
+    line-height: 1.5;
+}
+
+.checkout-item-subtotal {
+    font-size: 23px;
+}
+
+.checkout-total-row {
+    font-size: 22px;
+    margin-top: 18px;
+    padding-top: 22px;
+}
+
+.checkout-total-row strong {
+    font-size: 31px;
+}
+
+/* TABLET */
+@media (max-width: 1000px) {
+    .checkout-order-item {
+        grid-template-columns: 150px minmax(0, 1fr);
+        gap: 18px;
+    }
+
+    .checkout-product-image {
+        width: 150px;
+        height: 145px;
+    }
+
+    .checkout-item-subtotal {
+        grid-column: 2;
+        font-size: 20px;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 700px) {
+    .checkout-order-item {
+        grid-template-columns: 110px minmax(0, 1fr);
+        gap: 14px;
+        min-height: auto;
+        padding: 18px 0;
+    }
+
+    .checkout-product-image {
+        width: 110px;
+        height: 110px;
+    }
+
+    .checkout-product-details h4 {
+        font-size: 19px;
+    }
+
+    .checkout-product-details p {
+        font-size: 14px;
+    }
+
+    .checkout-item-subtotal {
+        grid-column: 2;
+        font-size: 17px;
+    }
+
+    .checkout-total-row {
+        font-size: 17px;
+    }
+
+    .checkout-total-row strong {
+        font-size: 23px;
+    }
+}
+
+/* =========================================
+   CHECKOUT ORDER SUMMARY - INNER SPACING
+========================================= */
+
+.checkout-order-list {
+    padding-left: 18px;
+    padding-right: 18px;
+}
+
+.checkout-total-row {
+    margin-left: 18px;
+    margin-right: 18px;
+}
+
+/* Slightly more breathing room on larger screens */
+@media (min-width: 1001px) {
+    .checkout-order-list {
+        padding-left: 22px;
+        padding-right: 22px;
+    }
+
+    .checkout-total-row {
+        margin-left: 22px;
+        margin-right: 22px;
+    }
+}
+
+/* Keep spacing comfortable on mobile */
+@media (max-width: 700px) {
+    .checkout-order-list {
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+    .checkout-total-row {
+        margin-left: 4px;
+        margin-right: 4px;
+    }
+}

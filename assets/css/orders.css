@@ -1,0 +1,1210 @@
+/* =========================================
+   CAMPUSCART STUDENT ORDERS
+========================================= */
+
+.orders-page-content {
+    width: calc(100% - 48px);
+    max-width: none;
+    margin: 0 auto;
+    padding: 28px 0 45px;
+}
+
+/* PAGE HEADING */
+
+.orders-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 24px;
+}
+
+.orders-heading h2 {
+    margin: 0 0 4px;
+    color: #24577c;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.orders-heading p {
+    margin: 0;
+    color: #708ba3;
+    font-size: 15px;
+}
+
+.orders-continue-shopping {
+    color: #318bd9;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.orders-continue-shopping:hover {
+    text-decoration: underline;
+}
+
+/* ORDER LIST */
+
+.orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* =========================================
+   MAIN ORDER CARD
+========================================= */
+
+.student-order-card {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 28px 30px;
+
+    background: linear-gradient(
+        135deg,
+        rgba(232, 246, 253, 0.96),
+        rgba(216, 235, 247, 0.94)
+    );
+
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+
+    box-shadow:
+        0 12px 30px rgba(44, 94, 125, 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.75);
+}
+
+/* =========================================
+   ORDER HEADER
+========================================= */
+
+.student-order-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.95);
+}
+
+.student-order-heading {
+    min-width: 0;
+}
+
+.student-order-heading h3 {
+    margin: 0 0 6px;
+    color: #29465e;
+    font-size: 23px;
+    font-weight: 800;
+    overflow-wrap: anywhere;
+}
+
+.student-order-heading p {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 9px;
+
+    margin: 0;
+    color: #718ba1;
+    font-size: 14px;
+}
+
+.order-status-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 145px;
+}
+
+.order-status-badge {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 13px;
+
+    border-radius: 25px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.status-pending {
+    color: #9a6000;
+    background: #fff0cf;
+}
+
+.status-confirmed {
+    color: #216caa;
+    background: #dceeff;
+}
+
+.status-ready {
+    color: #187a56;
+    background: #d9f4e7;
+}
+
+.status-completed {
+    color: #287044;
+    background: #dff2df;
+}
+
+.status-default {
+    color: #526879;
+    background: #e6edf2;
+}
+
+/* =========================================
+   TRUE THREE-COLUMN LAYOUT
+
+   LEFT: Product images
+   MIDDLE: Product details, prices and total
+   RIGHT: Payment information
+========================================= */
+
+.student-order-main-layout {
+    display: grid;
+
+    grid-template-columns:
+        150px
+        minmax(0, 1fr)
+        250px;
+
+    gap: 28px;
+    align-items: stretch;
+
+    padding-top: 22px;
+}
+
+/* =========================================
+   LEFT COLUMN: PRODUCT IMAGES
+========================================= */
+
+.student-order-image-column {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.student-order-image-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 155px;
+    padding: 10px 0 20px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.85);
+}
+
+.student-order-image-row + .student-order-image-row {
+    padding-top: 20px;
+}
+
+.student-order-product-image {
+    width: 135px;
+    height: 125px;
+    overflow: hidden;
+
+    border-radius: 14px;
+
+    background: rgba(224, 240, 250, 0.9);
+    border: 1px solid rgba(205, 228, 242, 0.8);
+}
+
+.student-order-product-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.order-image-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+
+    color: #7897af;
+    font-size: 13px;
+    text-align: center;
+}
+
+/* =========================================
+   MIDDLE COLUMN
+========================================= */
+
+.student-order-middle-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    min-width: 0;
+}
+
+/* PRODUCT ROWS */
+
+.student-order-products {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.student-order-product-details-row {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        155px;
+
+    align-items: center;
+    gap: 20px;
+
+    min-height: 155px;
+    padding: 10px 0 20px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.85);
+}
+
+.student-order-product-details-row + .student-order-product-details-row {
+    padding-top: 20px;
+}
+
+/* PRODUCT NAME, VARIANT AND QUANTITY */
+
+.student-order-product-details {
+    min-width: 0;
+}
+
+.student-order-product-details h4 {
+    margin: 0 0 12px;
+
+    color: #29465e;
+    font-size: 19px;
+    font-weight: 700;
+
+    overflow-wrap: anywhere;
+}
+
+.student-order-product-details p {
+    margin: 6px 0;
+
+    color: #718ba1;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.student-order-product-details p strong {
+    color: #294e6b;
+}
+
+/* PRODUCT PRICE */
+
+.student-order-product-price {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+    min-width: 0;
+
+    text-align: center;
+}
+
+.student-order-product-price strong {
+    color: #287dbb;
+    font-size: 21px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.student-order-product-price small {
+    color: #7891a5;
+    font-size: 12px;
+}
+
+/* =========================================
+   TOTAL AMOUNT
+   Label above the price
+========================================= */
+
+.student-order-total {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    gap: 5px;
+    margin-top: auto;
+    padding: 22px 0 5px;
+
+    color: #29465e;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.student-order-total strong {
+    color: #2687cf;
+    font-size: 28px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+/* =========================================
+   RIGHT COLUMN: PAYMENT INFORMATION
+========================================= */
+
+.student-order-payment-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    gap: 35px;
+    min-width: 0;
+
+    padding: 15px 0 15px 25px;
+
+    border-left: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+.order-information-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 10px;
+    min-width: 0;
+}
+
+.order-information-item > span {
+    color: #718ba1;
+    font-size: 14px;
+}
+
+.order-information-item > strong:not(.payment-status-badge) {
+    color: #29465e;
+    font-size: 16px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.payment-status-badge {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 11px 12px;
+
+    border-radius: 25px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.payment-pending {
+    color: #9a6000;
+    background: #fff0cf;
+}
+
+.payment-paid {
+    color: #187a56;
+    background: #d9f4e7;
+}
+
+.payment-rejected {
+    color: #a83232;
+    background: #ffe0e0;
+}
+
+.payment-default {
+    color: #526879;
+    background: #e6edf2;
+}
+
+/* =========================================
+   PICKUP AND PAYMENT NOTES
+========================================= */
+
+.student-order-notes {
+    margin-top: 22px;
+    padding: 15px 20px;
+
+    background: rgba(255, 255, 255, 0.42);
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+}
+
+.student-order-notes p {
+    margin: 0 0 10px;
+
+    color: #496b85;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.student-order-notes p:last-child {
+    margin-bottom: 0;
+}
+
+.student-order-notes strong {
+    color: #294e6b;
+}
+
+/* =========================================
+   VIEW ORDER DETAILS
+========================================= */
+
+.order-details-toggle {
+    margin-top: 17px;
+}
+
+.order-details-toggle summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-height: 48px;
+    box-sizing: border-box;
+    padding: 12px 18px;
+
+    border-radius: 11px;
+    background: linear-gradient(110deg, #318bd9, #56a8e5);
+
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+
+    list-style: none;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.order-details-toggle summary::-webkit-details-marker {
+    display: none;
+}
+
+.order-details-toggle summary::before {
+    content: "+";
+    margin-right: 9px;
+    font-size: 17px;
+}
+
+.order-details-toggle[open] summary::before {
+    content: "−";
+}
+
+.order-details-toggle summary:hover {
+    background: linear-gradient(110deg, #277fc9, #4198dc);
+}
+
+.order-details-content {
+    margin-top: 12px;
+    padding: 17px 20px;
+
+    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+}
+
+.order-details-content p {
+    margin: 0 0 10px;
+
+    color: #58768d;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.order-details-content p:last-child {
+    margin-bottom: 0;
+}
+
+.order-details-content strong {
+    color: #294e6b;
+}
+
+.order-no-items {
+    color: #718ba1;
+    font-size: 14px;
+}
+
+/* =========================================
+   EMPTY ORDERS
+========================================= */
+
+.orders-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 560px;
+    padding: 40px 28px;
+    box-sizing: border-box;
+
+    background: linear-gradient(
+        135deg,
+        rgba(232, 246, 253, 0.96),
+        rgba(216, 235, 247, 0.94)
+    );
+
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+
+    box-shadow: 0 12px 30px rgba(44, 94, 125, 0.10);
+}
+
+.orders-empty-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: auto 0;
+}
+
+.orders-empty-icon {
+    margin-bottom: 18px;
+    font-size: 52px;
+}
+
+.orders-empty-inner h3 {
+    margin: 0 0 10px;
+    color: #245f87;
+    font-size: 24px;
+}
+
+.orders-empty-inner p {
+    max-width: 450px;
+    margin: 0;
+
+    color: #66839b;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.orders-browse-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-height: 48px;
+    box-sizing: border-box;
+
+    margin-top: 30px;
+    padding: 13px 18px;
+
+    border-radius: 11px;
+    background: linear-gradient(110deg, #318bd9, #56a8e5);
+
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.orders-browse-button:hover {
+    background: linear-gradient(110deg, #277fc9, #4198dc);
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1050px) {
+
+    .student-order-main-layout {
+        grid-template-columns:
+            120px
+            minmax(0, 1fr)
+            205px;
+
+        gap: 20px;
+    }
+
+    .student-order-product-image {
+        width: 110px;
+        height: 105px;
+    }
+
+    .student-order-product-details-row {
+        grid-template-columns: minmax(0, 1fr) 125px;
+        gap: 12px;
+    }
+
+    .student-order-payment-column {
+        padding-left: 18px;
+    }
+}
+
+/* =========================================
+   SMALL TABLET
+========================================= */
+
+@media (max-width: 760px) {
+
+    .student-order-card {
+        padding: 23px;
+    }
+
+    .student-order-main-layout {
+        grid-template-columns: 105px minmax(0, 1fr);
+        gap: 18px;
+    }
+
+    .student-order-image-column {
+        grid-column: 1;
+    }
+
+    .student-order-middle-column {
+        grid-column: 2;
+    }
+
+    .student-order-payment-column {
+        grid-column: 1 / -1;
+
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+
+        border-left: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.9);
+
+        padding: 18px 0 0;
+    }
+
+    .student-order-image-row,
+    .student-order-product-details-row {
+        min-height: 135px;
+    }
+
+    .student-order-product-image {
+        width: 95px;
+        height: 95px;
+    }
+
+    .student-order-product-details-row {
+        grid-template-columns: minmax(0, 1fr) 110px;
+        gap: 10px;
+    }
+
+    .student-order-product-details h4 {
+        font-size: 17px;
+    }
+
+    .student-order-product-details p {
+        font-size: 13px;
+    }
+
+    .student-order-product-price strong {
+        font-size: 18px;
+    }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 520px) {
+
+    .orders-page-content {
+        width: calc(100% - 28px);
+        padding-top: 22px;
+    }
+
+    .orders-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .orders-heading h2 {
+        font-size: 24px;
+    }
+
+    .orders-continue-shopping {
+        font-size: 13px;
+    }
+
+    .student-order-card {
+        padding: 18px;
+        border-radius: 16px;
+    }
+
+    .student-order-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 13px;
+    }
+
+    .student-order-heading h3 {
+        font-size: 18px;
+    }
+
+    .student-order-heading p {
+        font-size: 12px;
+    }
+
+    .order-status-group {
+        flex: none;
+        width: 135px;
+    }
+
+    .order-status-badge {
+        font-size: 12px;
+    }
+
+    .student-order-main-layout {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .student-order-image-column {
+        display: none;
+    }
+
+    .student-order-middle-column {
+        grid-column: 1;
+    }
+
+    .student-order-product-details-row {
+        grid-template-columns: minmax(0, 1fr) 105px;
+        min-height: 115px;
+        gap: 10px;
+        padding: 15px 0;
+    }
+
+    .student-order-product-details h4 {
+        font-size: 16px;
+    }
+
+    .student-order-product-details p {
+        font-size: 13px;
+    }
+
+    .student-order-product-price strong {
+        font-size: 17px;
+    }
+
+    .student-order-total {
+        font-size: 16px;
+        padding-top: 18px;
+    }
+
+    .student-order-total strong {
+        font-size: 23px;
+    }
+
+    .student-order-payment-column {
+        grid-column: 1;
+        grid-template-columns: 1fr;
+        gap: 18px;
+        margin-top: 18px;
+    }
+
+    .student-order-notes {
+        margin-top: 18px;
+        padding: 13px;
+    }
+
+    .student-order-notes p {
+        font-size: 13px;
+    }
+
+    .order-details-toggle summary {
+        min-height: 44px;
+        font-size: 13px;
+    }
+
+    .orders-empty-state {
+        min-height: 480px;
+        padding: 25px 18px;
+    }
+
+    .orders-empty-inner h3 {
+        font-size: 21px;
+    }
+}
+
+
+/* =========================================
+   ORDER CARD - CENTERED MIDDLE CONTENT
+========================================= */
+
+/* Keep the three main sections balanced */
+.student-order-main-layout {
+    grid-template-columns:
+        150px
+        minmax(0, 1fr)
+        250px;
+    gap: 28px;
+    align-items: stretch;
+}
+
+/* Center the middle content and prevent excessive spreading */
+.student-order-middle-column {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    min-width: 0;
+}
+
+/* Give product details and price balanced proportions */
+.student-order-product-details-row {
+    grid-template-columns:
+        minmax(0, 1.5fr)
+        minmax(150px, 0.8fr);
+    gap: 35px;
+    align-items: center;
+}
+
+/* Keep product details comfortably positioned */
+.student-order-product-details {
+    padding-left: 10px;
+}
+
+/* Keep prices centered in their own area */
+.student-order-product-price {
+    width: 100%;
+    align-items: center;
+    justify-self: center;
+}
+
+/* Keep total amount aligned with the product price */
+.student-order-total {
+    align-items: center;
+    text-align: center;
+    padding-top: 22px;
+}
+
+/* Maintain spacing on medium screens */
+@media (max-width: 1050px) {
+    .student-order-main-layout {
+        grid-template-columns:
+            120px
+            minmax(0, 1fr)
+            205px;
+        gap: 20px;
+    }
+
+    .student-order-middle-column {
+        max-width: 100%;
+    }
+
+    .student-order-product-details-row {
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(115px, 0.8fr);
+        gap: 15px;
+    }
+}
+
+/* Keep the mobile layout unchanged */
+@media (max-width: 760px) {
+    .student-order-middle-column {
+        max-width: 100%;
+    }
+
+    .student-order-product-details {
+        padding-left: 0;
+    }
+
+    .student-order-total {
+        align-items: flex-end;
+        text-align: right;
+    }
+}
+
+
+/* =========================================
+   ORDERS - LARGER PRODUCT DISPLAY
+   Matching CampusCart Cart Page Sizing
+========================================= */
+
+/* Give the image, middle content and payment
+   information more balanced proportions */
+.student-order-main-layout {
+    grid-template-columns:
+        255px
+        minmax(0, 1fr)
+        250px;
+    gap: 35px;
+    align-items: stretch;
+}
+
+/* LEFT: Larger product image area */
+.student-order-image-column {
+    width: 100%;
+}
+
+.student-order-image-row {
+    min-height: 260px;
+    padding: 5px 0 25px;
+    justify-content: center;
+}
+
+.student-order-product-image {
+    width: 230px;
+    height: 230px;
+    border-radius: 16px;
+}
+
+.order-image-placeholder {
+    font-size: 16px;
+}
+
+/* MIDDLE: Use the available width */
+.student-order-middle-column {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    margin: 0;
+}
+
+/* Give each product row enough room */
+.student-order-product-details-row {
+    grid-template-columns:
+        minmax(0, 1fr)
+        190px;
+    gap: 35px;
+    min-height: 260px;
+    padding: 5px 10px 25px;
+    align-items: center;
+}
+
+/* Larger product name */
+.student-order-product-details h4 {
+    font-size: 30px;
+    line-height: 1.3;
+    margin-bottom: 18px;
+}
+
+/* Larger variant and quantity details */
+.student-order-product-details p {
+    font-size: 18px;
+    line-height: 1.7;
+    margin: 8px 0;
+}
+
+/* Larger, more visible product price */
+.student-order-product-price {
+    width: 100%;
+    gap: 10px;
+}
+
+.student-order-product-price strong {
+    font-size: 24px;
+}
+
+.student-order-product-price small {
+    font-size: 15px;
+}
+
+/* Total amount below product information */
+.student-order-total {
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+    padding: 25px 0 8px;
+}
+
+.student-order-total span {
+    font-size: 20px;
+}
+
+.student-order-total strong {
+    font-size: 30px;
+}
+
+/* RIGHT: Keep payment information spacious */
+.student-order-payment-column {
+    padding-left: 28px;
+    gap: 35px;
+}
+
+.order-information-item > span {
+    font-size: 16px;
+}
+
+.order-information-item > strong:not(.payment-status-badge) {
+    font-size: 18px;
+}
+
+.payment-status-badge {
+    font-size: 15px;
+    padding: 12px 14px;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1050px) {
+    .student-order-main-layout {
+        grid-template-columns:
+            180px
+            minmax(0, 1fr)
+            205px;
+        gap: 22px;
+    }
+
+    .student-order-image-row,
+    .student-order-product-details-row {
+        min-height: 210px;
+    }
+
+    .student-order-product-image {
+        width: 165px;
+        height: 165px;
+    }
+
+    .student-order-product-details-row {
+        grid-template-columns: minmax(0, 1fr) 145px;
+        gap: 15px;
+    }
+
+    .student-order-product-details h4 {
+        font-size: 25px;
+    }
+
+    .student-order-product-details p {
+        font-size: 16px;
+    }
+
+    .student-order-product-price strong {
+        font-size: 21px;
+    }
+}
+
+/* =========================================
+   SMALL TABLET
+========================================= */
+
+@media (max-width: 760px) {
+    .student-order-main-layout {
+        grid-template-columns: 140px minmax(0, 1fr);
+        gap: 18px;
+    }
+
+    .student-order-image-row,
+    .student-order-product-details-row {
+        min-height: 175px;
+    }
+
+    .student-order-product-image {
+        width: 130px;
+        height: 130px;
+    }
+
+    .student-order-product-details-row {
+        grid-template-columns: minmax(0, 1fr) 120px;
+        gap: 12px;
+    }
+
+    .student-order-product-details h4 {
+        font-size: 21px;
+    }
+
+    .student-order-product-details p {
+        font-size: 15px;
+    }
+
+    .student-order-product-price strong {
+        font-size: 19px;
+    }
+
+    .student-order-total strong {
+        font-size: 26px;
+    }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 520px) {
+    .student-order-image-column {
+        display: none;
+    }
+
+    .student-order-main-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .student-order-product-details-row {
+        grid-template-columns: minmax(0, 1fr) 110px;
+        min-height: 125px;
+        padding: 15px 0;
+        gap: 12px;
+    }
+
+    .student-order-product-details h4 {
+        font-size: 19px;
+    }
+
+    .student-order-product-details p {
+        font-size: 14px;
+    }
+
+    .student-order-product-price strong {
+        font-size: 18px;
+    }
+
+    .student-order-total {
+        align-items: flex-end;
+        text-align: right;
+    }
+
+    .student-order-total strong {
+        font-size: 24px;
+    }
+}
+
+
+/* =========================================
+   ORDERS - FINAL TEXT SIZE ADJUSTMENTS
+========================================= */
+
+/* Product name */
+.student-order-product-details h4 {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+/* Product price - match product name */
+.student-order-product-price strong {
+    font-size: 30px;
+    font-weight: 800;
+}
+
+/* Price per item */
+.student-order-product-price small {
+    font-size: 15px;
+}
+
+/* Total amount label */
+.student-order-total span {
+    font-size: 19px;
+    font-weight: 700;
+}
+
+/* Total amount price - reduce size */
+.student-order-total strong {
+    font-size: 25px;
+    font-weight: 800;
+}
+
+/* Keep the total amount neatly centered */
+.student-order-total {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 22px 0 10px;
+}
