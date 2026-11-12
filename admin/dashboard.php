@@ -17,6 +17,13 @@ if (
 $admin_id = (int) $_SESSION['user_id'];
 
 // =========================================
+// CSRF TOKEN
+// =========================================
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
+// =========================================
 // HELPER
 // =========================================
 function e($value): string
@@ -431,19 +438,19 @@ function paymentStatusLabel(?string $status): string
 
                                     <?php if ($order['payment_method'] === 'gcash'): ?>
 
-                                        <small>
-                                            Ref: <?= e($order['reference_number'] ?? 'Not provided') ?>
-                                        </small>
+                                            <small class="admin-reference-number">
+                                                Ref: <?= e($order['reference_number'] ?? 'Not provided') ?>
+                                            </small>
 
                                         <?php if (!empty($order['payment_screenshot'])): ?>
-                                            <a
+                                            <button
+                                                type="button"
                                                 class="admin-screenshot-link"
-                                                href="../<?= e($order['payment_screenshot']) ?>"
-                                                target="_blank"
-                                                rel="noopener"
+                                                data-image="../<?= e($order['payment_screenshot']) ?>"
+                                                data-reference="<?= e($order['reference_number'] ?? 'Not provided') ?>"
                                             >
                                                 View Screenshot
-                                            </a>
+                                            </button>
                                         <?php endif; ?>
 
                                     <?php endif; ?>
@@ -456,9 +463,48 @@ function paymentStatusLabel(?string $status): string
                                 </td>
 
                                 <td>
-                                    <span class="admin-status-badge order-<?= e($order['order_status']) ?>">
-                                        <?= e(orderStatusLabel($order['order_status'])) ?>
-                                    </span>
+                                    <form method="POST" action="update_order_status.php"
+                                        class="admin-order-status-form">
+
+                                        <input
+                                            type="hidden"
+                                            name="csrf_token"
+                                            value="<?= e($_SESSION['csrf_token']) ?>"
+                                        >
+
+                                        <input
+                                            type="hidden"
+                                            name="order_id"
+                                            value="<?= (int) $order['order_id'] ?>"
+                                        >
+
+                                        <select
+                                            name="order_status"
+                                            class="admin-order-status-select"
+                                            onchange="this.form.submit()"
+                                        >
+                                            <option value="pending"
+                                                <?= $order['order_status'] === 'pending' ? 'selected' : '' ?>>
+                                                Pending
+                                            </option>
+
+                                            <option value="confirmed"
+                                                <?= $order['order_status'] === 'confirmed' ? 'selected' : '' ?>>
+                                                Confirmed
+                                            </option>
+
+                                            <option value="ready_for_pickup"
+                                                <?= $order['order_status'] === 'ready_for_pickup' ? 'selected' : '' ?>>
+                                                Ready for Pickup
+                                            </option>
+
+                                            <option value="completed"
+                                                <?= $order['order_status'] === 'completed' ? 'selected' : '' ?>>
+                                                Completed
+                                            </option>
+                                        </select>
+
+                                    </form>
                                 </td>
 
                             </tr>
@@ -516,9 +562,35 @@ function paymentStatusLabel(?string $status): string
 
 </main>
 
+<!-- GCASH PAYMENT SCREENSHOT POPUP -->
+<div class="admin-image-modal" id="admin-image-modal">
+    <div class="admin-image-modal-content">
+
+        <div class="admin-image-modal-header">
+            <h3>GCash Payment Screenshot</h3>
+            <button type="button" id="admin-image-modal-close" aria-label="Close">
+                &times;
+            </button>
+        </div>
+
+        <div class="admin-image-reference">
+            <strong>Reference Number:</strong>
+            <span id="admin-modal-reference"></span>
+        </div>
+
+        <div class="admin-image-preview">
+            <img id="admin-modal-image" src="" alt="GCash Payment Screenshot">
+        </div>
+
+    </div>
+</div>
+
 <footer class="admin-footer">
     © <?= date('Y') ?> CampusCart | Pamantasan ng Lungsod ng Maynila
 </footer>
 
+<script src="../assets/js/admin_payment_popup.js"></script>
+
 </body>
 </html>
+
