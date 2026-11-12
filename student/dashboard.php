@@ -315,6 +315,7 @@ try {
     <title>Student Dashboard | CampusCart</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/student.css">
+    <link rel="stylesheet" href="../assets/css/notifications.css">
 </head>
 <body>
 
@@ -366,22 +367,7 @@ try {
                 </svg>
             </a>
 
-            <!-- Notifications -->
-            <a
-                href="notifications.php"
-                class="header-action"
-                title="Notifications"
-                aria-label="Notifications"
-            >
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
-                    <path d="M10 21h4"/>
-                </svg>
-
-                <?php if ($unread_notifications > 0): ?>
-                    <span class="notification-dot"></span>
-                <?php endif; ?>
-            </a>
+            <?php require __DIR__ . '/includes/notification_panel.php'; ?>
 
             <!-- Student Menu -->
             <a
@@ -1369,6 +1355,58 @@ document.addEventListener('keydown', function(event) {
 
 });
 
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const wrapper = document.getElementById('notification-wrapper');
+    const trigger = document.getElementById('notification-trigger');
+    const panel = document.getElementById('notification-panel');
+    const closeButton = document.getElementById('notification-close');
+
+    if (!wrapper || !trigger || !panel || !closeButton) {
+        return;
+    }
+
+    function openNotifications() {
+        panel.classList.add('active');
+        panel.setAttribute('aria-hidden', 'false');
+        trigger.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeNotifications() {
+        panel.classList.remove('active');
+        panel.setAttribute('aria-hidden', 'true');
+        trigger.setAttribute('aria-expanded', 'false');
+    }
+
+    trigger.addEventListener('click', function (event) {
+        event.stopPropagation();
+
+        if (panel.classList.contains('active')) {
+            closeNotifications();
+        } else {
+            openNotifications();
+        }
+    });
+
+    closeButton.addEventListener('click', function (event) {
+        event.stopPropagation();
+        closeNotifications();
+    });
+
+    document.addEventListener('click', function (event) {
+        if (!wrapper.contains(event.target)) {
+            closeNotifications();
+        }
+    });
+
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') {
+            closeNotifications();
+        }
+    });
+});
 </script>
 
 </body>

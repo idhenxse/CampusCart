@@ -461,6 +461,7 @@ function checkoutVariantLabel(array $item): string
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/student.css">
     <link rel="stylesheet" href="../assets/css/checkout.css">
+    <link rel="stylesheet" href="../assets/css/notifications.css">
 </head>
 
 <body class="student-page">
@@ -506,12 +507,7 @@ function checkoutVariantLabel(array $item): string
             </svg>
         </a>
 
-        <a href="notifications.php" class="header-action" title="Notifications">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
-                <path d="M10 21h4"/>
-            </svg>
-        </a>
+        <?php require __DIR__ . '/includes/notification_panel.php'; ?>
 
         <a href="menu.php" class="header-action" title="Student Menu">
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -893,6 +889,8 @@ checkoutForm.addEventListener('submit', function () {
 });
 
 </script>
+
+<script src="../assets/js/notification.js"></script>
 
 </body>
 </html>

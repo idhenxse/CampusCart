@@ -1208,3 +1208,84 @@
     gap: 5px;
     padding: 22px 0 10px;
 }
+
+.order-details-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 46px;
+    box-sizing: border-box;
+    margin-top: 16px;
+    padding: 12px 18px;
+
+    border-radius: 11px;
+    background: linear-gradient(110deg, #318bd9, #56a8e5);
+
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.order-details-toggle:hover {
+    background: linear-gradient(110deg, #277fc9, #4198dc);
+}
+
+/* =========================================
+   TOTAL AMOUNT - MATCH ORDER DETAILS PAGE
+========================================= */
+
+.student-order-total {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    gap: 15px;
+    margin-top: 0;
+    padding: 22px 5px 8px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.95);
+
+    text-align: left;
+}
+
+.student-order-total span {
+    color: #58768d;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: left;
+}
+
+.student-order-total strong {
+    color: #2687cf;
+    font-size: 30px;
+    font-weight: 800;
+    text-align: right;
+    white-space: nowrap;
+}
+
+/* MOBILE */
+@media (max-width: 520px) {
+    .student-order-total {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 18px 4px 8px;
+    }
+
+    .student-order-total span {
+        font-size: 15px;
+    }
+
+    .student-order-total strong {
+        font-size: 21px;
+    }
+}

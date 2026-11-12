@@ -1,0 +1,1116 @@
+/* =========================================
+   CAMPUSCART - STUDENT ORDER DETAILS
+========================================= */
+
+.order-details-page {
+    width: calc(100% - 48px);
+    max-width: none;
+    margin: 0 auto;
+    padding: 28px 0 45px;
+    box-sizing: border-box;
+}
+
+/* =========================================
+   PAGE HEADING AND BACK LINK
+========================================= */
+
+.order-details-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.order-details-heading-text {
+    order: 1;
+    min-width: 0;
+}
+
+.order-details-heading h2 {
+    margin: 0 0 6px;
+    color: #24577c;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.order-details-heading p {
+    margin: 0;
+    color: #708ba3;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.order-details-back {
+    order: 2;
+    display: inline-block;
+    flex-shrink: 0;
+    margin: 0 0 4px auto;
+    color: #318bd9;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.order-details-back:hover {
+    color: #216fae;
+    transform: translateX(-3px);
+}
+
+/* =========================================
+   MAIN TWO-COLUMN LAYOUT
+========================================= */
+
+.order-details-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+}
+
+.order-details-main-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+}
+
+.order-details-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+}
+
+/* =========================================
+   GLASS CARD DESIGN
+========================================= */
+
+.order-details-card {
+    box-sizing: border-box;
+    min-width: 0;
+    padding: 24px;
+    background: linear-gradient(
+        135deg,
+        rgba(232, 246, 253, 0.96),
+        rgba(216, 235, 247, 0.94)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow:
+        0 12px 30px rgba(44, 94, 125, 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.75);
+}
+
+/* =========================================
+   ORDER SUMMARY HEADER
+========================================= */
+
+.order-summary-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.order-summary-header h3 {
+    margin: 0 0 7px;
+    color: #29465e;
+    font-size: 25px;
+    font-weight: 800;
+    overflow-wrap: anywhere;
+}
+
+.order-summary-header p {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 9px;
+    margin: 0;
+    color: #718ba1;
+    font-size: 15px;
+}
+
+.order-summary-header p span {
+    color: #9bb2c3;
+}
+
+.order-status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    min-width: 130px;
+    box-sizing: border-box;
+    padding: 10px 16px;
+    border-radius: 25px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.status-pending {
+    color: #9a6000;
+    background: #fff0cf;
+}
+
+.status-confirmed {
+    color: #216caa;
+    background: #dceeff;
+}
+
+.status-ready {
+    color: #187a56;
+    background: #d9f4e7;
+}
+
+.status-completed {
+    color: #287044;
+    background: #dff2df;
+}
+
+.status-default {
+    color: #526879;
+    background: #e6edf2;
+}
+
+/* =========================================
+   SECTION TITLES
+========================================= */
+
+.order-section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 20px;
+    color: #29465e;
+    font-size: 21px;
+    font-weight: 750;
+}
+
+.order-sidebar-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: rgba(49, 139, 217, 0.12);
+    color: #318bd9;
+    font-size: 19px;
+}
+
+/* =========================================
+   ORDER ITEMS
+========================================= */
+
+.order-details-items {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding-left: 22px;
+    padding-right: 22px;
+    box-sizing: border-box;
+}
+
+.order-details-product {
+    display: grid;
+    grid-template-columns: 135px minmax(0, 1fr) 150px;
+    align-items: center;
+    gap: 22px;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+.order-details-product:first-child {
+    padding-top: 0;
+}
+
+.order-details-product:last-child {
+    border-bottom: none;
+}
+
+/* PRODUCT IMAGE */
+
+.order-details-product-image {
+    width: 135px;
+    height: 125px;
+    overflow: hidden;
+    border-radius: 14px;
+    background: rgba(224, 240, 250, 0.9);
+    border: 1px solid rgba(205, 228, 242, 0.8);
+}
+
+.order-details-product-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.order-details-image-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    color: #7897af;
+    font-size: 13px;
+    text-align: center;
+}
+
+/* PRODUCT NAME AND VARIANT */
+
+.order-details-product-info {
+    min-width: 0;
+}
+
+.order-details-product-info h4 {
+    margin: 0 0 12px;
+    color: #29465e;
+    font-size: 25px;
+    font-weight: 750;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+.order-details-product-info p {
+    margin: 6px 0;
+    color: #718ba1;
+    font-size: 18px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.order-details-product-info p strong {
+    color: #294e6b;
+    font-weight: 700;
+}
+
+/* PRODUCT PRICE */
+
+.order-details-product-price {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 7px;
+    min-width: 0;
+    text-align: right;
+}
+
+.order-details-product-price strong {
+    color: #287dbb;
+    font-size: 23px;
+    font-weight: 750;
+    white-space: nowrap;
+}
+
+.order-details-product-price small {
+    color: #7891a5;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+/* EMPTY PRODUCT MESSAGE */
+
+.order-details-empty {
+    margin: 10px 0;
+    color: #718ba1;
+    font-size: 14px;
+}
+
+/* =========================================
+   TOTAL AMOUNT
+========================================= */
+
+.order-details-total {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 12px;
+    padding: 18px 22px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.9);
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.order-details-total span {
+    color: #58768d;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.order-details-total strong {
+    color: #2687cf;
+    font-size: 31px;
+    font-weight: 800;
+    text-align: right;
+}
+
+/* =========================================
+   ORDER PROGRESS
+========================================= */
+
+.order-progress-timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding-left: 4px;
+}
+
+.order-progress-step {
+    position: relative;
+    display: flex;
+    gap: 16px;
+    min-height: 82px;
+}
+
+.order-progress-step:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    top: 30px;
+    left: 12px;
+    width: 2px;
+    height: calc(100% - 18px);
+    background: #d4e2ec;
+}
+
+.order-progress-step.is-done:not(:last-child)::before {
+    background: #58a9d9;
+}
+
+.order-progress-marker {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+    border: 2px solid #c6d9e7;
+    border-radius: 50%;
+    background: #edf5fa;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.order-progress-step.is-done .order-progress-marker {
+    border-color: #318bd9;
+    background: #318bd9;
+}
+
+.order-progress-step.is-current .order-progress-marker {
+    border-color: #318bd9;
+    background: #ffffff;
+    box-shadow: 0 0 0 5px rgba(49, 139, 217, 0.12);
+}
+
+.order-progress-description {
+    min-width: 0;
+    padding-bottom: 20px;
+}
+
+.order-progress-description h4 {
+    margin: 2px 0 6px;
+    color: #6d879b;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.order-progress-step.is-done .order-progress-description h4,
+.order-progress-step.is-current .order-progress-description h4 {
+    color: #294e6b;
+}
+
+.order-progress-description p {
+    margin: 0;
+    color: #8299aa;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.order-progress-step.is-current .order-progress-description p {
+    color: #58768d;
+}
+
+/* PROGRESS REMINDER */
+
+.order-progress-reminder {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    margin-top: 8px;
+    padding: 15px 16px;
+    background: rgba(255, 255, 255, 0.48);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+}
+
+.order-reminder-icon {
+    flex-shrink: 0;
+    color: #318bd9;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.order-progress-reminder p {
+    margin: 0;
+    color: #58768d;
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+.order-progress-reminder strong {
+    color: #287dbb;
+}
+
+/* =========================================
+   SIDEBAR CARDS
+========================================= */
+
+.order-sidebar-card {
+    padding: 22px;
+}
+
+.order-sidebar-card .order-section-title {
+    margin-bottom: 22px;
+    font-size: 18px;
+}
+
+/* PAYMENT ROWS */
+
+.order-payment-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.order-payment-row > span,
+.order-gcash-reference > span {
+    color: #718ba1;
+    font-size: 14px;
+}
+
+.order-payment-row > strong:not(.payment-status-badge) {
+    color: #29465e;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.payment-status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 9px 13px;
+    border-radius: 22px;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+.payment-pending {
+    color: #9a6000;
+    background: #fff0cf;
+}
+
+.payment-paid {
+    color: #187a56;
+    background: #d9f4e7;
+}
+
+.payment-rejected {
+    color: #a83232;
+    background: #ffe0e0;
+}
+
+.payment-default {
+    color: #526879;
+    background: #e6edf2;
+}
+
+/* GCASH REFERENCE */
+
+.order-gcash-reference {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin: 4px 0 20px;
+    padding: 13px;
+    background: rgba(255, 255, 255, 0.48);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 11px;
+}
+
+.order-gcash-reference strong {
+    color: #29465e;
+    font-size: 15px;
+    overflow-wrap: anywhere;
+}
+
+/* GCASH SCREENSHOT */
+
+.order-gcash-screenshot {
+    margin: 5px 0 20px;
+}
+
+.order-gcash-screenshot h4 {
+    margin: 0 0 12px;
+    color: #29465e;
+    font-size: 17px;
+}
+
+.order-screenshot-link {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #318bd9;
+    font-size: 13px;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.order-screenshot-link img {
+    display: block;
+    width: 100%;
+    max-height: 240px;
+    object-fit: contain;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(205, 228, 242, 0.9);
+    border-radius: 11px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.order-screenshot-link:hover span {
+    text-decoration: underline;
+}
+
+.order-screenshot-link:hover img {
+    transform: scale(1.015);
+    box-shadow: 0 5px 15px rgba(44, 94, 125, 0.15);
+}
+
+.order-screenshot-unavailable {
+    margin: 0;
+    color: #8299aa;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* PAYMENT NOTE */
+
+.order-payment-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 18px;
+    padding: 14px;
+    background: rgba(255, 255, 255, 0.48);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 11px;
+}
+
+.order-note-icon {
+    flex-shrink: 0;
+    color: #318bd9;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.order-payment-note p {
+    margin: 0;
+    color: #58768d;
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+/* =========================================
+   PICKUP INFORMATION
+========================================= */
+
+.order-pickup-description {
+    margin: 0 0 18px;
+    color: #58768d;
+    font-size: 15px;
+    line-height: 1.65;
+}
+
+.order-pickup-details {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.48);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 11px;
+}
+
+.order-pickup-details p {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 0;
+    color: #58768d;
+    font-size: 15px;
+    line-height: 1.55;
+}
+
+.order-pickup-details strong {
+    color: #294e6b;
+    font-weight: 700;
+}
+
+.order-pickup-details p span {
+    padding-left: 26px;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1050px) {
+
+    .order-details-layout {
+        grid-template-columns: minmax(0, 1fr) 300px;
+        gap: 18px;
+    }
+
+    .order-details-card {
+        padding: 20px;
+    }
+
+    .order-details-product {
+        grid-template-columns: 115px minmax(0, 1fr) 125px;
+        gap: 16px;
+    }
+
+    .order-details-product-image {
+        width: 115px;
+        height: 110px;
+    }
+
+    .order-details-product-info h4 {
+        font-size: 17px;
+    }
+
+    .order-details-product-price strong {
+        font-size: 17px;
+    }
+}
+
+/* =========================================
+   SMALL TABLET
+========================================= */
+
+@media (max-width: 800px) {
+
+    .order-details-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .order-details-sidebar {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: start;
+    }
+
+    .order-details-sidebar .order-sidebar-card {
+        height: 100%;
+    }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .order-details-page {
+        width: calc(100% - 28px);
+        padding-top: 22px;
+    }
+
+    .order-details-heading {
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .order-details-heading h2 {
+        font-size: 24px;
+    }
+
+    .order-details-heading p {
+        font-size: 13px;
+    }
+
+    .order-details-back {
+        margin: 0 0 0 auto;
+    }
+
+    .order-details-main-column,
+    .order-details-sidebar {
+        gap: 15px;
+    }
+
+    .order-details-sidebar {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .order-details-card,
+    .order-sidebar-card {
+        padding: 17px;
+        border-radius: 16px;
+    }
+
+    .order-summary-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .order-summary-header h3 {
+        font-size: 21px;
+    }
+
+    .order-status-badge {
+        min-width: 125px;
+    }
+
+    .order-section-title {
+        font-size: 17px;
+    }
+
+    .order-details-product {
+        grid-template-columns: 90px minmax(0, 1fr);
+        gap: 13px;
+        padding: 16px 0;
+    }
+
+    .order-details-product-image {
+        width: 90px;
+        height: 90px;
+        grid-row: span 2;
+    }
+
+    .order-details-product-info h4 {
+        margin-bottom: 7px;
+        font-size: 19px;
+    }
+
+    .order-details-product-info p {
+        margin: 4px 0;
+        font-size: 14px;
+    }
+
+    .order-details-product-price {
+        grid-column: 2;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .order-details-product-price strong {
+        font-size: 17px;
+    }
+
+    .order-details-product-price small {
+        font-size: 11px;
+    }
+
+    .order-details-total span {
+        font-size: 17px;
+    }
+
+    .order-details-total strong {
+        font-size: 23px;
+    }
+
+    .order-progress-description h4 {
+        font-size: 15px;
+    }
+
+    .order-progress-description p {
+        font-size: 13px;
+    }
+
+    .order-pickup-description,
+    .order-pickup-details p {
+        font-size: 14px;
+    }
+
+    .order-sidebar-card .order-section-title {
+        font-size: 17px;
+    }
+}
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+
+    .order-details-product {
+        grid-template-columns: 75px minmax(0, 1fr);
+        gap: 10px;
+    }
+
+    .order-details-product-image {
+        width: 75px;
+        height: 80px;
+    }
+
+    .order-details-product-info h4 {
+        font-size: 14px;
+    }
+
+    .order-details-product-info p {
+        font-size: 11px;
+    }
+
+    .order-details-product-price strong {
+        font-size: 15px;
+    }
+
+    .order-details-total strong {
+        font-size: 19px;
+    }
+}
+
+/* =========================================
+   GCASH PAYMENT SCREENSHOT MODAL
+========================================= */
+
+.payment-image-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    box-sizing: border-box;
+    background: rgba(24, 48, 70, 0.48);
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
+}
+
+.payment-image-modal[hidden] {
+    display: none !important;
+}
+
+.payment-image-modal-content {
+    position: relative;
+    width: min(850px, 100%);
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    padding: 28px;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.97);
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    border-radius: 22px;
+    box-shadow:
+        0 25px 70px rgba(25, 55, 80, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    animation: paymentModalAppear 0.22s ease;
+}
+
+/* MODAL HEADER */
+
+.payment-image-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.payment-image-modal-header h3 {
+    margin: 0;
+    color: #2457a7;
+    font-size: 23px;
+    font-weight: 750;
+}
+
+.payment-image-modal-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 50%;
+    background: #eff5fa;
+    color: #385675;
+    font-size: 25px;
+    line-height: 1;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.payment-image-modal-close:hover {
+    background: #dceaf5;
+    color: #2457a7;
+    transform: rotate(90deg);
+}
+
+/* IMAGE PREVIEW */
+
+.payment-image-modal-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 250px;
+    max-height: calc(90vh - 120px);
+    overflow: auto;
+    background: #f2f6fc;
+    border-radius: 15px;
+}
+
+.payment-image-modal-body img {
+    display: block;
+    max-width: 100%;
+    max-height: calc(90vh - 150px);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+/* PREVENT BACKGROUND SCROLL */
+
+body.modal-open {
+    overflow: hidden;
+}
+
+/* MODAL ANIMATION */
+
+@keyframes paymentModalAppear {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* MODAL MOBILE */
+
+@media (max-width: 600px) {
+
+    .payment-image-modal {
+        padding: 14px;
+    }
+
+    .payment-image-modal-content {
+        padding: 18px;
+        border-radius: 17px;
+    }
+
+    .payment-image-modal-header {
+        margin-bottom: 16px;
+    }
+
+    .payment-image-modal-header h3 {
+        font-size: 19px;
+    }
+
+    .payment-image-modal-close {
+        width: 36px;
+        height: 36px;
+        font-size: 23px;
+    }
+
+    .payment-image-modal-body {
+        min-height: 180px;
+    }
+
+    .payment-image-modal-body img {
+        max-height: calc(85vh - 120px);
+    }
+}
+
+/* =========================================
+   ORDER ITEMS - INNER SIDE SPACING
+========================================= */
+
+@media (max-width: 600px) {
+
+    .order-details-items {
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+    .order-details-total {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+        margin-top: 12px;
+        margin-left: 22px;
+        margin-right: 22px;
+        padding-top: 18px;
+        border-top: 1px solid rgba(255, 255, 255, 0.9);
+        text-align: left;
+    }
+
+    .order-details-total span {
+        color: #58768d;
+        font-size: 22px;
+        font-weight: 600;
+        text-align: left;
+    }
+
+    .order-details-total strong {
+        color: #2687cf;
+        font-size: 31px;
+        font-weight: 800;
+        text-align: right;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .order-details-total {
+        margin-left: 4px;
+        margin-right: 4px;
+        gap: 10px;
+    }
+
+    .order-details-total span {
+        font-size: 15px;
+    }
+
+    .order-details-total strong {
+        font-size: 21px;
+    }
+}

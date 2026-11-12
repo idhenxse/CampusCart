@@ -200,6 +200,7 @@ function getOrderVariantText(array $item): string
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/student.css">
     <link rel="stylesheet" href="../assets/css/orders.css">
+    <link rel="stylesheet" href="../assets/css/notifications.css">
 </head>
 
 <body class="student-page">
@@ -248,13 +249,7 @@ function getOrderVariantText(array $item): string
             </svg>
         </a>
 
-        <a href="notifications.php" class="header-action"
-           title="Notifications" aria-label="Notifications">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
-                <path d="M10 21h4"/>
-            </svg>
-        </a>
+        <?php require __DIR__ . '/includes/notification_panel.php'; ?>
 
         <a href="menu.php" class="header-action"
            title="Student Menu" aria-label="Student Menu">
@@ -529,52 +524,12 @@ function getOrderVariantText(array $item): string
                     </div>
 
                     <!-- VIEW ORDER DETAILS -->
-                    <details class="order-details-toggle">
-
-                        <summary>VIEW ORDER DETAILS</summary>
-
-                        <div class="order-details-content">
-
-                            <p>
-                                <strong>Order Number:</strong>
-                                <?= e($order['order_number']) ?>
-                            </p>
-
-                            <p>
-                                <strong>Order Date:</strong>
-                                <?= e($order_date) ?> at <?= e($order_time) ?>
-                            </p>
-
-                            <p>
-                                <strong>Order Status:</strong>
-                                <?= e(orderStatusLabel($order_status)) ?>
-                            </p>
-
-                            <p>
-                                <strong>Payment Method:</strong>
-                                <?= e(paymentMethodLabel((string) $order['payment_method'])) ?>
-                            </p>
-
-                            <p>
-                                <strong>Payment Status:</strong>
-                                <?= e(paymentStatusLabel($payment_status)) ?>
-                            </p>
-
-                            <?php if (!empty($order['reference_number'])): ?>
-                                <p>
-                                    <strong>GCash Reference Number:</strong>
-                                    <?= e($order['reference_number']) ?>
-                                </p>
-                            <?php endif; ?>
-
-                            <p>
-                                <strong>Total Amount:</strong>
-                                ₱<?= number_format((float) $order['total_amount'], 2) ?>
-                            </p>
-
-                        </div>
-
-                    </details>
+                    <a
+                        href="order_details.php?order_id=<?= (int) $order['order_id'] ?>"
+                        class="order-details-toggle"
+                    >
+                        VIEW ORDER DETAILS
+                    </a>
 
                 </article>
 
@@ -590,6 +545,8 @@ function getOrderVariantText(array $item): string
 <footer class="student-footer">
     © <?= date('Y') ?> CampusCart | Pamantasan ng Lungsod ng Maynila
 </footer>
+
+<script src="../assets/js/notification.js"></script>
 
 </body>
 </html>

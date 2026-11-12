@@ -1,0 +1,314 @@
+/* =========================================
+   CAMPUSCART STUDENT NOTIFICATION PANEL
+========================================= */
+
+.notification-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* BELL BUTTON */
+
+.notification-trigger {
+    position: relative;
+    cursor: pointer;
+}
+
+/* RED DOT FOR UNREAD NOTIFICATIONS */
+
+.notification-dot {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+
+    width: 9px;
+    height: 9px;
+
+    background: #ef4444;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+}
+
+/* NOTIFICATION POPUP */
+
+.notification-panel {
+    position: absolute;
+    top: calc(100% + 14px);
+    right: 0;
+    z-index: 1000;
+
+    width: 370px;
+    max-width: calc(100vw - 30px);
+    max-height: 450px;
+
+    display: none;
+    flex-direction: column;
+
+    background: rgba(239, 248, 253, 0.97);
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+
+    box-shadow:
+        0 15px 40px rgba(35, 83, 115, 0.20),
+        inset 0 1px 0 rgba(255, 255, 255, 0.85);
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    overflow: hidden;
+}
+
+/* OPEN STATE */
+
+.notification-panel.active {
+    display: flex;
+}
+
+/* PANEL HEADER */
+
+.notification-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    min-height: 48px;
+    padding: 10px 45px;
+
+    background: linear-gradient(
+        110deg,
+        rgba(49, 139, 217, 0.15),
+        rgba(115, 179, 224, 0.20)
+    );
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.95);
+}
+
+.notification-panel-header h3 {
+    margin: 0;
+
+    color: #24577c;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+}
+
+/* CLOSE BUTTON */
+
+.notification-close {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+
+    width: 27px;
+    height: 27px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    background: rgba(255, 255, 255, 0.65);
+    border: 1px solid rgba(120, 160, 190, 0.25);
+    border-radius: 50%;
+
+    color: #52758f;
+    font-size: 20px;
+    line-height: 1;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.notification-close:hover {
+    background: #ffffff;
+    color: #24577c;
+}
+
+/* NOTIFICATION LIST */
+
+.notification-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    padding: 13px;
+
+    overflow-y: auto;
+    max-height: 390px;
+}
+
+/* INDIVIDUAL NOTIFICATION */
+
+.notification-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+
+    padding: 13px 14px;
+
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(205, 228, 242, 0.85);
+    border-radius: 10px;
+
+    transition: 0.2s ease;
+}
+
+.notification-item:hover {
+    background: #ffffff;
+    border-color: rgba(49, 139, 217, 0.35);
+}
+
+/* UNREAD NOTIFICATION */
+
+.notification-item.unread {
+    background: rgba(255, 255, 255, 0.95);
+    border-left: 3px solid #318bd9;
+}
+
+/* NOTIFICATION TEXT */
+
+.notification-item-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.notification-item-content h4 {
+    margin: 0 0 5px;
+
+    color: #29465e;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.notification-item-content p {
+    margin: 0 0 8px;
+
+    color: #66839b;
+    font-size: 13px;
+    line-height: 1.5;
+
+    overflow-wrap: anywhere;
+}
+
+.notification-item-content time {
+    display: block;
+
+    color: #8aa0b2;
+    font-size: 11px;
+}
+
+/* SMALL UNREAD INDICATOR */
+
+.notification-unread-indicator {
+    flex: 0 0 8px;
+
+    width: 8px;
+    height: 8px;
+    margin-top: 5px;
+
+    background: #ef4444;
+    border-radius: 50%;
+}
+
+/* EMPTY NOTIFICATIONS */
+
+.notification-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 130px;
+    padding: 20px;
+
+    text-align: center;
+}
+
+.notification-empty p {
+    margin: 0 0 6px;
+
+    color: #29465e;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.notification-empty span {
+    color: #7891a5;
+    font-size: 13px;
+}
+
+/* MOBILE */
+
+@media (max-width: 520px) {
+    .notification-panel {
+        position: fixed;
+        top: 85px;
+        right: 12px;
+
+        width: 370px;
+        max-height: min(450px, calc(100vh - 105px));
+    }
+
+    .notification-list {
+        max-height: calc(100vh - 180px);
+    }
+}
+
+
+/* =========================================
+   NOTIFICATION PANEL - FINAL REFINEMENTS
+========================================= */
+
+/* Keep the popup aligned neatly below the notification bell */
+.notification-wrapper {
+    position: relative;
+    z-index: 1100;
+}
+
+.notification-panel {
+    width: 370px;
+    max-width: min(370px, calc(100vw - 30px));
+    max-height: min(450px, calc(100vh - 110px));
+}
+
+/* Keep the notification list scrollable */
+.notification-list {
+    flex: 1;
+    min-height: 0;
+    max-height: 390px;
+    overscroll-behavior: contain;
+}
+
+/* Ensure the red dot stays visible above the bell icon */
+.notification-trigger {
+    position: relative;
+}
+
+.notification-dot {
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Tablet and mobile positioning */
+@media (max-width: 520px) {
+    .notification-panel {
+        position: fixed;
+        top: 85px;
+        right: 12px;
+        left: auto;
+        width: 370px;
+        max-width: calc(100vw - 24px);
+        max-height: calc(100vh - 105px);
+    }
+
+    .notification-list {
+        max-height: calc(100vh - 180px);
+    }
+}
