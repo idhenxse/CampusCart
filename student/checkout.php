@@ -32,10 +32,38 @@ $error_message = '';
 $selected_payment = $_POST['payment_method'] ?? 'cash_on_pickup';
 
 // =========================================
-// LOAD THE STUDENT'S CART
+// LOAD SELECTED STUDENT CART ITEMS
 // =========================================
-function loadCheckoutCart(PDO $pdo, int $user_id): array
+
+// Receive selected items when coming from cart.php.
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['selected_items'])) {
+    $selected_item_ids = array_values(array_unique(array_filter(
+        array_map('intval', (array) $_POST['selected_items']),
+        fn($id) => $id > 0
+    )));
+
+    if (!empty($selected_item_ids)) {
+        $_SESSION['checkout_selected_items'] = $selected_item_ids;
+    }
+}
+
+// Retrieve the selected items from the session.
+$selected_item_ids = $_SESSION['checkout_selected_items'] ?? [];
+
+if (empty($selected_item_ids)) {
+    header('Location: cart.php');
+    exit;
+}
+
+// Load only the selected items belonging to this student.
+function loadCheckoutCart(PDO $pdo, int $user_id, array $selected_ids): array
 {
+    if (empty($selected_ids)) {
+        return [];
+    }
+
+    $placeholders = implode(',', array_fill(0, count($selected_ids), '?'));
+
     $stmt = $pdo->prepare("
         SELECT
             ci.cart_item_id,
@@ -57,17 +85,20 @@ function loadCheckoutCart(PDO $pdo, int $user_id): array
         LEFT JOIN inventory i
             ON i.variant_id = pv.variant_id
         WHERE c.user_id = ?
+          AND ci.cart_item_id IN ($placeholders)
         ORDER BY ci.added_at DESC
     ");
 
-    $stmt->execute([$user_id]);
+    $stmt->execute(array_merge([$user_id], $selected_ids));
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-$cart_items = loadCheckoutCart($pdo, $user_id);
+$cart_items = loadCheckoutCart($pdo, $user_id, $selected_item_ids);
 
-if (empty($cart_items)) {
+if (count($cart_items) !== count($selected_item_ids)) {
+    unset($_SESSION['checkout_selected_items']);
+
     header('Location: cart.php');
     exit;
 }
@@ -85,7 +116,10 @@ foreach ($cart_items as $item) {
 // =========================================
 // CHECKOUT FORM SUBMISSION
 // =========================================
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (
+    $_SERVER['REQUEST_METHOD'] === 'POST' &&
+    isset($_POST['payment_method'])
+) {
 
     $submitted_token = $_POST['csrf_token'] ?? '';
 
@@ -218,6 +252,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     $cart_id = (int) $cart['cart_id'];
 
+                    $selected_item_ids = $_SESSION['checkout_selected_items'] ?? [];
+
+                    if (empty($selected_item_ids)) {
+                        throw new Exception('Please return to your cart and select the items you want to purchase.');
+                    }
+
+                    $placeholders = implode(',', array_fill(0, count($selected_item_ids), '?'));
+
+                    // Lock and retrieve only the selected cart items.
                     $itemsStmt = $pdo->prepare("
                         SELECT
                             ci.cart_item_id,
@@ -232,12 +275,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         LEFT JOIN inventory i
                             ON i.variant_id = pv.variant_id
                         WHERE ci.cart_id = ?
+                        AND ci.cart_item_id IN ($placeholders)
                         ORDER BY ci.cart_item_id
                         FOR UPDATE
                     ");
 
-                    $itemsStmt->execute([$cart_id]);
+                    $itemsStmt->execute(array_merge([$cart_id], $selected_item_ids));
                     $locked_items = $itemsStmt->fetchAll(PDO::FETCH_ASSOC);
+
+                    if (count($locked_items) !== count($selected_item_ids)) {
+                        throw new Exception('Some selected items are no longer in your cart. Please return and review your selection.');
+                    }
 
                     if (empty($locked_items)) {
                         throw new Exception('Your cart is empty.');
@@ -361,15 +409,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $screenshot_path
                     ]);
 
-                    // Empty the cart after successful order creation.
+                    // Create a notification for the student.
+                    $notificationStmt = $pdo->prepare("
+                        INSERT INTO notifications (
+                            user_id,
+                            title,
+                            message,
+                            notification_type,
+                            related_id,
+                            is_read
+                        )
+                        VALUES (?, ?, ?, ?, ?, 0)
+                    ");
+
+                    $notificationStmt->execute([
+                        $user_id,
+                        'Order Placed Successfully',
+                        'Your order ' . $order_number . ' has been placed successfully and is now pending confirmation.',
+                        'order_placed',
+                        $order_id
+                    ]);
+
+                    // Remove only the selected items after successful order creation.
                     $clearCartStmt = $pdo->prepare("
                         DELETE FROM cart_items
                         WHERE cart_id = ?
+                        AND cart_item_id IN ($placeholders)
                     ");
 
-                    $clearCartStmt->execute([$cart_id]);
+                    $clearCartStmt->execute(
+                        array_merge([$cart_id], $selected_item_ids)
+                    );
 
                     $pdo->commit();
+
+                    // Clear the selected checkout items after a successful commit.
+                    unset($_SESSION['checkout_selected_items']);
 
                     header(
                         'Location: orders.php?placed=1&order=' .
@@ -402,8 +477,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // Reload cart data if checkout submission failed.
-    $cart_items = loadCheckoutCart($pdo, $user_id);
+    // Reload selected cart data if checkout submission failed.
+    $cart_items = loadCheckoutCart(
+        $pdo,
+        $user_id,
+        $_SESSION['checkout_selected_items'] ?? []
+    );
 
     $total_quantity = 0;
     $cart_subtotal = 0;

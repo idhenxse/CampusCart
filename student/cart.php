@@ -533,6 +533,18 @@ $cart_subtotal = $totals['cart_subtotal'];
                                 Subtotal: ₱<?= number_format($item_subtotal, 2) ?>
                             </strong>
 
+                            <div class="cart-item-selection">
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        class="cart-select-checkbox"
+                                        value="<?= $item_id ?>"
+                                        <?= $item_stock < 1 ? 'disabled' : '' ?>
+                                    >
+                                    Select item for checkout
+                                </label>
+                            </div>
+
                             <div class="cart-item-controls">
 
                                 <div class="cart-quantity">
@@ -609,8 +621,9 @@ $cart_subtotal = $totals['cart_subtotal'];
                         </div>
 
                         <a
-                            href="checkout.php"
+                            href="#"
                             class="cart-checkout-button <?= $item_stock < 1 ? 'checkout-disabled' : '' ?>"
+                            onclick="event.preventDefault(); proceedToCheckout();"
                         >
                             PROCEED TO CHECKOUT
                         </a>
@@ -767,6 +780,43 @@ document.querySelectorAll('.cart-quantity-input').forEach(input => {
         }
     });
 });
+</script>
+
+<script>
+function proceedToCheckout() {
+    const selectedItems = Array.from(
+        document.querySelectorAll('.cart-select-checkbox:checked')
+    ).map(checkbox => checkbox.value);
+
+    if (selectedItems.length === 0) {
+        showCartMessage(
+            'Please select at least one item to proceed to checkout.',
+            'error'
+        );
+        return;
+    }
+
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = 'checkout.php';
+
+    const csrfInput = document.createElement('input');
+    csrfInput.type = 'hidden';
+    csrfInput.name = 'csrf_token';
+    csrfInput.value = cartCsrfToken;
+    form.appendChild(csrfInput);
+
+    selectedItems.forEach(itemId => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'selected_items[]';
+        input.value = itemId;
+        form.appendChild(input);
+    });
+
+    document.body.appendChild(form);
+    form.submit();
+}
 </script>
 
 <script src="../assets/js/notification.js"></script>

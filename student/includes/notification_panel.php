@@ -54,6 +54,7 @@ $unread_notifications = (int) $unread_stmt->fetchColumn();
         id="notification-trigger"
         title="Notifications"
         aria-label="Notifications"
+        data-csrf-token="<?= htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES, 'UTF-8') ?>"
         aria-expanded="false"
         aria-controls="notification-panel"
     >
