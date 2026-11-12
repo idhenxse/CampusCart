@@ -201,6 +201,9 @@ function getOrderVariantText(array $item): string
     <link rel="stylesheet" href="../assets/css/student.css">
     <link rel="stylesheet" href="../assets/css/orders.css">
     <link rel="stylesheet" href="../assets/css/notifications.css">
+    <link rel="stylesheet" href="../assets/css/student-menu.css">
+    <link rel="stylesheet" href="../assets/css/dark_theme.css">
+    <script src="../assets/js/theme.js"></script>
 </head>
 
 <body class="student-page">
@@ -251,14 +254,8 @@ function getOrderVariantText(array $item): string
 
         <?php require __DIR__ . '/includes/notification_panel.php'; ?>
 
-        <a href="menu.php" class="header-action"
-           title="Student Menu" aria-label="Student Menu">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M4 6h16"/>
-                <path d="M4 12h16"/>
-                <path d="M4 18h16"/>
-            </svg>
-        </a>
+        <!-- Student Menu -->
+        <?php require __DIR__ . '/includes/student_menu.php'; ?>
 
     </nav>
 </header>
@@ -547,6 +544,7 @@ function getOrderVariantText(array $item): string
 </footer>
 
 <script src="../assets/js/notification.js"></script>
+<script src="../assets/js/student-menu.js"></script>
 
 </body>
 </html>

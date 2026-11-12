@@ -318,6 +318,9 @@ $cart_subtotal = $totals['cart_subtotal'];
     <link rel="stylesheet" href="../assets/css/student.css">
     <link rel="stylesheet" href="../assets/css/cart.css">
     <link rel="stylesheet" href="../assets/css/notifications.css">
+    <link rel="stylesheet" href="../assets/css/student-menu.css">
+    <link rel="stylesheet" href="../assets/css/dark_theme.css">
+    <script src="../assets/js/theme.js"></script>
 </head>
 
 <body class="student-page">
@@ -368,14 +371,8 @@ $cart_subtotal = $totals['cart_subtotal'];
 
         <?php require __DIR__ . '/includes/notification_panel.php'; ?>
 
-        <a href="menu.php" class="header-action"
-           title="Student Menu" aria-label="Student Menu">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M4 6h16"/>
-                <path d="M4 12h16"/>
-                <path d="M4 18h16"/>
-            </svg>
-        </a>
+        <!-- Student Menu -->
+        <?php require __DIR__ . '/includes/student_menu.php'; ?>
 
     </nav>
 </header>
@@ -820,6 +817,7 @@ function proceedToCheckout() {
 </script>
 
 <script src="../assets/js/notification.js"></script>
+<script src="../assets/js/student-menu.js"></script>
 
 </body>
 </html>

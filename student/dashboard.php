@@ -316,6 +316,9 @@ try {
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/student.css">
     <link rel="stylesheet" href="../assets/css/notifications.css">
+    <link rel="stylesheet" href="../assets/css/student-menu.css">
+    <link rel="stylesheet" href="../assets/css/dark_theme.css">
+    <script src="../assets/js/theme.js"></script>
 </head>
 <body>
 
@@ -370,18 +373,7 @@ try {
             <?php require __DIR__ . '/includes/notification_panel.php'; ?>
 
             <!-- Student Menu -->
-            <a
-                href="menu.php"
-                class="header-action"
-                title="Student Menu"
-                aria-label="Student Menu"
-            >
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M4 6h16"/>
-                    <path d="M4 12h16"/>
-                    <path d="M4 18h16"/>
-                </svg>
-            </a>
+            <?php require __DIR__ . '/includes/student_menu.php'; ?>
 
         </nav>
     </header>
@@ -391,11 +383,243 @@ try {
     ====================================== -->
     <main class="student-content">
 
-        <!-- WELCOME BANNER -->
-        <section class="welcome-section">
-            <h2>Welcome Haribon!</h2>
-            <p>Karunungan, Kaunlaran, Kadakilaan</p>
-        </section>
+        <!-- WELCOME BANNER + WEATHER WIDGET -->
+
+        <div class="dashboard-intro">
+
+            <!-- WELCOME BANNER -->
+            <section class="welcome-section">
+
+                <div class="welcome-content">
+
+                    <div class="welcome-label">
+                        <span class="welcome-label-icon">✦</span>
+                        CAMPUSCART STUDENT PORTAL
+                    </div>
+
+                    <h2>Welcome Haribon!</h2>
+
+                    <p>Karunungan, Kaunlaran, Kadakilaan</p>
+
+                </div>
+
+                <div class="welcome-illustration" aria-hidden="true">
+
+                    <svg viewBox="0 0 320 190" xmlns="http://www.w3.org/2000/svg">
+
+                        <defs>
+                            <linearGradient id="bagGradient" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#8BC8F4"/>
+                                <stop offset="100%" stop-color="#318BD9"/>
+                            </linearGradient>
+
+                            <linearGradient id="bookGradient" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#9ACBF0"/>
+                                <stop offset="100%" stop-color="#4B91D0"/>
+                            </linearGradient>
+
+                            <linearGradient id="purpleGradient" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#C5B9F5"/>
+                                <stop offset="100%" stop-color="#8F80D8"/>
+                            </linearGradient>
+
+                            <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+                                <feGaussianBlur stdDeviation="5"/>
+                            </filter>
+                        </defs>
+
+                        <!-- Soft ground shadow -->
+                        <ellipse cx="165" cy="169" rx="125" ry="12"
+                                fill="#6BA9D5" opacity=".20"
+                                filter="url(#softShadow)"/>
+
+                        <!-- Back notebook -->
+                        <g transform="translate(82 31) rotate(-7)">
+                            <rect x="0" y="0" width="77" height="105"
+                                rx="9" fill="#FFFFFF" stroke="#B8D8F0" stroke-width="2"/>
+                            <rect x="12" y="15" width="53" height="2" rx="1" fill="#D6E7F5"/>
+                            <rect x="12" y="30" width="53" height="2" rx="1" fill="#D6E7F5"/>
+                            <rect x="12" y="45" width="53" height="2" rx="1" fill="#D6E7F5"/>
+                            <rect x="12" y="60" width="53" height="2" rx="1" fill="#D6E7F5"/>
+                            <path d="M9 0v105" stroke="#78AEDD" stroke-width="4"
+                                stroke-dasharray="4 7"/>
+                        </g>
+
+                        <!-- Shopping bag handles -->
+                        <path d="M174 69 C174 20 234 20 234 69"
+                            fill="none" stroke="#347FBD" stroke-width="9"
+                            stroke-linecap="round"/>
+                        <path d="M183 69 C183 32 225 32 225 69"
+                            fill="none" stroke="#8FC7EF" stroke-width="4"
+                            stroke-linecap="round"/>
+
+                        <!-- Shopping bag -->
+                        <path d="M161 67 Q161 61 168 61 H242 Q249 61 249 69
+                                L242 151 Q241 158 234 158 H174
+                                Q167 158 166 151 Z"
+                            fill="url(#bagGradient)" stroke="#4C91CC" stroke-width="2"/>
+
+                        <path d="M177 81 H233 L228 137 H181 Z"
+                            fill="#FFFFFF" opacity=".14"/>
+
+                        <!-- Shopping cart symbol -->
+                        <g fill="none" stroke="#FFFFFF" stroke-width="5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M185 91 H194 L199 119 H226 L232 100 H197"/>
+                            <path d="M201 126 H226"/>
+                        </g>
+                        <circle cx="203" cy="134" r="3.5" fill="#FFFFFF"/>
+                        <circle cx="224" cy="134" r="3.5" fill="#FFFFFF"/>
+
+                        <!-- Lower blue book -->
+                        <g transform="translate(35 127)">
+                            <path d="M0 10 Q0 4 8 4 H103 Q110 4 110 11
+                                    V29 Q110 35 103 35 H8 Q0 35 0 29 Z"
+                                fill="url(#bookGradient)"/>
+                            <path d="M8 4 H103 Q110 4 110 11 V15 H8 Z"
+                                fill="#DCEFFC"/>
+                            <path d="M8 16 H110" stroke="#FFFFFF" stroke-width="2"
+                                opacity=".7"/>
+                        </g>
+
+                        <!-- Purple book -->
+                        <g transform="translate(44 107)">
+                            <path d="M0 8 Q0 2 7 2 H94 Q101 2 101 9
+                                    V24 Q101 30 94 30 H7 Q0 30 0 24 Z"
+                                fill="url(#purpleGradient)"/>
+                            <path d="M7 2 H94 Q101 2 101 9 V13 H7 Z"
+                                fill="#E8E3FF"/>
+                            <path d="M7 15 H101" stroke="#FFFFFF" stroke-width="2"
+                                opacity=".8"/>
+                        </g>
+
+                        <!-- Graduation cap -->
+                        <g transform="translate(39 88)">
+                            <path d="M0 13 L47 0 L94 13 L47 29 Z"
+                                fill="#347FBD"/>
+                            <path d="M15 20 V34 Q47 51 79 34 V20"
+                                fill="#245D83"/>
+                            <path d="M90 13 V36"
+                                stroke="#F3C85B" stroke-width="3"/>
+                            <circle cx="90" cy="38" r="3" fill="#F3C85B"/>
+                        </g>
+
+                        <!-- Pencil cup -->
+                        <path d="M259 108 H301 L296 156 Q295 162 289 162 H270
+                                Q264 162 263 156 Z"
+                            fill="#75B5E5" stroke="#579BD0" stroke-width="2"/>
+                        <path d="M259 108 Q280 102 301 108"
+                            fill="none" stroke="#A9D7F5" stroke-width="5"/>
+
+                        <!-- Pencils -->
+                        <g stroke-linecap="round">
+                            <path d="M269 108 L266 62"
+                                stroke="#F2C65A" stroke-width="7"/>
+                            <path d="M266 62 L269 53 L272 62"
+                                fill="#F2C65A"/>
+                            <path d="M285 108 L292 70"
+                                stroke="#6C8BD8" stroke-width="7"/>
+                            <path d="M292 70 L297 61 L299 71"
+                                fill="#6C8BD8"/>
+                        </g>
+
+                        <!-- Decorative sparkles -->
+                        <g fill="#F2C65A">
+                            <path d="M30 59 L34 69 L44 73 L34 77 L30 87 L26 77 L16 73 L26 69 Z"/>
+                            <path d="M287 33 L290 41 L298 44 L290 47 L287 55 L284 47 L276 44 L284 41 Z"/>
+                            <circle cx="117" cy="69" r="3"/>
+                        </g>
+
+                    </svg>
+
+                </div>
+
+            </section>
+
+            <!-- WEATHER WIDGET -->
+            <section class="weather-panel" aria-label="Current weather in Metro Manila">
+
+                <!-- Main weather information -->
+                <div class="weather-main">
+
+                    <div
+                        class="weather-icon"
+                        id="weather-icon"
+                        aria-hidden="true"
+                    >
+                        ⏳
+                    </div>
+
+                    <div class="weather-main-info">
+
+                        <div
+                            class="weather-temperature"
+                            id="weather-temperature"
+                        >
+                            --°C
+                        </div>
+
+                        <div
+                            class="weather-description"
+                            id="weather-description"
+                        >
+                            Loading weather...
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Location -->
+                <div class="weather-location">
+                    Metro Manila, Philippines
+                </div>
+
+                <!-- Weather details -->
+                <div class="weather-details">
+
+                    <div class="weather-detail">
+                        <span>Feels like</span>
+                        <strong id="weather-feels-like">--°C</strong>
+                    </div>
+
+                    <div class="weather-detail">
+                        <span>Humidity</span>
+                        <strong id="weather-humidity">--%</strong>
+                    </div>
+
+                    <div class="weather-detail">
+                        <span>Wind</span>
+                        <strong id="weather-wind">-- km/h</strong>
+                    </div>
+
+                </div>
+
+                <!-- Loading, update and error messages -->
+                <div
+                    class="weather-status"
+                    id="weather-status"
+                    role="status"
+                    aria-live="polite"
+                >
+                    Getting the latest weather...
+                </div>
+
+                <!-- Open-Meteo attribution -->
+                <div class="weather-attribution">
+                    Weather data by
+                    <a
+                        href="https://open-meteo.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Open-Meteo
+                    </a>
+                </div>
+
+            </section>
+
+        </div>
 
         <!-- =================================
              TWO-COLUMN DASHBOARD
@@ -416,15 +640,16 @@ try {
                     action="dashboard.php"
                     method="GET"
                     class="catalogue-search"
+                    id="catalogue-search-form"
                 >
-                    <input
+                                    <input
                         type="search"
                         name="search"
                         placeholder="Search products..."
                         value="<?= htmlspecialchars($search, ENT_QUOTES, 'UTF-8') ?>"
                     >
 
-                    <select name="category">
+                    <select name="category" id="category-filter">
                         <option value="">
                             All Categories
                         </option>
@@ -1358,7 +1583,23 @@ document.addEventListener('keydown', function(event) {
 </script>
 
 <script>
+// Automatically filter products when a category is selected.
 document.addEventListener('DOMContentLoaded', function () {
+    const categoryFilter = document.getElementById('category-filter');
+    const searchForm = document.getElementById('catalogue-search-form');
+
+    if (categoryFilter && searchForm) {
+        categoryFilter.addEventListener('change', function () {
+            searchForm.submit();
+        });
+    }
+});
+</script>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+
     const wrapper = document.getElementById('notification-wrapper');
     const trigger = document.getElementById('notification-trigger');
     const panel = document.getElementById('notification-panel');
@@ -1368,19 +1609,75 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
+    // Mark notifications as read in the database.
+    async function markNotificationsAsRead() {
+
+        const csrfToken = trigger.dataset.csrfToken;
+
+        if (!csrfToken) {
+            console.error('Notification CSRF token is missing.');
+            return;
+        }
+
+        try {
+
+            const response = await fetch('mark_notifications_read.php', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-Token': csrfToken
+                }
+            });
+
+            const result = await response.json();
+
+            if (!response.ok || !result.success) {
+                throw new Error(result.message || 'Unable to mark notifications as read.');
+            }
+
+            // Remove unread styling from notifications.
+            document.querySelectorAll('.notification-item.unread')
+                .forEach(function (item) {
+                    item.classList.remove('unread');
+                });
+
+            // Remove unread indicators.
+            document.querySelectorAll('.notification-unread-indicator')
+                .forEach(function (indicator) {
+                    indicator.remove();
+                });
+
+            // Remove the red dot from the notification bell.
+            const notificationDot = document.getElementById('notification-dot');
+
+            if (notificationDot) {
+                notificationDot.remove();
+            }
+
+        } catch (error) {
+            console.error('Notification update error:', error);
+        }
+    }
+
     function openNotifications() {
+
         panel.classList.add('active');
         panel.setAttribute('aria-hidden', 'false');
         trigger.setAttribute('aria-expanded', 'true');
+
+        // Automatically mark notifications as read.
+        markNotificationsAsRead();
     }
 
     function closeNotifications() {
+
         panel.classList.remove('active');
         panel.setAttribute('aria-hidden', 'true');
         trigger.setAttribute('aria-expanded', 'false');
+
     }
 
     trigger.addEventListener('click', function (event) {
+
         event.stopPropagation();
 
         if (panel.classList.contains('active')) {
@@ -1388,26 +1685,39 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             openNotifications();
         }
+
     });
 
     closeButton.addEventListener('click', function (event) {
+
         event.stopPropagation();
         closeNotifications();
+
     });
 
     document.addEventListener('click', function (event) {
+
         if (!wrapper.contains(event.target)) {
             closeNotifications();
         }
+
     });
 
     document.addEventListener('keydown', function (event) {
+
         if (event.key === 'Escape') {
             closeNotifications();
         }
+
     });
+
 });
+
 </script>
+
+<script src="../assets/js/weather.js" defer></script>
+
+<script src="../assets/js/student-menu.js"></script>
 
 </body>
 </html>

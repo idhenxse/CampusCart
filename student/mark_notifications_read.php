@@ -1,30 +1,35 @@
+
 <?php
 session_start();
 
 require_once __DIR__ . '/../config/database.php';
 
-// Allow only logged-in students.
+header('Content-Type: application/json; charset=utf-8');
+
+// Check that the student is logged in.
 if (
     !isset($_SESSION['user_id']) ||
     ($_SESSION['role'] ?? '') !== 'student'
 ) {
     http_response_code(401);
-    header('Content-Type: application/json');
+
     echo json_encode([
         'success' => false,
-        'message' => 'Unauthorized request.'
+        'message' => 'Unauthorized access.'
     ]);
+
     exit;
 }
 
-// Accept POST requests only.
+// Only allow POST requests.
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
-    header('Content-Type: application/json');
+
     echo json_encode([
         'success' => false,
         'message' => 'Invalid request method.'
     ]);
+
     exit;
 }
 
@@ -36,15 +41,18 @@ if (
     !hash_equals($_SESSION['csrf_token'], $submitted_token)
 ) {
     http_response_code(403);
-    header('Content-Type: application/json');
+
     echo json_encode([
         'success' => false,
         'message' => 'Invalid security token.'
     ]);
+
     exit;
 }
 
 try {
+    $user_id = (int) $_SESSION['user_id'];
+
     // Mark this student's unread notifications as read.
     $stmt = $pdo->prepare("
         UPDATE notifications
@@ -54,19 +62,17 @@ try {
     ");
 
     $stmt->execute([
-        ':user_id' => (int) $_SESSION['user_id']
+        ':user_id' => $user_id
     ]);
 
-    header('Content-Type: application/json');
     echo json_encode([
-        'success' => true
+        'success' => true,
+        'message' => 'Notifications marked as read.'
     ]);
 
-} catch (Throwable $ex) {
-    error_log($ex->getMessage());
-
+} catch (PDOException $e) {
     http_response_code(500);
-    header('Content-Type: application/json');
+
     echo json_encode([
         'success' => false,
         'message' => 'Unable to update notifications.'

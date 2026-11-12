@@ -1,0 +1,443 @@
+/* =========================================
+   CAMPUSCART STUDENT MENU
+========================================= */
+
+.student-menu-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    z-index: 1200;
+}
+
+.student-menu-trigger {
+    cursor: pointer;
+}
+
+/* =========================================
+   STUDENT MENU PANEL
+========================================= */
+
+.student-menu-panel {
+    position: absolute;
+    top: calc(100% + 14px);
+    right: 0;
+    width: 300px;
+    max-width: calc(100vw - 30px);
+    padding: 18px;
+
+    display: none;
+    flex-direction: column;
+    gap: 14px;
+
+    background: rgba(245, 249, 252, 0.96);
+    border: 1px solid rgba(191, 220, 239, 0.85);
+    border-radius: 20px;
+
+    box-shadow: 0 12px 35px rgba(49, 100, 145, 0.16);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    z-index: 1201;
+}
+
+.student-menu-panel.active {
+    display: flex;
+}
+
+/* STUDENT INFORMATION */
+
+.student-menu-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 4px 2px 14px;
+    border-bottom: 1px solid rgba(115, 179, 224, 0.25);
+}
+
+.student-menu-avatar {
+    width: 54px;
+    height: 54px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #BFDCEF;
+    background: #EAF4FB;
+}
+
+.student-menu-user-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+}
+
+.student-menu-user-details strong {
+    color: #24384A;
+    font-size: 14px;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.student-menu-user-details span {
+    color: #71869A;
+    font-size: 12px;
+}
+
+/* MENU SECTIONS */
+
+.student-menu-section {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.student-menu-label {
+    color: #7292AD;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0 9px 5px;
+}
+
+.student-menu-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 10px 11px;
+
+    border: none;
+    border-radius: 11px;
+    background: transparent;
+
+    color: #344F68;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: left;
+    text-decoration: none;
+
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.student-menu-link > span {
+    width: 20px;
+    text-align: center;
+    font-size: 17px;
+}
+
+.student-menu-link:hover {
+    background: rgba(115, 179, 224, 0.17);
+    color: #245F98;
+}
+
+.student-menu-divider {
+    height: 1px;
+    background: rgba(115, 179, 224, 0.25);
+}
+
+/* THEME SETTING */
+
+.student-menu-theme {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.student-menu-theme > span {
+    color: inherit;
+    font-size: inherit;
+    order: 2;
+}
+
+.student-menu-theme .student-theme-toggle {
+    order: 1;
+    margin: 0;
+}
+
+.student-theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.theme-toggle-icon {
+    color: #7292AD;
+    font-size: 14px;
+}
+
+.theme-toggle-track {
+    width: 39px;
+    height: 21px;
+    display: flex;
+    align-items: center;
+    padding: 3px;
+
+    background: #BFDCEF;
+    border-radius: 20px;
+    transition: background 0.2s ease;
+}
+
+.theme-toggle-thumb {
+    width: 15px;
+    height: 15px;
+    background: #FFFFFF;
+    border-radius: 50%;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease;
+}
+
+.student-theme-toggle[aria-pressed="true"] .theme-toggle-track {
+    background: #318BD9;
+}
+
+.student-theme-toggle[aria-pressed="true"] .theme-toggle-thumb {
+    transform: translateX(18px);
+}
+
+/* SIGN OUT */
+
+.student-menu-signout {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 11px;
+
+    border-radius: 11px;
+    color: #C45D65;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+
+    transition: background 0.2s ease;
+}
+
+.student-menu-signout span {
+    width: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.student-menu-signout:hover {
+    background: rgba(220, 105, 115, 0.09);
+}
+
+/* =========================================
+   PROFILE AND PASSWORD POPUPS
+========================================= */
+
+.student-account-modal {
+    position: fixed;
+    inset: 0;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+    background: rgba(31, 55, 76, 0.28);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+
+    z-index: 2000;
+}
+
+.student-account-modal.active {
+    display: flex;
+}
+
+.student-account-card {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+
+    padding: 30px;
+
+    background: rgba(245, 249, 252, 0.97);
+    border: 1px solid rgba(191, 220, 239, 0.9);
+    border-radius: 23px;
+
+    box-shadow: 0 18px 50px rgba(34, 75, 110, 0.19);
+}
+
+.student-account-header {
+    text-align: center;
+    margin-bottom: 22px;
+}
+
+.student-account-header h2 {
+    margin: 0;
+    color: #24384A;
+    font-size: 21px;
+    font-weight: 700;
+}
+
+/* PROFILE AVATAR */
+
+.student-profile-avatar-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 23px;
+}
+
+.student-profile-avatar {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #BFDCEF;
+    background: #EAF4FB;
+}
+
+.student-profile-avatar-wrapper span {
+    color: #8298AB;
+    font-size: 11px;
+}
+
+/* PROFILE FIELDS */
+
+.student-profile-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.student-profile-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.student-profile-field label {
+    color: #49647C;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.student-profile-field input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px 13px;
+
+    border: 1px solid #D5E5F1;
+    border-radius: 10px;
+    outline: none;
+
+    background: rgba(255, 255, 255, 0.75);
+    color: #344F68;
+    font-family: inherit;
+    font-size: 13px;
+}
+
+.student-profile-field input:read-only {
+    cursor: default;
+}
+
+/* CHANGE PASSWORD LINK */
+
+.student-change-password-link {
+    display: block;
+    margin: 19px auto 0;
+    padding: 8px;
+
+    border: none;
+    background: transparent;
+
+    color: #318BD9;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.student-change-password-link:hover {
+    color: #245F98;
+    text-decoration: underline;
+}
+
+/* BACK BUTTON */
+
+.student-account-back {
+    position: absolute;
+    top: 19px;
+    left: 19px;
+
+    width: 34px;
+    height: 34px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(115, 179, 224, 0.15);
+    color: #318BD9;
+
+    font-size: 21px;
+    cursor: pointer;
+}
+
+.student-account-back:hover {
+    background: rgba(115, 179, 224, 0.28);
+}
+
+/* PASSWORD FORM */
+
+.student-password-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.student-password-submit {
+    width: 100%;
+    margin-top: 8px;
+    padding: 12px;
+
+    border: none;
+    border-radius: 11px;
+
+    background: linear-gradient(135deg, #73B3E0, #318BD9);
+    color: #FFFFFF;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.student-password-submit:hover {
+    opacity: 0.9;
+}
+
+/* MOBILE */
+
+@media (max-width: 480px) {
+
+    .student-menu-panel {
+        width: 285px;
+        right: -5px;
+    }
+
+    .student-account-card {
+        padding: 26px 20px;
+    }
+
+    .student-account-header h2 {
+        font-size: 19px;
+    }
+
+}

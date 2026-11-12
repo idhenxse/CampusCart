@@ -1,0 +1,1912 @@
+/* =========================================
+   CAMPUSCART - SHARED STUDENT DARK THEME
+   Applied when html has data-theme="dark"
+   ========================================= */
+
+
+/* -----------------------------------------
+   1. DARK THEME COLOR VARIABLES
+----------------------------------------- */
+
+html[data-theme="dark"] {
+    color-scheme: dark;
+
+    /* Primary accents */
+    --primary-blue: #55A9E8;
+    --sky-blue: #8BC5F0;
+    --soft-blue: #B8D8F2;
+
+    /* Main backgrounds */
+    --light-background: #101426;
+    --off-white: #211D3B;
+    --dark-text: #EAE7FF;
+
+    /* General surfaces */
+    --white: #292443;
+    --border-color: #514777;
+    --shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+
+    /* Glassmorphism surfaces */
+    --dark-surface: rgba(33, 29, 59, 0.92);
+    --dark-surface-light: rgba(52, 43, 89, 0.88);
+    --dark-border: rgba(169, 154, 255, 0.24);
+    --dark-muted: #B9B1D9;
+
+    /* Additional theme colours */
+    --dark-background: #101426;
+    --dark-card: #211D3B;
+    --dark-card-secondary: #292443;
+    --dark-input: #19172E;
+
+    --dark-heading: #F4F1FF;
+    --dark-body-text: #D5D0EA;
+    --dark-secondary-text: #B9B1D9;
+
+    --dark-accent: #A99AFF;
+    --dark-accent-hover: #BDB2FF;
+    --dark-blue-accent: #55A9E8;
+
+    --dark-success: #83D6AC;
+    --dark-warning: #FFD58A;
+    --dark-danger: #FF9999;
+}
+
+
+/* -----------------------------------------
+   2. PAGE BACKGROUND AND GENERAL TEXT
+----------------------------------------- */
+
+html[data-theme="dark"],
+html[data-theme="dark"] body {
+    background: var(--dark-background);
+    color: var(--dark-body-text);
+}
+
+html[data-theme="dark"] body {
+    background:
+        radial-gradient(
+            circle at 12% 10%,
+            rgba(119, 100, 205, 0.19),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 88% 85%,
+            rgba(85, 169, 232, 0.12),
+            transparent 38%
+        ),
+        linear-gradient(
+            135deg,
+            #101426 0%,
+            #19172F 50%,
+            #151B35 100%
+        );
+}
+
+html[data-theme="dark"] .student-page {
+    background: transparent;
+    color: var(--dark-body-text);
+}
+
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3,
+html[data-theme="dark"] h4,
+html[data-theme="dark"] h5 {
+    color: var(--dark-heading);
+}
+
+html[data-theme="dark"] p,
+html[data-theme="dark"] label,
+html[data-theme="dark"] small {
+    color: var(--dark-body-text);
+}
+
+
+/* -----------------------------------------
+   3. STUDENT HEADER
+----------------------------------------- */
+
+html[data-theme="dark"] .student-header {
+    background: linear-gradient(
+        105deg,
+        #11172D,
+        #202044,
+        #234C70
+    );
+
+    border-bottom-color: #648BC5;
+
+    box-shadow:
+        0 3px 18px rgba(0, 0, 0, 0.35),
+        0 1px 0 rgba(169, 154, 255, 0.12);
+}
+
+
+/* -----------------------------------------
+   4. WELCOME BANNER
+----------------------------------------- */
+
+html[data-theme="dark"] .welcome-section {
+    background: linear-gradient(
+        120deg,
+        rgba(38, 67, 98, 0.88),
+        rgba(35, 78, 116, 0.78)
+    );
+
+    border: 1px solid var(--dark-border);
+
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+html[data-theme="dark"] .welcome-section h2 {
+    color: #E5F2FF;
+}
+
+html[data-theme="dark"] .welcome-section p {
+    color: #BDD8EF;
+}
+
+
+/* -----------------------------------------
+   5. MAIN GLASS PANELS
+----------------------------------------- */
+
+html[data-theme="dark"] .catalogue-panel,
+html[data-theme="dark"] .sidebar-panel,
+html[data-theme="dark"] .datetime-panel,
+html[data-theme="dark"] .pickup-panel,
+html[data-theme="dark"] .student-sidebar > .sidebar-panel:last-child {
+    background: var(--dark-surface);
+
+    border: 1px solid var(--dark-border);
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.07);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+
+/* -----------------------------------------
+   6. PRODUCT CATALOGUE
+----------------------------------------- */
+
+html[data-theme="dark"] .catalogue-title,
+html[data-theme="dark"] .product-category h3 {
+    color: #D9EAFB;
+}
+
+html[data-theme="dark"] .catalogue-title {
+    border-bottom-color: var(--dark-border);
+}
+
+
+/* Search and category controls */
+
+html[data-theme="dark"] .catalogue-search input,
+html[data-theme="dark"] .catalogue-search select {
+    background: rgba(20, 36, 55, 0.92);
+    border: 1px solid #405B78;
+    color: #E4EEF8;
+}
+
+html[data-theme="dark"] .catalogue-search input::placeholder {
+    color: #91A9C0;
+}
+
+html[data-theme="dark"] .catalogue-search input:focus,
+html[data-theme="dark"] .catalogue-search select:focus {
+    background: #1D334D;
+    border-color: #69AEEB;
+    color: #FFFFFF;
+
+    box-shadow: 0 0 0 3px rgba(105, 174, 235, 0.16);
+}
+
+html[data-theme="dark"] .catalogue-search select option {
+    background: #1B2B40;
+    color: #E4EEF8;
+}
+
+html[data-theme="dark"] .catalogue-search button {
+    background: linear-gradient(
+        135deg,
+        #318BD9,
+        #55A4E4
+    );
+
+    color: #FFFFFF;
+}
+
+
+/* Product cards */
+
+html[data-theme="dark"] .product-card {
+    background: rgba(35, 54, 78, 0.88);
+    border: 1px solid rgba(119, 163, 204, 0.25);
+
+    box-shadow:
+        0 5px 16px rgba(0, 0, 0, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.035);
+}
+
+html[data-theme="dark"] .product-card:hover {
+    border-color: rgba(105, 174, 235, 0.6);
+
+    box-shadow:
+        0 10px 24px rgba(0, 0, 0, 0.25);
+}
+
+html[data-theme="dark"] .product-image {
+    background: linear-gradient(
+        145deg,
+        #263E59,
+        #1B3049
+    );
+
+    border-color: #405B78;
+}
+
+html[data-theme="dark"] .product-image span {
+    color: #AFC5DB;
+}
+
+html[data-theme="dark"] .product-details h4 {
+    color: #E2EDF8;
+}
+
+html[data-theme="dark"] .product-price {
+    color: #83C2F4;
+}
+
+html[data-theme="dark"] .stock-label {
+    color: #B7C9DA;
+}
+
+html[data-theme="dark"] .stock-available {
+    color: #83D6AC;
+    background: rgba(46, 160, 110, 0.15);
+    border-color: rgba(91, 196, 143, 0.25);
+}
+
+html[data-theme="dark"] .stock-unavailable {
+    color: #FF9999;
+    background: rgba(217, 83, 83, 0.15);
+    border-color: rgba(217, 83, 83, 0.25);
+}
+
+html[data-theme="dark"] .no-category-products {
+    background: rgba(31, 49, 72, 0.55);
+    border-color: #405B78;
+    color: #B1C2D4;
+}
+
+
+/* -----------------------------------------
+   7. CALENDAR AND CLOCK
+----------------------------------------- */
+
+html[data-theme="dark"] .calendar-display {
+    background: linear-gradient(
+        145deg,
+        #263D57,
+        #1C3048
+    );
+
+    border-color: #405B78;
+}
+
+html[data-theme="dark"] .calendar-month-year,
+html[data-theme="dark"] .pickup-panel h3 {
+    color: #C5E3FC;
+}
+
+html[data-theme="dark"] .calendar-header button {
+    background: rgba(105, 174, 235, 0.15);
+    color: #A9D5F7;
+}
+
+html[data-theme="dark"] .calendar-header button:hover {
+    background: rgba(105, 174, 235, 0.28);
+}
+
+html[data-theme="dark"] .calendar-weekday {
+    color: #A9C7E2;
+}
+
+html[data-theme="dark"] .calendar-date {
+    color: #D2E1EF;
+}
+
+html[data-theme="dark"] .calendar-date:not(.empty):hover {
+    background: rgba(105, 174, 235, 0.16);
+}
+
+html[data-theme="dark"] .calendar-date.today {
+    background: #318BD9;
+    color: #FFFFFF;
+}
+
+html[data-theme="dark"] .calendar-clock {
+    color: #A9D5F7;
+    border-top-color: #405B78;
+}
+
+
+/* -----------------------------------------
+   8. COOPERATIVE PICKUP INFORMATION
+----------------------------------------- */
+
+html[data-theme="dark"] .pickup-info {
+    background: rgba(34, 55, 79, 0.85);
+    border-color: #405B78;
+    color: #C1D2E2;
+}
+
+html[data-theme="dark"] .pickup-info strong {
+    color: #E4EEF8;
+}
+
+html[data-theme="dark"] .pickup-map-link {
+    border-color: #405B78;
+}
+
+
+/* -----------------------------------------
+   9. OTHER SERVICES
+----------------------------------------- */
+
+html[data-theme="dark"] .services-list li {
+    color: #C1D2E2;
+    border-bottom-color: rgba(119, 163, 204, 0.18);
+}
+
+html[data-theme="dark"] .services-list li:hover {
+    background: rgba(105, 174, 235, 0.10);
+}
+
+
+/* -----------------------------------------
+   10. PRODUCT DETAILS POPUP
+----------------------------------------- */
+
+html[data-theme="dark"] #product-modal {
+    background: rgba(5, 13, 25, 0.72);
+}
+
+html[data-theme="dark"] .product-modal-content {
+    background: rgba(27, 43, 64, 0.98);
+    border-color: rgba(119, 163, 204, 0.25);
+
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
+}
+
+html[data-theme="dark"] .product-modal-header h2 {
+    color: #A9D5F7;
+}
+
+html[data-theme="dark"] .product-modal-close {
+    background: #30465F;
+    color: #E4EEF8;
+}
+
+html[data-theme="dark"] .product-modal-close:hover {
+    background: #405B78;
+}
+
+html[data-theme="dark"] .product-modal-image {
+    background: #1B2B40;
+    color: #AFC5DB;
+}
+
+html[data-theme="dark"] .product-modal-info h3 {
+    color: #E4EEF8;
+}
+
+html[data-theme="dark"] #detail-product-description,
+html[data-theme="dark"] .product-modal-price span,
+html[data-theme="dark"] .product-modal-variant label,
+html[data-theme="dark"] .product-modal-stock span {
+    color: #B1C2D4;
+}
+
+html[data-theme="dark"] .product-modal-price strong {
+    color: #83C2F4;
+}
+
+html[data-theme="dark"] #detail-variant-select,
+html[data-theme="dark"] .product-modal-quantity input {
+    background: #142438;
+    border-color: #405B78;
+    color: #E4EEF8;
+}
+
+html[data-theme="dark"] .product-modal-quantity label {
+    color: #D7E6F5;
+}
+
+html[data-theme="dark"] .product-modal-add-button {
+    background: #318BD9;
+    color: #FFFFFF;
+}
+
+
+/* -----------------------------------------
+   11. MAP POPUP
+----------------------------------------- */
+
+html[data-theme="dark"] .map-modal {
+    background: rgba(5, 13, 25, 0.78);
+}
+
+html[data-theme="dark"] .map-modal-content {
+    background: rgba(27, 43, 64, 0.98);
+    border-color: var(--dark-border);
+}
+
+html[data-theme="dark"] .map-modal-header h2 {
+    color: #A9D5F7;
+}
+
+html[data-theme="dark"] .map-modal-header p {
+    color: #AFC5DB;
+}
+
+html[data-theme="dark"] .map-modal-close {
+    background: #30465F;
+    border-color: #405B78;
+    color: #E4EEF8;
+}
+
+html[data-theme="dark"] .map-modal-close:hover {
+    background: #405B78;
+}
+
+html[data-theme="dark"] .map-modal-image {
+    background: #17283D;
+    border-color: #405B78;
+}
+
+html[data-theme="dark"] .map-modal-footer {
+    background: rgba(42, 63, 89, 0.75);
+    border-color: #405B78;
+    color: #C1D2E2;
+}
+
+
+/* -----------------------------------------
+   12. GENERAL STUDENT FORMS AND INPUTS
+----------------------------------------- */
+
+html[data-theme="dark"] input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+html[data-theme="dark"] select,
+html[data-theme="dark"] textarea {
+    background-color: #17283D;
+    border-color: #405B78;
+    color: #E4EEF8;
+}
+
+html[data-theme="dark"] input::placeholder,
+html[data-theme="dark"] textarea::placeholder {
+    color: #91A9C0;
+}
+
+html[data-theme="dark"] input:focus,
+html[data-theme="dark"] select:focus,
+html[data-theme="dark"] textarea:focus {
+    border-color: #69AEEB;
+    outline-color: #69AEEB;
+}
+
+html[data-theme="dark"] select option {
+    background: #1B2B40;
+    color: #E4EEF8;
+}
+
+
+/* -----------------------------------------
+   13. GENERAL STUDENT CONTENT SURFACES
+----------------------------------------- */
+
+html[data-theme="dark"] .student-content table,
+html[data-theme="dark"] .student-content tr,
+html[data-theme="dark"] .student-content td,
+html[data-theme="dark"] .student-content th {
+    border-color: var(--dark-border);
+}
+
+html[data-theme="dark"] .student-content th {
+    color: #DCEBFA;
+}
+
+html[data-theme="dark"] .student-content td {
+    color: #C1D2E2;
+}
+
+html[data-theme="dark"] .student-content a:not(.header-action) {
+    color: #83C2F4;
+}
+
+html[data-theme="dark"] .student-footer {
+    color: #AFC5DB;
+    border-top-color: var(--dark-border);
+}
+
+
+/* -----------------------------------------
+   14. NOTIFICATION PANEL
+----------------------------------------- */
+
+html[data-theme="dark"] .notification-panel {
+    background: rgba(27, 43, 64, 0.98);
+    border-color: var(--dark-border);
+    color: #E4EEF8;
+}
+
+html[data-theme="dark"] .notification-panel h2,
+html[data-theme="dark"] .notification-panel h3 {
+    color: #DCEBFA;
+}
+
+html[data-theme="dark"] .notification-item {
+    border-bottom-color: var(--dark-border);
+}
+
+html[data-theme="dark"] .notification-item.unread {
+    background: rgba(105, 174, 235, 0.12);
+}
+
+html[data-theme="dark"] .notification-item p,
+html[data-theme="dark"] .notification-item span {
+    color: #B1C2D4;
+}
+
+
+/* -----------------------------------------
+   15. STUDENT MENU AND ACCOUNT POPUPS
+----------------------------------------- */
+
+html[data-theme="dark"] .student-menu-panel,
+html[data-theme="dark"] .student-account-card {
+    background: rgba(27, 43, 64, 0.98);
+    border-color: var(--dark-border);
+    color: #E4EEF8;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme="dark"] .student-menu-user,
+html[data-theme="dark"] .student-menu-section {
+    border-color: var(--dark-border);
+}
+
+html[data-theme="dark"] .student-menu-label {
+    color: #91BDE2;
+}
+
+html[data-theme="dark"] .student-menu-link {
+    color: #D5E5F4;
+}
+
+html[data-theme="dark"] .student-menu-link:hover {
+    background: rgba(105, 174, 235, 0.12);
+}
+
+html[data-theme="dark"] .student-menu-divider {
+    background: var(--dark-border);
+}
+
+html[data-theme="dark"] .student-account-modal {
+    background: rgba(5, 13, 25, 0.78);
+}
+
+html[data-theme="dark"] .student-account-card h2,
+html[data-theme="dark"] .student-account-card h3,
+html[data-theme="dark"] .student-account-card label {
+    color: #E4EEF8;
+}
+
+html[data-theme="dark"] .student-account-card input {
+    background: #17283D;
+    border-color: #405B78;
+    color: #E4EEF8;
+}
+
+html[data-theme="dark"] .student-account-card input::placeholder {
+    color: #91A9C0;
+}
+
+
+/* -----------------------------------------
+   16. ACCESSIBILITY AND TRANSITIONS
+----------------------------------------- */
+
+html[data-theme="dark"] button:focus-visible,
+html[data-theme="dark"] a:focus-visible {
+    outline: 2px solid #83C2F4;
+    outline-offset: 3px;
+}
+
+html[data-theme="dark"] ::selection {
+    background: #318BD9;
+    color: #FFFFFF;
+}
+
+
+/* -----------------------------------------
+   17. CART PAGE - DARK THEME
+----------------------------------------- */
+
+/* Cart heading */
+
+html[data-theme="dark"] .cart-heading h2 {
+    color: var(--dark-heading) !important;
+}
+
+html[data-theme="dark"] .cart-heading p {
+    color: var(--dark-secondary-text) !important;
+}
+
+
+/* Cart item details */
+
+html[data-theme="dark"] .cart-item-details h4 {
+    color: var(--dark-heading) !important;
+}
+
+html[data-theme="dark"] .cart-item-variant {
+    color: var(--dark-secondary-text) !important;
+}
+
+html[data-theme="dark"] .cart-item-price {
+    color: var(--dark-blue-accent) !important;
+}
+
+html[data-theme="dark"] .cart-stock-warning {
+    color: var(--dark-danger) !important;
+}
+
+html[data-theme="dark"] .cart-item-subtotal {
+    color: var(--dark-heading) !important;
+}
+
+
+/* Quantity controls */
+
+html[data-theme="dark"] .cart-quantity label {
+    color: var(--dark-secondary-text) !important;
+}
+
+
+/* Cart summary */
+
+html[data-theme="dark"] .cart-summary-panel {
+    background: var(--dark-surface) !important;
+    border-color: var(--dark-border) !important;
+    color: var(--dark-body-text) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+}
+
+html[data-theme="dark"] .cart-summary-panel h3 {
+    color: var(--dark-heading) !important;
+}
+
+html[data-theme="dark"] .cart-summary-row {
+    color: var(--dark-secondary-text) !important;
+}
+
+html[data-theme="dark"] .cart-summary-row strong {
+    color: var(--dark-heading) !important;
+}
+
+html[data-theme="dark"] .cart-summary-note {
+    color: var(--dark-muted) !important;
+}
+
+
+/* Empty cart and cart messages */
+
+html[data-theme="dark"] .empty-cart {
+    background: var(--dark-surface) !important;
+    border-color: var(--dark-border) !important;
+    color: var(--dark-body-text) !important;
+}
+
+html[data-theme="dark"] .empty-cart h2,
+html[data-theme="dark"] .empty-cart h3 {
+    color: var(--dark-heading) !important;
+}
+
+html[data-theme="dark"] .empty-cart p {
+    color: var(--dark-secondary-text) !important;
+}
+
+
+/* -----------------------------------------
+   18. CART PAGE - VISIBILITY CORRECTIONS
+----------------------------------------- */
+
+/* Main product card */
+
+html[data-theme="dark"] .cart-item {
+    background: linear-gradient(
+        135deg,
+        rgba(39, 36, 70, 0.96),
+        rgba(32, 43, 72, 0.94)
+    ) !important;
+
+    border: 1px solid var(--dark-border) !important;
+
+    box-shadow:
+        0 10px 28px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+}
+
+
+/* Product stock information */
+
+html[data-theme="dark"] .cart-stock {
+    color: var(--dark-success) !important;
+}
+
+
+/* Product selection */
+
+html[data-theme="dark"] .cart-item-selection label {
+    color: var(--dark-body-text) !important;
+}
+
+html[data-theme="dark"] .cart-select-checkbox {
+    accent-color: var(--dark-blue-accent);
+}
+
+
+/* Order Summary total label */
+
+html[data-theme="dark"] .cart-summary-total {
+    color: var(--dark-heading) !important;
+    border-top-color: var(--dark-border) !important;
+}
+
+html[data-theme="dark"] .cart-summary-total span {
+    color: var(--dark-body-text) !important;
+}
+
+html[data-theme="dark"] .cart-summary-total strong {
+    color: var(--dark-blue-accent) !important;
+}
+
+
+/* Disabled checkout button */
+
+html[data-theme="dark"] .cart-checkout-button.checkout-disabled {
+    background: #46536B !important;
+    color: #E2E8F0 !important;
+    opacity: 1;
+}
+
+
+/* Cart image placeholder */
+
+html[data-theme="dark"] .cart-item-image {
+    border-color: var(--dark-border) !important;
+}
+
+html[data-theme="dark"] .cart-image-placeholder {
+    color: #58718C !important;
+}
+
+
+/* -----------------------------------------
+   19. CHECKOUT PAGE - DARK THEME
+----------------------------------------- */
+
+/* Page heading */
+
+html[data-theme="dark"] .checkout-heading h2 {
+    color: var(--dark-heading) !important;
+}
+
+html[data-theme="dark"] .checkout-heading p {
+    color: var(--dark-secondary-text) !important;
+}
+
+
+/* Main checkout glass cards */
+
+html[data-theme="dark"] .checkout-glass-card {
+    background: linear-gradient(
+        135deg,
+        rgba(33, 29, 59, 0.96),
+        rgba(35, 43, 73, 0.94)
+    ) !important;
+
+    border: 1px solid var(--dark-border) !important;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+}
+
+html[data-theme="dark"] .checkout-glass-card h3 {
+    color: var(--dark-heading) !important;
+    border-bottom-color: var(--dark-border) !important;
+}
+
+
+/* Order summary product details */
+
+html[data-theme="dark"] .checkout-order-item {
+    border-bottom-color: var(--dark-border) !important;
+}
+
+html[data-theme="dark"] .checkout-product-image {
+    background: linear-gradient(
+        145deg,
+        #26344F,
+        #1B2942
+    ) !important;
+
+    border-color: var(--dark-border) !important;
+}
+
+html[data-theme="dark"] .checkout-image-placeholder {
+    color: #A9B8D1 !important;
+}
+
+html[data-theme="dark"] .checkout-product-details h4 {
+    color: var(--dark-heading) !important;
+}
+
+html[data-theme="dark"] .checkout-product-details p {
+    color: var(--dark-secondary-text) !important;
+}
+
+html[data-theme="dark"] .checkout-item-subtotal {
+    color: var(--dark-blue-accent) !important;
+}
+
+
+/* Total amount */
+
+html[data-theme="dark"] .checkout-total-row {
+    color: var(--dark-heading) !important;
+    border-top-color: var(--dark-border) !important;
+}
+
+html[data-theme="dark"] .checkout-total-row span {
+    color: var(--dark-body-text) !important;
+}
+
+html[data-theme="dark"] .checkout-total-row strong {
+    color: var(--dark-blue-accent) !important;
+}
+
+
+/* Pickup and online payment information */
+
+html[data-theme="dark"] .pickup-information-content,
+html[data-theme="dark"] .online-payment-content {
+    background: rgba(25, 23, 46, 0.72) !important;
+    border-color: var(--dark-border) !important;
+}
+
+html[data-theme="dark"] .pickup-information-content p,
+html[data-theme="dark"] .online-payment-content p {
+    color: var(--dark-body-text) !important;
+}
+
+html[data-theme="dark"] .pickup-information-content strong {
+    color: var(--dark-heading) !important;
+}
+
+html[data-theme="dark"] .pickup-reminder {
+    border-top-color: var(--dark-border) !important;
+}
+
+
+/* Payment method labels */
+
+html[data-theme="dark"] .checkout-field-label,
+html[data-theme="dark"] .checkout-form-field label {
+    color: var(--dark-body-text) !important;
+}
+
+
+/* Payment method select and GCash fields */
+
+html[data-theme="dark"] .checkout-payment-card select,
+html[data-theme="dark"] .checkout-form-field input[type="text"],
+html[data-theme="dark"] .checkout-form-field input[type="file"] {
+    background: var(--dark-input) !important;
+    border-color: var(--dark-border) !important;
+    color: var(--dark-heading) !important;
+}
+
+html[data-theme="dark"] .checkout-payment-card select option {
+    background: #211D3B !important;
+    color: var(--dark-heading) !important;
+}
+
+html[data-theme="dark"] .checkout-payment-card select:focus,
+html[data-theme="dark"] .checkout-form-field input:focus {
+    border-color: var(--dark-blue-accent) !important;
+    box-shadow: 0 0 0 3px rgba(85, 169, 232, 0.16) !important;
+}
+
+
+/* Cash payment details */
+
+html[data-theme="dark"] .cash-payment-details {
+    background: var(--dark-surface-light) !important;
+    border-color: var(--dark-border) !important;
+}
+
+html[data-theme="dark"] .cash-payment-details h4 {
+    color: var(--dark-accent-hover) !important;
+}
+
+html[data-theme="dark"] .cash-payment-details p {
+    color: var(--dark-body-text) !important;
+}
+
+
+/* GCash account information */
+
+html[data-theme="dark"] .gcash-account-box,
+html[data-theme="dark"] .gcash-instructions {
+    background: var(--dark-surface-light) !important;
+    border-color: var(--dark-border) !important;
+}
+
+html[data-theme="dark"] .gcash-account-box h4,
+html[data-theme="dark"] .gcash-instructions h4 {
+    color: var(--dark-accent-hover) !important;
+}
+
+html[data-theme="dark"] .gcash-account-box p {
+    color: var(--dark-secondary-text) !important;
+}
+
+html[data-theme="dark"] .gcash-account-box strong {
+    color: var(--dark-heading) !important;
+}
+
+html[data-theme="dark"] .gcash-instructions ol {
+    color: var(--dark-body-text) !important;
+}
+
+html[data-theme="dark"] .checkout-form-field small {
+    color: var(--dark-secondary-text) !important;
+}
+
+
+/* Payment action buttons */
+
+html[data-theme="dark"] .checkout-payment-actions {
+    border-top-color: var(--dark-border) !important;
+}
+
+html[data-theme="dark"] .checkout-confirm-button {
+    color: #FFFFFF !important;
+}
+
+html[data-theme="dark"] .checkout-confirm-button:disabled {
+    background: #46536B !important;
+    color: #D5D0EA !important;
+    opacity: 1;
+}
+
+html[data-theme="dark"] .checkout-return-button {
+    background: var(--dark-surface-light) !important;
+    border-color: var(--dark-border) !important;
+    color: var(--dark-heading) !important;
+}
+
+html[data-theme="dark"] .checkout-return-button:hover {
+    background: #494071 !important;
+}
+
+
+/* Back to Cart link */
+
+html[data-theme="dark"] .checkout-back-link {
+    color: var(--dark-blue-accent) !important;
+}
+
+
+/* Checkout error message */
+
+html[data-theme="dark"] .checkout-message.error {
+    background: rgba(160, 45, 65, 0.18) !important;
+    border-color: rgba(255, 120, 140, 0.35) !important;
+    color: #FFB3BD !important;
+}
+
+
+/* -----------------------------------------
+   20. ORDERS PAGE - DARK THEME
+----------------------------------------- */
+
+/* Page heading */
+
+html[data-theme="dark"] .orders-heading h2 {
+    color: var(--dark-heading) !important;
+}
+
+html[data-theme="dark"] .orders-heading p {
+    color: var(--dark-secondary-text) !important;
+}
+
+html[data-theme="dark"] .orders-continue-shopping {
+    color: var(--dark-blue-accent) !important;
+}
+
+
+/* Main order cards */
+
+html[data-theme="dark"] .student-order-card {
+    background: linear-gradient(
+        135deg,
+        rgba(33, 29, 59, 0.96),
+        rgba(35, 43, 73, 0.94)
+    ) !important;
+
+    border: 1px solid var(--dark-border) !important;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+}
+
+
+/* Order header */
+
+html[data-theme="dark"] .student-order-header {
+    border-bottom-color: var(--dark-border) !important;
+}
+
+html[data-theme="dark"] .student-order-heading h3 {
+    color: var(--dark-heading) !important;
+}
+
+html[data-theme="dark"] .student-order-heading p {
+    color: var(--dark-secondary-text) !important;
+}
+
+
+/* Order status badges */
+/* Preserve their distinct status colours. */
+
+html[data-theme="dark"] .status-pending {
+    color: #FFE0A3 !important;
+    background: rgba(180, 120, 25, 0.22) !important;
+}
+
+html[data-theme="dark"] .status-confirmed {
+    color: #A9D8FF !important;
+    background: rgba(49, 139, 217, 0.22) !important;
+}
+
+html[data-theme="dark"] .status-ready {
+    color: #A5E8C5 !important;
+    background: rgba(46, 160, 110, 0.22) !important;
+}
+
+html[data-theme="dark"] .status-completed {
+    color: #B8E8B8 !important;
+    background: rgba(75, 155, 90, 0.22) !important;
+}
+
+html[data-theme="dark"] .status-default {
+    color: #D5D0EA !important;
+    background: rgba(145, 155, 180, 0.18) !important;
+}
+
+
+/* Product image column */
+
+html[data-theme="dark"] .student-order-image-row {
+    border-bottom-color: var(--dark-border) !important;
+}
+
+html[data-theme="dark"] .student-order-product-image {
+    background: linear-gradient(
+        145deg,
+        #26344F,
+        #1B2942
+    ) !important;
+
+    border-color: var(--dark-border) !important;
+}
+
+html[data-theme="dark"] .order-image-placeholder {
+    color: #A9B8D1 !important;
+}
+
+
+/* Product details */
+
+html[data-theme="dark"] .student-order-product-details-row {
+    border-bottom-color: var(--dark-border) !important;
+}
+
+html[data-theme="dark"] .student-order-product-details h4 {
+    color: var(--dark-heading) !important;
+}
+
+html[data-theme="dark"] .student-order-product-details p {
+    color: var(--dark-secondary-text) !important;
+}
+
+html[data-theme="dark"] .student-order-product-details p strong {
+    color: var(--dark-heading) !important;
+}
+
+
+/* Product prices */
+
+html[data-theme="dark"] .student-order-product-price strong {
+    color: var(--dark-blue-accent) !important;
+}
+
+html[data-theme="dark"] .student-order-product-price small {
+    color: var(--dark-secondary-text) !important;
+}
+
+
+/* Total amount */
+
+html[data-theme="dark"] .student-order-total {
+    color: var(--dark-heading) !important;
+}
+
+html[data-theme="dark"] .student-order-total strong {
+    color: var(--dark-blue-accent) !important;
+}
+
+
+/* Payment information */
+
+html[data-theme="dark"] .student-order-payment-column {
+    border-left-color: var(--dark-border) !important;
+}
+
+html[data-theme="dark"] .order-information-item > span {
+    color: var(--dark-secondary-text) !important;
+}
+
+html[data-theme="dark"] .order-information-item > strong:not(.payment-status-badge) {
+    color: var(--dark-heading) !important;
+}
+
+
+/* Payment status badges */
+
+html[data-theme="dark"] .payment-pending {
+    color: #FFE0A3 !important;
+    background: rgba(180, 120, 25, 0.22) !important;
+}
+
+html[data-theme="dark"] .payment-paid {
+    color: #A5E8C5 !important;
+    background: rgba(46, 160, 110, 0.22) !important;
+}
+
+html[data-theme="dark"] .payment-rejected {
+    color: #FFB3BD !important;
+    background: rgba(190, 55, 75, 0.22) !important;
+}
+
+html[data-theme="dark"] .payment-default {
+    color: #D5D0EA !important;
+    background: rgba(145, 155, 180, 0.18) !important;
+}
+
+
+/* Pickup and payment notes */
+
+html[data-theme="dark"] .student-order-notes {
+    background: var(--dark-surface-light) !important;
+    border-color: var(--dark-border) !important;
+}
+
+html[data-theme="dark"] .student-order-notes p {
+    color: var(--dark-body-text) !important;
+}
+
+html[data-theme="dark"] .student-order-notes strong {
+    color: var(--dark-heading) !important;
+}
+
+
+/* View order details toggle */
+
+html[data-theme="dark"] .order-details-toggle summary {
+    color: #FFFFFF !important;
+}
+
+html[data-theme="dark"] .order-details-content {
+    background: rgba(25, 23, 46, 0.78) !important;
+    border-color: var(--dark-border) !important;
+}
+
+html[data-theme="dark"] .order-details-content p {
+    color: var(--dark-body-text) !important;
+}
+
+html[data-theme="dark"] .order-details-content strong {
+    color: var(--dark-heading) !important;
+}
+
+html[data-theme="dark"] .order-no-items {
+    color: var(--dark-secondary-text) !important;
+}
+
+
+/* Empty orders state */
+
+html[data-theme="dark"] .orders-empty-state {
+    background: linear-gradient(
+        135deg,
+        rgba(33, 29, 59, 0.96),
+        rgba(35, 43, 73, 0.94)
+    ) !important;
+
+    border-color: var(--dark-border) !important;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28) !important;
+}
+
+html[data-theme="dark"] .orders-empty-inner h3 {
+    color: var(--dark-heading) !important;
+}
+
+html[data-theme="dark"] .orders-empty-inner p {
+    color: var(--dark-secondary-text) !important;
+}
+
+html[data-theme="dark"] .orders-browse-button {
+    color: #FFFFFF !important;
+}
+
+
+/* -----------------------------------------
+   21. ORDER DETAILS PAGE - DARK THEME
+----------------------------------------- */
+
+/* Page heading */
+
+html[data-theme="dark"] .order-details-heading h2 {
+    color: var(--dark-heading) !important;
+}
+
+html[data-theme="dark"] .order-details-heading p {
+    color: var(--dark-secondary-text) !important;
+}
+
+html[data-theme="dark"] .order-details-back {
+    color: var(--dark-blue-accent) !important;
+}
+
+html[data-theme="dark"] .order-details-back:hover {
+    color: var(--dark-accent-hover) !important;
+}
+
+
+/* Main order detail cards */
+
+html[data-theme="dark"] .order-details-card {
+    background: linear-gradient(
+        135deg,
+        rgba(33, 29, 59, 0.96),
+        rgba(35, 43, 73, 0.94)
+    ) !important;
+
+    border: 1px solid var(--dark-border) !important;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+}
+
+
+/* Order summary header */
+
+html[data-theme="dark"] .order-summary-header h3 {
+    color: var(--dark-heading) !important;
+}
+
+html[data-theme="dark"] .order-summary-header p {
+    color: var(--dark-secondary-text) !important;
+}
+
+html[data-theme="dark"] .order-summary-header p span {
+    color: var(--dark-muted) !important;
+}
+
+
+/* Order status badges */
+
+html[data-theme="dark"] .status-pending {
+    color: #FFE0A3 !important;
+    background: rgba(180, 120, 25, 0.22) !important;
+}
+
+html[data-theme="dark"] .status-confirmed {
+    color: #A9D8FF !important;
+    background: rgba(49, 139, 217, 0.22) !important;
+}
+
+html[data-theme="dark"] .status-ready {
+    color: #A5E8C5 !important;
+    background: rgba(46, 160, 110, 0.22) !important;
+}
+
+html[data-theme="dark"] .status-completed {
+    color: #B8E8B8 !important;
+    background: rgba(75, 155, 90, 0.22) !important;
+}
+
+html[data-theme="dark"] .status-default {
+    color: #D5D0EA !important;
+    background: rgba(145, 155, 180, 0.18) !important;
+}
+
+
+/* Section headings and sidebar icons */
+
+html[data-theme="dark"] .order-section-title {
+    color: var(--dark-heading) !important;
+}
+
+html[data-theme="dark"] .order-sidebar-icon {
+    background: rgba(169, 154, 255, 0.14) !important;
+    color: var(--dark-accent-hover) !important;
+}
+
+
+/* Product rows and separators */
+
+html[data-theme="dark"] .order-details-product {
+    border-bottom-color: var(--dark-border) !important;
+}
+
+
+/* Product images */
+
+html[data-theme="dark"] .order-details-product-image {
+    background: linear-gradient(
+        145deg,
+        #26344F,
+        #1B2942
+    ) !important;
+
+    border-color: var(--dark-border) !important;
+}
+
+html[data-theme="dark"] .order-details-image-placeholder {
+    color: #A9B8D1 !important;
+}
+
+
+/* Product information */
+
+html[data-theme="dark"] .order-details-product-info h4 {
+    color: var(--dark-heading) !important;
+}
+
+html[data-theme="dark"] .order-details-product-info p {
+    color: var(--dark-secondary-text) !important;
+}
+
+html[data-theme="dark"] .order-details-product-info p strong {
+    color: var(--dark-heading) !important;
+}
+
+
+/* Product prices */
+
+html[data-theme="dark"] .order-details-product-price strong {
+    color: var(--dark-blue-accent) !important;
+}
+
+html[data-theme="dark"] .order-details-product-price small {
+    color: var(--dark-secondary-text) !important;
+}
+
+html[data-theme="dark"] .order-details-empty {
+    color: var(--dark-secondary-text) !important;
+}
+
+
+/* Total amount */
+
+html[data-theme="dark"] .order-details-total {
+    border-top-color: var(--dark-border) !important;
+}
+
+html[data-theme="dark"] .order-details-total span {
+    color: var(--dark-heading) !important;
+}
+
+html[data-theme="dark"] .order-details-total strong {
+    color: var(--dark-blue-accent) !important;
+}
+
+
+/* Order progress timeline */
+
+html[data-theme="dark"] .order-progress-step:not(:last-child)::before {
+    background: rgba(169, 154, 255, 0.24) !important;
+}
+
+html[data-theme="dark"] .order-progress-step.is-done:not(:last-child)::before {
+    background: #55A9E8 !important;
+}
+
+html[data-theme="dark"] .order-progress-marker {
+    border-color: #6B638C !important;
+    background: #292443 !important;
+    color: #FFFFFF !important;
+}
+
+html[data-theme="dark"] .order-progress-step.is-done .order-progress-marker {
+    border-color: #55A9E8 !important;
+    background: #318BD9 !important;
+}
+
+html[data-theme="dark"] .order-progress-step.is-current .order-progress-marker {
+    border-color: #55A9E8 !important;
+    background: #292443 !important;
+    box-shadow: 0 0 0 5px rgba(85, 169, 232, 0.16) !important;
+}
+
+html[data-theme="dark"] .order-progress-description h4 {
+    color: #A9A1C7 !important;
+}
+
+html[data-theme="dark"] .order-progress-step.is-done .order-progress-description h4,
+html[data-theme="dark"] .order-progress-step.is-current .order-progress-description h4 {
+    color: var(--dark-heading) !important;
+}
+
+html[data-theme="dark"] .order-progress-description p {
+    color: var(--dark-secondary-text) !important;
+}
+
+html[data-theme="dark"] .order-progress-step.is-current .order-progress-description p {
+    color: var(--dark-body-text) !important;
+}
+
+
+/* Progress reminder */
+
+html[data-theme="dark"] .order-progress-reminder {
+    background: var(--dark-surface-light) !important;
+    border-color: var(--dark-border) !important;
+}
+
+html[data-theme="dark"] .order-reminder-icon {
+    color: var(--dark-blue-accent) !important;
+}
+
+html[data-theme="dark"] .order-progress-reminder p {
+    color: var(--dark-body-text) !important;
+}
+
+html[data-theme="dark"] .order-progress-reminder strong {
+    color: var(--dark-accent-hover) !important;
+}
+
+
+/* Payment information */
+
+html[data-theme="dark"] .order-payment-row > span,
+html[data-theme="dark"] .order-gcash-reference > span {
+    color: var(--dark-secondary-text) !important;
+}
+
+html[data-theme="dark"] .order-payment-row > strong:not(.payment-status-badge) {
+    color: var(--dark-heading) !important;
+}
+
+
+/* Payment status badges */
+
+html[data-theme="dark"] .payment-pending {
+    color: #FFE0A3 !important;
+    background: rgba(180, 120, 25, 0.22) !important;
+}
+
+html[data-theme="dark"] .payment-paid {
+    color: #A5E8C5 !important;
+    background: rgba(46, 160, 110, 0.22) !important;
+}
+
+html[data-theme="dark"] .payment-rejected {
+    color: #FFB3BD !important;
+    background: rgba(190, 55, 75, 0.22) !important;
+}
+
+html[data-theme="dark"] .payment-default {
+    color: #D5D0EA !important;
+    background: rgba(145, 155, 180, 0.18) !important;
+}
+
+
+/* GCash reference */
+
+html[data-theme="dark"] .order-gcash-reference {
+    background: var(--dark-surface-light) !important;
+    border-color: var(--dark-border) !important;
+}
+
+html[data-theme="dark"] .order-gcash-reference strong {
+    color: var(--dark-heading) !important;
+}
+
+
+/* GCash screenshot */
+
+html[data-theme="dark"] .order-gcash-screenshot h4 {
+    color: var(--dark-heading) !important;
+}
+
+html[data-theme="dark"] .order-screenshot-link {
+    color: var(--dark-blue-accent) !important;
+}
+
+html[data-theme="dark"] .order-screenshot-link img {
+    background: var(--dark-input) !important;
+    border-color: var(--dark-border) !important;
+}
+
+
+/* Pickup information */
+
+html[data-theme="dark"] .order-pickup-description {
+    color: var(--dark-body-text) !important;
+}
+
+html[data-theme="dark"] .order-pickup-details {
+    background: var(--dark-surface-light) !important;
+    border-color: var(--dark-border) !important;
+}
+
+html[data-theme="dark"] .order-pickup-details p {
+    color: var(--dark-body-text) !important;
+}
+
+html[data-theme="dark"] .order-pickup-details strong {
+    color: var(--dark-heading) !important;
+}
+
+html[data-theme="dark"] .order-payment-row + .order-payment-note {
+    background: var(--dark-surface-light) !important;
+    border: 1px solid var(--dark-border) !important;
+    color: var(--dark-body-text) !important;
+}
+
+
+/* =========================================
+   22. NOTIFICATION PANEL - DARK THEME REFINEMENTS
+========================================= */
+
+/* Notification popup */
+html[data-theme="dark"] .notification-panel {
+    background: rgba(33, 29, 59, 0.98) !important;
+    border-color: var(--dark-border) !important;
+}
+
+/* Notification header */
+html[data-theme="dark"] .notification-panel-header {
+    background: linear-gradient(
+        110deg,
+        rgba(85, 169, 232, 0.18),
+        rgba(169, 154, 255, 0.16)
+    ) !important;
+
+    border-bottom-color: var(--dark-border) !important;
+}
+
+html[data-theme="dark"] .notification-panel-header h3 {
+    color: var(--dark-heading) !important;
+}
+
+/* Close button */
+html[data-theme="dark"] .notification-close {
+    background: rgba(85, 169, 232, 0.15) !important;
+    border-color: var(--dark-border) !important;
+    color: #DCEBFA !important;
+}
+
+html[data-theme="dark"] .notification-close:hover {
+    background: rgba(85, 169, 232, 0.28) !important;
+    color: #FFFFFF !important;
+}
+
+/* Individual notification cards */
+html[data-theme="dark"] .notification-item {
+    background: rgba(52, 43, 89, 0.72) !important;
+    border-color: var(--dark-border) !important;
+}
+
+html[data-theme="dark"] .notification-item:hover {
+    background: rgba(65, 56, 105, 0.92) !important;
+    border-color: rgba(169, 154, 255, 0.45) !important;
+}
+
+/* Unread notification */
+html[data-theme="dark"] .notification-item.unread {
+    background: rgba(85, 169, 232, 0.14) !important;
+    border-left-color: var(--dark-blue-accent) !important;
+}
+
+/* Notification title */
+html[data-theme="dark"] .notification-item-content h4 {
+    color: var(--dark-heading) !important;
+}
+
+/* Notification message */
+html[data-theme="dark"] .notification-item-content p {
+    color: var(--dark-body-text) !important;
+}
+
+/* Notification date and time */
+html[data-theme="dark"] .notification-item-content time {
+    color: var(--dark-secondary-text) !important;
+}
+
+/* Empty notification message */
+html[data-theme="dark"] .notification-empty p {
+    color: var(--dark-heading) !important;
+}
+
+html[data-theme="dark"] .notification-empty span {
+    color: var(--dark-secondary-text) !important;
+}
+
+/* Unread indicators */
+html[data-theme="dark"] .notification-unread-indicator {
+    background: #FF7777 !important;
+}
+
+html[data-theme="dark"] .notification-dot {
+    border-color: #211D3B !important;
+}
+
+/* Notification list scrollbar */
+html[data-theme="dark"] .notification-list {
+    scrollbar-color: #514777 #211D3B;
+}
+
+
+/* =========================================
+   STUDENT MENU AND ACCOUNT POPUPS
+   DARK THEME REFINEMENTS
+========================================= */
+
+/* Student menu panel */
+
+html[data-theme="dark"] .student-menu-panel {
+    background: rgba(33, 29, 59, 0.98) !important;
+    border-color: var(--dark-border) !important;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.38),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Student information */
+
+html[data-theme="dark"] .student-menu-user {
+    border-bottom-color: var(--dark-border) !important;
+}
+
+html[data-theme="dark"] .student-menu-avatar {
+    border-color: var(--dark-accent) !important;
+    background: var(--dark-card-secondary) !important;
+}
+
+html[data-theme="dark"] .student-menu-user-details strong {
+    color: var(--dark-heading) !important;
+}
+
+html[data-theme="dark"] .student-menu-user-details span {
+    color: var(--dark-secondary-text) !important;
+}
+
+/* Menu section labels */
+
+html[data-theme="dark"] .student-menu-label {
+    color: var(--dark-accent-hover) !important;
+}
+
+/* Menu links */
+
+html[data-theme="dark"] .student-menu-link {
+    color: var(--dark-body-text) !important;
+}
+
+html[data-theme="dark"] .student-menu-link:hover {
+    background: rgba(169, 154, 255, 0.14) !important;
+    color: var(--dark-heading) !important;
+}
+
+/* Menu dividers */
+
+html[data-theme="dark"] .student-menu-divider {
+    background: var(--dark-border) !important;
+}
+
+/* Theme setting */
+
+html[data-theme="dark"] .student-menu-theme > span {
+    color: var(--dark-body-text) !important;
+}
+
+html[data-theme="dark"] .theme-toggle-icon {
+    color: var(--dark-accent-hover) !important;
+}
+
+html[data-theme="dark"] .theme-toggle-track {
+    background: #514777 !important;
+}
+
+html[data-theme="dark"] .student-theme-toggle[aria-pressed="true"] .theme-toggle-track {
+    background: var(--dark-blue-accent) !important;
+}
+
+html[data-theme="dark"] .theme-toggle-thumb {
+    background: #FFFFFF !important;
+}
+
+/* Sign out */
+
+html[data-theme="dark"] .student-menu-signout {
+    color: #FF9999 !important;
+}
+
+html[data-theme="dark"] .student-menu-signout:hover {
+    background: rgba(255, 120, 140, 0.12) !important;
+}
+
+
+/* =========================================
+   MY PROFILE AND CHANGE PASSWORD POPUPS
+========================================= */
+
+/* Popup backdrop */
+
+html[data-theme="dark"] .student-account-modal {
+    background: rgba(5, 7, 20, 0.78) !important;
+}
+
+/* Popup cards */
+
+html[data-theme="dark"] .student-account-card {
+    background: linear-gradient(
+        145deg,
+        rgba(33, 29, 59, 0.99),
+        rgba(35, 43, 73, 0.98)
+    ) !important;
+
+    border-color: var(--dark-border) !important;
+
+    box-shadow:
+        0 18px 50px rgba(0, 0, 0, 0.42),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Popup headings */
+
+html[data-theme="dark"] .student-account-header h2 {
+    color: var(--dark-heading) !important;
+}
+
+/* Profile avatar */
+
+html[data-theme="dark"] .student-profile-avatar {
+    border-color: var(--dark-accent) !important;
+    background: var(--dark-card-secondary) !important;
+}
+
+html[data-theme="dark"] .student-profile-avatar-wrapper span {
+    color: var(--dark-secondary-text) !important;
+}
+
+/* Profile field labels */
+
+html[data-theme="dark"] .student-profile-field label {
+    color: var(--dark-body-text) !important;
+}
+
+/* Profile and password inputs */
+
+html[data-theme="dark"] .student-profile-field input,
+html[data-theme="dark"] .student-password-card input {
+    background: var(--dark-input) !important;
+    border-color: var(--dark-border) !important;
+    color: var(--dark-heading) !important;
+}
+
+html[data-theme="dark"] .student-profile-field input:read-only {
+    background: rgba(25, 23, 46, 0.65) !important;
+    color: var(--dark-secondary-text) !important;
+}
+
+html[data-theme="dark"] .student-profile-field input::placeholder,
+html[data-theme="dark"] .student-password-card input::placeholder {
+    color: var(--dark-muted) !important;
+}
+
+html[data-theme="dark"] .student-profile-field input:focus,
+html[data-theme="dark"] .student-password-card input:focus {
+    border-color: var(--dark-blue-accent) !important;
+    box-shadow: 0 0 0 3px rgba(85, 169, 232, 0.16) !important;
+}
+
+/* Change password link */
+
+html[data-theme="dark"] .student-change-password-link {
+    color: var(--dark-blue-accent) !important;
+}
+
+html[data-theme="dark"] .student-change-password-link:hover {
+    color: var(--dark-accent-hover) !important;
+}
+
+/* Back button */
+
+html[data-theme="dark"] .student-account-back {
+    background: rgba(169, 154, 255, 0.14) !important;
+    color: var(--dark-accent-hover) !important;
+}
+
+html[data-theme="dark"] .student-account-back:hover {
+    background: rgba(169, 154, 255, 0.25) !important;
+}
+
+/* Change password submit button */
+
+html[data-theme="dark"] .student-password-submit {
+    background: linear-gradient(
+        135deg,
+        #318BD9,
+        #55A9E8
+    ) !important;
+
+    color: #FFFFFF !important;
+}
+
+html[data-theme="dark"] .student-password-submit:hover {
+    opacity: 0.9;
+}
+
+/* =========================================
+   FINAL DARK THEME VISIBILITY REFINEMENTS
+========================================= */
+
+/* Proceed to Checkout button */
+html[data-theme="dark"] .cart-checkout-button {
+    color: #FFFFFF !important;
+}
+
+/* GCash payment note - match Order Progress reminder */
+html[data-theme="dark"] .order-payment-note {
+    background: var(--dark-surface-light) !important;
+    border: 1px solid var(--dark-border) !important;
+    color: var(--dark-body-text) !important;
+}
+
+/* View Order Details */
+html[data-theme="dark"] .order-details-toggle {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    opacity: 1 !important;
+    filter: none !important;
+}

@@ -37,13 +37,19 @@ $selected_payment = $_POST['payment_method'] ?? 'cash_on_pickup';
 
 // Receive selected items when coming from cart.php.
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['selected_items'])) {
+
     $selected_item_ids = array_values(array_unique(array_filter(
         array_map('intval', (array) $_POST['selected_items']),
         fn($id) => $id > 0
     )));
 
     if (!empty($selected_item_ids)) {
+
         $_SESSION['checkout_selected_items'] = $selected_item_ids;
+
+        // Redirect to Checkout using GET to prevent form resubmission.
+        header('Location: checkout.php');
+        exit;
     }
 }
 
@@ -541,6 +547,9 @@ function checkoutVariantLabel(array $item): string
     <link rel="stylesheet" href="../assets/css/student.css">
     <link rel="stylesheet" href="../assets/css/checkout.css">
     <link rel="stylesheet" href="../assets/css/notifications.css">
+    <link rel="stylesheet" href="../assets/css/student-menu.css">
+    <link rel="stylesheet" href="../assets/css/dark_theme.css">
+    <script src="../assets/js/theme.js"></script>
 </head>
 
 <body class="student-page">
@@ -588,13 +597,8 @@ function checkoutVariantLabel(array $item): string
 
         <?php require __DIR__ . '/includes/notification_panel.php'; ?>
 
-        <a href="menu.php" class="header-action" title="Student Menu">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M4 6h16"/>
-                <path d="M4 12h16"/>
-                <path d="M4 18h16"/>
-            </svg>
-        </a>
+        <!-- Student Menu -->
+        <?php require __DIR__ . '/includes/student_menu.php'; ?>
 
     </nav>
 </header>
@@ -969,6 +973,7 @@ checkoutForm.addEventListener('submit', function () {
 
 </script>
 
+<script src="../assets/js/student-menu.js"></script>
 <script src="../assets/js/notification.js"></script>
 
 </body>
