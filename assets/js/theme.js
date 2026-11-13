@@ -1,7 +1,9 @@
+
 /* =========================================
-   CAMPUSCART - SHARED STUDENT THEME
-   Saves and applies the student's theme
-   ========================================= */
+   CAMPUSCART - SHARED THEME
+   Saves and applies the selected theme
+   for Student and Admin pages
+========================================= */
 
 (function () {
     const THEME_KEY = 'campuscart_theme';
@@ -12,9 +14,11 @@
     function applyTheme(theme) {
         document.documentElement.setAttribute('data-theme', theme);
 
-        const themeToggle = document.getElementById('student-theme-toggle');
+        const themeToggles = document.querySelectorAll(
+            '#student-theme-toggle, .admin-theme-toggle'
+        );
 
-        if (themeToggle) {
+        themeToggles.forEach(function (themeToggle) {
             const isDark = theme === DARK_THEME;
 
             themeToggle.setAttribute(
@@ -26,7 +30,7 @@
                 'aria-label',
                 isDark ? 'Switch to light theme' : 'Switch to dark theme'
             );
-        }
+        });
     }
 
     // Load saved theme. Light is the default.
@@ -45,28 +49,28 @@
     // Apply theme immediately
     applyTheme(savedTheme);
 
-    // Connect the toggle button
+    // Connect the theme toggle buttons
     document.addEventListener('DOMContentLoaded', function () {
-        const themeToggle = document.getElementById('student-theme-toggle');
+        const themeToggles = document.querySelectorAll(
+            '#student-theme-toggle, .admin-theme-toggle'
+        );
 
-        if (!themeToggle) {
-            return;
-        }
+        themeToggles.forEach(function (themeToggle) {
+            themeToggle.addEventListener('click', function () {
+                const currentTheme =
+                    document.documentElement.getAttribute('data-theme');
 
-        themeToggle.addEventListener('click', function () {
-            const currentTheme =
-                document.documentElement.getAttribute('data-theme');
+                const newTheme =
+                    currentTheme === DARK_THEME ? LIGHT_THEME : DARK_THEME;
 
-            const newTheme =
-                currentTheme === DARK_THEME ? LIGHT_THEME : DARK_THEME;
+                applyTheme(newTheme);
 
-            applyTheme(newTheme);
-
-            try {
-                localStorage.setItem(THEME_KEY, newTheme);
-            } catch (error) {
-                console.warn('Unable to save theme preference.');
-            }
+                try {
+                    localStorage.setItem(THEME_KEY, newTheme);
+                } catch (error) {
+                    console.warn('Unable to save theme preference.');
+                }
+            });
         });
     });
 })();

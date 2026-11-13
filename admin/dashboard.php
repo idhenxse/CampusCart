@@ -238,6 +238,7 @@ function paymentStatusLabel(?string $status): string
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/admin.css">
     <link rel="stylesheet" href="../assets/css/admin_menu.css">
+    <link rel="stylesheet" href="../assets/css/admin_dark_theme.css">
 </head>
 
 <body class="admin-page">
@@ -808,6 +809,7 @@ function paymentStatusLabel(?string $status): string
 <script src="../assets/js/admin_payment_popup.js"></script>
 <script src="../assets/js/admin_walkin_sales.js"></script>
 <script src="../assets/js/admin_menu.js"></script>
+<script src="../assets/js/theme.js"></script>
 
 </body>
 </html>

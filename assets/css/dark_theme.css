@@ -1910,3 +1910,124 @@ html[data-theme="dark"] .order-details-toggle {
     opacity: 1 !important;
     filter: none !important;
 }
+
+
+
+/* =========================================
+   ADMIN MENU - MATCH STUDENT MENU LAYOUT
+   DARK MODE OVERRIDES
+========================================= */
+
+html[data-theme="dark"] .admin-menu-panel {
+    width: 346px;
+    box-sizing: border-box;
+    padding: 18px;
+
+    background: #211D3B;
+    border: 1px solid rgba(169, 154, 255, 0.20);
+    border-radius: 23px;
+
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+}
+
+/* ADMIN HEADER */
+
+html[data-theme="dark"] .admin-menu-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 4px 2px 14px;
+
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(169, 154, 255, 0.25);
+    border-radius: 0;
+}
+
+html[data-theme="dark"] .admin-menu-avatar {
+    width: 54px;
+    height: 54px;
+    margin-left: 0;
+
+    object-fit: cover;
+    border-radius: 50%;
+
+    border: 2px solid #BFDCEF;
+    background: #EAF4FB;
+}
+
+html[data-theme="dark"] .admin-menu-user-details strong {
+    color: #F0EEFF;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* MENU SECTIONS */
+
+html[data-theme="dark"] .admin-menu-label {
+    color: #B8A9F5;
+}
+
+html[data-theme="dark"] .admin-menu-link {
+    color: #D8D3EB;
+}
+
+html[data-theme="dark"] .admin-menu-link:hover {
+    background: rgba(169, 154, 255, 0.12);
+    color: #FFFFFF;
+}
+
+html[data-theme="dark"] .admin-menu-divider {
+    background: rgba(169, 154, 255, 0.25);
+}
+
+/* THEME SETTING */
+
+html[data-theme="dark"] .admin-menu-theme {
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+html[data-theme="dark"] .admin-menu-theme > span {
+    order: 2;
+    color: #D8D3EB;
+    font-size: 13px;
+}
+
+html[data-theme="dark"] .admin-theme-toggle {
+    order: 1;
+}
+
+html[data-theme="dark"] .admin-theme-icon {
+    color: #B8A9F5;
+}
+
+html[data-theme="dark"] .admin-theme-track {
+    background: #514777;
+}
+
+html[data-theme="dark"] .admin-theme-toggle[aria-pressed="true"] .admin-theme-track {
+    background: #514777;
+}
+
+/* SIGN OUT */
+
+html[data-theme="dark"] .admin-menu-signout {
+    color: #FF858D;
+}
+
+html[data-theme="dark"] .admin-menu-signout:hover {
+    background: rgba(255, 133, 141, 0.10);
+}
+
+/* MOBILE */
+
+@media (max-width: 480px) {
+    html[data-theme="dark"] .admin-menu-panel {
+        width: 285px;
+        right: -5px;
+    }
+}
+

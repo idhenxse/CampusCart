@@ -109,8 +109,6 @@
 
             <div class="admin-menu-theme">
 
-                <span>Theme</span>
-
                 <button
                     type="button"
                     id="admin-theme-toggle"
@@ -126,6 +124,8 @@
 
                     <span class="admin-theme-icon">☾</span>
                 </button>
+
+                <span>Theme</span>
 
             </div>
 

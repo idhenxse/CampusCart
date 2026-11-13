@@ -1,0 +1,864 @@
+/* =========================================
+   CAMPUSCART ADMIN DARK THEME
+   ========================================= */
+
+html[data-theme="dark"] {
+    --admin-bg: #101426;
+    --admin-panel: rgba(33, 29, 59, 0.82);
+    --admin-panel-solid: #211D3B;
+    --admin-blue: #55A9E8;
+    --admin-blue-dark: #8BC5F0;
+    --admin-blue-light: #514777;
+    --admin-text: #F0EEFF;
+    --admin-muted: #B5B2CC;
+    --admin-border: rgba(169, 154, 255, 0.20);
+    --admin-shadow: 0 8px 25px rgba(0, 0, 0, 0.22);
+}
+
+/* Page background */
+
+html[data-theme="dark"] body.admin-page {
+    background:
+        radial-gradient(circle at top left, #211D3B 0, transparent 42%),
+        var(--admin-bg) !important;
+    color: var(--admin-text);
+}
+
+/* Welcome banner */
+
+html[data-theme="dark"] .admin-welcome-banner {
+    background: linear-gradient(
+        120deg,
+        rgba(49, 62, 100, 0.85),
+        rgba(35, 43, 73, 0.90)
+    ) !important;
+    border-color: var(--admin-border);
+}
+
+html[data-theme="dark"] .admin-welcome-banner h2 {
+    color: #B9D9FF !important;
+}
+
+html[data-theme="dark"] .admin-welcome-banner p {
+    color: var(--admin-muted) !important;
+}
+
+/* Summary cards and panels */
+
+html[data-theme="dark"] .admin-summary-card,
+html[data-theme="dark"] .admin-panel {
+    background: var(--admin-panel) !important;
+    border-color: var(--admin-border) !important;
+    box-shadow: var(--admin-shadow);
+    backdrop-filter: blur(14px);
+}
+
+html[data-theme="dark"] .admin-summary-card h3,
+html[data-theme="dark"] .admin-order-summary-card h3,
+html[data-theme="dark"] .admin-walkin-heading {
+    background: rgba(85, 169, 232, 0.12) !important;
+    border-color: var(--admin-border) !important;
+    color: var(--admin-text) !important;
+}
+
+html[data-theme="dark"] .admin-summary-value,
+html[data-theme="dark"] .admin-order-summary-card strong {
+    color: var(--admin-blue) !important;
+}
+
+html[data-theme="dark"] .admin-order-summary-card,
+html[data-theme="dark"] .admin-walkin-placeholder {
+    background: rgba(33, 29, 59, 0.65) !important;
+    border-color: var(--admin-border) !important;
+}
+
+html[data-theme="dark"] .admin-panel-title,
+html[data-theme="dark"] .admin-products-heading h2 {
+    color: var(--admin-text) !important;
+}
+
+/* Search and form fields */
+
+html[data-theme="dark"] .admin-content input,
+html[data-theme="dark"] .admin-content select,
+html[data-theme="dark"] .admin-content textarea {
+    background: #19172E !important;
+    border-color: var(--admin-border) !important;
+    color: var(--admin-text) !important;
+}
+
+html[data-theme="dark"] .admin-content input::placeholder,
+html[data-theme="dark"] .admin-content textarea::placeholder {
+    color: #9995B5 !important;
+}
+
+html[data-theme="dark"] .admin-content input:focus,
+html[data-theme="dark"] .admin-content select:focus,
+html[data-theme="dark"] .admin-content textarea:focus {
+    outline: 2px solid var(--admin-blue-light);
+    border-color: var(--admin-blue) !important;
+}
+
+/* Tables */
+
+html[data-theme="dark"] .admin-table-wrapper {
+    border-color: var(--admin-border) !important;
+}
+
+html[data-theme="dark"] .admin-content .admin-orders-table,
+html[data-theme="dark"] .admin-inventory-section .admin-orders-table {
+    background: rgba(25, 23, 46, 0.55) !important;
+}
+
+html[data-theme="dark"] .admin-content .admin-orders-table th,
+html[data-theme="dark"] .admin-inventory-section .admin-orders-table th {
+    background: rgba(85, 169, 232, 0.16) !important;
+    color: #B9D9FF !important;
+    border-color: var(--admin-border) !important;
+}
+
+html[data-theme="dark"] .admin-content .admin-orders-table td,
+html[data-theme="dark"] .admin-inventory-section .admin-orders-table td {
+    color: var(--admin-text) !important;
+    border-color: var(--admin-border) !important;
+}
+
+html[data-theme="dark"] .admin-content .admin-orders-table td strong,
+html[data-theme="dark"] .admin-inventory-section .admin-orders-table td strong {
+    color: #B9D9FF !important;
+}
+
+html[data-theme="dark"] .admin-content .admin-orders-table td small {
+    color: var(--admin-muted) !important;
+}
+
+html[data-theme="dark"] .admin-content .admin-orders-table tbody tr:hover,
+html[data-theme="dark"] .admin-inventory-section .admin-orders-table tbody tr:hover {
+    background: rgba(169, 154, 255, 0.08) !important;
+}
+
+/* Product images and placeholders */
+
+html[data-theme="dark"] .admin-product-thumbnail,
+html[data-theme="dark"] .admin-product-image-placeholder,
+html[data-theme="dark"] .admin-product-edit-preview {
+    background: #19172E !important;
+    border-color: var(--admin-border) !important;
+}
+
+html[data-theme="dark"] .admin-product-image-placeholder {
+    color: var(--admin-muted) !important;
+}
+
+html[data-theme="dark"] .admin-product-description {
+    color: var(--admin-muted) !important;
+}
+
+/* Table links and totals */
+
+html[data-theme="dark"] .admin-table-total,
+html[data-theme="dark"] .admin-screenshot-link,
+html[data-theme="dark"] .admin-reference-number {
+    color: #B9D9FF !important;
+}
+
+/* Order status dropdown */
+
+html[data-theme="dark"] .admin-order-status-select {
+    background: #292447 !important;
+    border-color: var(--admin-border) !important;
+    color: #B9D9FF !important;
+}
+
+/* Inventory stock badges - preserve their status colors */
+
+html[data-theme="dark"] .admin-stock-badge.available {
+    background: rgba(64, 170, 115, 0.20) !important;
+    color: #8BE0B0 !important;
+}
+
+html[data-theme="dark"] .admin-stock-badge.low {
+    background: rgba(220, 160, 65, 0.20) !important;
+    color: #FFD28A !important;
+}
+
+html[data-theme="dark"] .admin-stock-badge.out {
+    background: rgba(220, 85, 85, 0.20) !important;
+    color: #FFAAAA !important;
+}
+
+html[data-theme="dark"] .admin-stock-badge.archived {
+    background: rgba(160, 160, 180, 0.18) !important;
+    color: #C5C5D5 !important;
+}
+
+/* Product action buttons */
+
+html[data-theme="dark"] .admin-product-edit-button,
+html[data-theme="dark"] .admin-stock-adjust-button {
+    background: rgba(85, 169, 232, 0.18) !important;
+    color: #B9D9FF !important;
+}
+
+html[data-theme="dark"] .admin-product-archive-button,
+html[data-theme="dark"] .admin-stock-archive-button {
+    background: rgba(220, 85, 85, 0.18) !important;
+    color: #FFAAAA !important;
+}
+
+html[data-theme="dark"] .admin-product-restore-button,
+html[data-theme="dark"] .admin-stock-restore-button {
+    background: rgba(64, 170, 115, 0.18) !important;
+    color: #8BE0B0 !important;
+}
+
+/* Form headings and labels */
+
+html[data-theme="dark"] .admin-product-form-group label,
+html[data-theme="dark"] .admin-stock-form-group label {
+    color: var(--admin-text) !important;
+}
+
+html[data-theme="dark"] .admin-product-form-subtitle {
+    color: #B9D9FF !important;
+}
+
+html[data-theme="dark"] .admin-product-form-divider {
+    background: var(--admin-border) !important;
+}
+
+html[data-theme="dark"] .admin-product-form-actions {
+    border-color: var(--admin-border) !important;
+}
+
+/* Buttons */
+
+html[data-theme="dark"] .admin-product-cancel-button,
+html[data-theme="dark"] #admin-stock-cancel {
+    background: #35314F !important;
+    color: #E0DDF5 !important;
+}
+
+html[data-theme="dark"] .admin-product-save-button,
+html[data-theme="dark"] .admin-product-add-button,
+html[data-theme="dark"] .admin-stock-save {
+    background: #318BD9 !important;
+    color: #FFFFFF !important;
+}
+
+/* Popup backgrounds */
+
+html[data-theme="dark"] .admin-image-modal,
+html[data-theme="dark"] .admin-stock-modal {
+    background: rgba(5, 7, 20, 0.78) !important;
+}
+
+/* Popup cards */
+
+html[data-theme="dark"] .admin-image-modal-content,
+html[data-theme="dark"] .admin-stock-modal-content {
+    background: linear-gradient(
+        145deg,
+        rgba(33, 29, 59, 0.99),
+        rgba(35, 43, 73, 0.98)
+    ) !important;
+    border-color: var(--admin-border) !important;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.42);
+}
+
+/* Popup headings and text */
+
+html[data-theme="dark"] .admin-image-modal-header h3,
+html[data-theme="dark"] .admin-stock-modal-header h3,
+html[data-theme="dark"] .admin-stock-current {
+    color: var(--admin-text) !important;
+}
+
+html[data-theme="dark"] .admin-stock-modal-header p,
+html[data-theme="dark"] .admin-stock-form-group small {
+    color: var(--admin-muted) !important;
+}
+
+html[data-theme="dark"] .admin-image-reference,
+html[data-theme="dark"] .admin-stock-current,
+html[data-theme="dark"] .admin-image-preview {
+    background: rgba(85, 169, 232, 0.10) !important;
+    border-color: var(--admin-border) !important;
+    color: var(--admin-text) !important;
+}
+
+html[data-theme="dark"] #admin-image-modal-close,
+html[data-theme="dark"] #admin-stock-modal-close {
+    background: #35314F !important;
+    color: #B9D9FF !important;
+}
+
+/* Footer */
+
+html[data-theme="dark"] .admin-footer {
+    border-color: var(--admin-border) !important;
+    color: var(--admin-muted) !important;
+}
+
+/* Scrollbar */
+
+html[data-theme="dark"] * {
+    scrollbar-color: #514777 #19172E;
+}
+
+/* =========================================
+   CAMPUSCART ADMIN DARK THEME
+   ========================================= */
+
+html[data-theme="dark"] {
+    --admin-bg: #101426;
+    --admin-panel: rgba(33, 29, 59, 0.82);
+    --admin-panel-solid: #211D3B;
+    --admin-blue: #55A9E8;
+    --admin-blue-dark: #8BC5F0;
+    --admin-blue-light: #514777;
+    --admin-text: #F0EEFF;
+    --admin-muted: #B5B2CC;
+    --admin-border: rgba(169, 154, 255, 0.20);
+    --admin-shadow: 0 8px 25px rgba(0, 0, 0, 0.22);
+}
+
+/* Page background */
+
+html[data-theme="dark"] body.admin-page {
+    background:
+        radial-gradient(circle at top left, #211D3B 0, transparent 42%),
+        var(--admin-bg) !important;
+    color: var(--admin-text);
+}
+
+/* Welcome banner */
+
+html[data-theme="dark"] .admin-welcome-banner {
+    background: linear-gradient(
+        120deg,
+        rgba(49, 62, 100, 0.85),
+        rgba(35, 43, 73, 0.90)
+    ) !important;
+    border-color: var(--admin-border);
+}
+
+html[data-theme="dark"] .admin-welcome-banner h2 {
+    color: #B9D9FF !important;
+}
+
+html[data-theme="dark"] .admin-welcome-banner p {
+    color: var(--admin-muted) !important;
+}
+
+/* Summary cards and panels */
+
+html[data-theme="dark"] .admin-summary-card,
+html[data-theme="dark"] .admin-panel {
+    background: var(--admin-panel) !important;
+    border-color: var(--admin-border) !important;
+    box-shadow: var(--admin-shadow);
+    backdrop-filter: blur(14px);
+}
+
+html[data-theme="dark"] .admin-summary-card h3,
+html[data-theme="dark"] .admin-order-summary-card h3,
+html[data-theme="dark"] .admin-walkin-heading {
+    background: rgba(85, 169, 232, 0.12) !important;
+    border-color: var(--admin-border) !important;
+    color: var(--admin-text) !important;
+}
+
+html[data-theme="dark"] .admin-summary-value,
+html[data-theme="dark"] .admin-order-summary-card strong {
+    color: var(--admin-blue) !important;
+}
+
+html[data-theme="dark"] .admin-order-summary-card,
+html[data-theme="dark"] .admin-walkin-placeholder {
+    background: rgba(33, 29, 59, 0.65) !important;
+    border-color: var(--admin-border) !important;
+}
+
+html[data-theme="dark"] .admin-panel-title,
+html[data-theme="dark"] .admin-products-heading h2 {
+    color: var(--admin-text) !important;
+}
+
+/* Search and form fields */
+
+html[data-theme="dark"] .admin-content input,
+html[data-theme="dark"] .admin-content select,
+html[data-theme="dark"] .admin-content textarea {
+    background: #19172E !important;
+    border-color: var(--admin-border) !important;
+    color: var(--admin-text) !important;
+}
+
+html[data-theme="dark"] .admin-content input::placeholder,
+html[data-theme="dark"] .admin-content textarea::placeholder {
+    color: #9995B5 !important;
+}
+
+html[data-theme="dark"] .admin-content input:focus,
+html[data-theme="dark"] .admin-content select:focus,
+html[data-theme="dark"] .admin-content textarea:focus {
+    outline: 2px solid var(--admin-blue-light);
+    border-color: var(--admin-blue) !important;
+}
+
+/* Tables */
+
+html[data-theme="dark"] .admin-table-wrapper {
+    border-color: var(--admin-border) !important;
+}
+
+html[data-theme="dark"] .admin-content .admin-orders-table,
+html[data-theme="dark"] .admin-inventory-section .admin-orders-table {
+    background: rgba(25, 23, 46, 0.55) !important;
+}
+
+html[data-theme="dark"] .admin-content .admin-orders-table th,
+html[data-theme="dark"] .admin-inventory-section .admin-orders-table th {
+    background: rgba(85, 169, 232, 0.16) !important;
+    color: #B9D9FF !important;
+    border-color: var(--admin-border) !important;
+}
+
+html[data-theme="dark"] .admin-content .admin-orders-table td,
+html[data-theme="dark"] .admin-inventory-section .admin-orders-table td {
+    color: var(--admin-text) !important;
+    border-color: var(--admin-border) !important;
+}
+
+html[data-theme="dark"] .admin-content .admin-orders-table td strong,
+html[data-theme="dark"] .admin-inventory-section .admin-orders-table td strong {
+    color: #B9D9FF !important;
+}
+
+html[data-theme="dark"] .admin-content .admin-orders-table td small {
+    color: var(--admin-muted) !important;
+}
+
+html[data-theme="dark"] .admin-content .admin-orders-table tbody tr:hover,
+html[data-theme="dark"] .admin-inventory-section .admin-orders-table tbody tr:hover {
+    background: rgba(169, 154, 255, 0.08) !important;
+}
+
+/* Product images and placeholders */
+
+html[data-theme="dark"] .admin-product-thumbnail,
+html[data-theme="dark"] .admin-product-image-placeholder,
+html[data-theme="dark"] .admin-product-edit-preview {
+    background: #19172E !important;
+    border-color: var(--admin-border) !important;
+}
+
+html[data-theme="dark"] .admin-product-image-placeholder {
+    color: var(--admin-muted) !important;
+}
+
+html[data-theme="dark"] .admin-product-description {
+    color: var(--admin-muted) !important;
+}
+
+/* Table links and totals */
+
+html[data-theme="dark"] .admin-table-total,
+html[data-theme="dark"] .admin-screenshot-link,
+html[data-theme="dark"] .admin-reference-number {
+    color: #B9D9FF !important;
+}
+
+/* Order status dropdown */
+
+html[data-theme="dark"] .admin-order-status-select {
+    background: #292447 !important;
+    border-color: var(--admin-border) !important;
+    color: #B9D9FF !important;
+}
+
+/* Inventory stock badges - preserve their status colors */
+
+html[data-theme="dark"] .admin-stock-badge.available {
+    background: rgba(64, 170, 115, 0.20) !important;
+    color: #8BE0B0 !important;
+}
+
+html[data-theme="dark"] .admin-stock-badge.low {
+    background: rgba(220, 160, 65, 0.20) !important;
+    color: #FFD28A !important;
+}
+
+html[data-theme="dark"] .admin-stock-badge.out {
+    background: rgba(220, 85, 85, 0.20) !important;
+    color: #FFAAAA !important;
+}
+
+html[data-theme="dark"] .admin-stock-badge.archived {
+    background: rgba(160, 160, 180, 0.18) !important;
+    color: #C5C5D5 !important;
+}
+
+/* Product action buttons */
+
+html[data-theme="dark"] .admin-product-edit-button,
+html[data-theme="dark"] .admin-stock-adjust-button {
+    background: rgba(85, 169, 232, 0.18) !important;
+    color: #B9D9FF !important;
+}
+
+html[data-theme="dark"] .admin-product-archive-button,
+html[data-theme="dark"] .admin-stock-archive-button {
+    background: rgba(220, 85, 85, 0.18) !important;
+    color: #FFAAAA !important;
+}
+
+html[data-theme="dark"] .admin-product-restore-button,
+html[data-theme="dark"] .admin-stock-restore-button {
+    background: rgba(64, 170, 115, 0.18) !important;
+    color: #8BE0B0 !important;
+}
+
+/* Form headings and labels */
+
+html[data-theme="dark"] .admin-product-form-group label,
+html[data-theme="dark"] .admin-stock-form-group label {
+    color: var(--admin-text) !important;
+}
+
+html[data-theme="dark"] .admin-product-form-subtitle {
+    color: #B9D9FF !important;
+}
+
+html[data-theme="dark"] .admin-product-form-divider {
+    background: var(--admin-border) !important;
+}
+
+html[data-theme="dark"] .admin-product-form-actions {
+    border-color: var(--admin-border) !important;
+}
+
+/* Buttons */
+
+html[data-theme="dark"] .admin-product-cancel-button,
+html[data-theme="dark"] #admin-stock-cancel {
+    background: #35314F !important;
+    color: #E0DDF5 !important;
+}
+
+html[data-theme="dark"] .admin-product-save-button,
+html[data-theme="dark"] .admin-product-add-button,
+html[data-theme="dark"] .admin-stock-save {
+    background: #318BD9 !important;
+    color: #FFFFFF !important;
+}
+
+/* Popup backgrounds */
+
+html[data-theme="dark"] .admin-image-modal,
+html[data-theme="dark"] .admin-stock-modal {
+    background: rgba(5, 7, 20, 0.78) !important;
+}
+
+/* Popup cards */
+
+html[data-theme="dark"] .admin-image-modal-content,
+html[data-theme="dark"] .admin-stock-modal-content {
+    background: linear-gradient(
+        145deg,
+        rgba(33, 29, 59, 0.99),
+        rgba(35, 43, 73, 0.98)
+    ) !important;
+    border-color: var(--admin-border) !important;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.42);
+}
+
+/* Popup headings and text */
+
+html[data-theme="dark"] .admin-image-modal-header h3,
+html[data-theme="dark"] .admin-stock-modal-header h3,
+html[data-theme="dark"] .admin-stock-current {
+    color: var(--admin-text) !important;
+}
+
+html[data-theme="dark"] .admin-stock-modal-header p,
+html[data-theme="dark"] .admin-stock-form-group small {
+    color: var(--admin-muted) !important;
+}
+
+html[data-theme="dark"] .admin-image-reference,
+html[data-theme="dark"] .admin-stock-current,
+html[data-theme="dark"] .admin-image-preview {
+    background: rgba(85, 169, 232, 0.10) !important;
+    border-color: var(--admin-border) !important;
+    color: var(--admin-text) !important;
+}
+
+html[data-theme="dark"] #admin-image-modal-close,
+html[data-theme="dark"] #admin-stock-modal-close {
+    background: #35314F !important;
+    color: #B9D9FF !important;
+}
+
+/* Footer */
+
+html[data-theme="dark"] .admin-footer {
+    border-color: var(--admin-border) !important;
+    color: var(--admin-muted) !important;
+}
+
+/* Scrollbar */
+
+html[data-theme="dark"] * {
+    scrollbar-color: #514777 #19172E;
+}
+
+/* =========================================
+   ADMIN MENU — DARK THEME
+========================================= */
+
+html[data-theme="dark"] .admin-menu-panel {
+    background: rgba(33, 29, 59, 0.97);
+    border-color: rgba(169, 154, 255, 0.25);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+}
+
+html[data-theme="dark"] .admin-menu-user {
+    background: rgba(85, 169, 232, 0.10);
+    border-color: rgba(169, 154, 255, 0.22);
+}
+
+html[data-theme="dark"] .admin-menu-avatar {
+    background: #F0EEFF;
+}
+
+html[data-theme="dark"] .admin-menu-user-details strong {
+    color: #F0EEFF;
+}
+
+html[data-theme="dark"] .admin-menu-label {
+    color: #A99AFF;
+}
+
+html[data-theme="dark"] .admin-menu-link {
+    color: #D8D5EF;
+}
+
+html[data-theme="dark"] .admin-menu-link:hover {
+    background: rgba(85, 169, 232, 0.14);
+    color: #8BC5F0;
+}
+
+html[data-theme="dark"] .admin-menu-divider {
+    background: rgba(169, 154, 255, 0.2);
+}
+
+html[data-theme="dark"] .admin-menu-theme > span {
+    color: #D8D5EF;
+}
+
+html[data-theme="dark"] .admin-theme-icon {
+    color: #A99AFF;
+}
+
+html[data-theme="dark"] .admin-theme-track {
+    background: #514777;
+}
+
+html[data-theme="dark"] .admin-theme-toggle[aria-pressed="true"] .admin-theme-track {
+    background: #55A9E8;
+}
+
+html[data-theme="dark"] .admin-menu-signout {
+    color: #F08D98;
+}
+
+html[data-theme="dark"] .admin-menu-signout:hover {
+    background: rgba(240, 141, 152, 0.12);
+}
+
+
+/* =========================================
+   ADMIN DARK THEME — WALK-IN SALES
+========================================= */
+
+html[data-theme="dark"] .admin-walkin-form {
+    background: rgba(33, 29, 59, 0.82) !important;
+    border: 1px solid rgba(169, 154, 255, 0.22) !important;
+    color: #F0EEFF !important;
+}
+
+html[data-theme="dark"] .admin-walkin-heading {
+    background: rgba(85, 169, 232, 0.12) !important;
+    border: 1px solid rgba(85, 169, 232, 0.2) !important;
+    color: #F0EEFF !important;
+}
+
+html[data-theme="dark"] .admin-walkin-heading strong,
+html[data-theme="dark"] .admin-walkin-products h3,
+html[data-theme="dark"] .admin-walkin-summary h3 {
+    color: #F0EEFF !important;
+}
+
+html[data-theme="dark"] .admin-walkin-heading span {
+    background: rgba(85, 169, 232, 0.16) !important;
+    color: #8BC5F0 !important;
+}
+
+html[data-theme="dark"] .admin-walkin-form-group label {
+    color: #D8D5EF !important;
+}
+
+html[data-theme="dark"] .admin-walkin-form-group input,
+html[data-theme="dark"] .admin-walkin-form-group select,
+html[data-theme="dark"] #walkin-product,
+html[data-theme="dark"] #walkin-variant,
+html[data-theme="dark"] #walkin-quantity,
+html[data-theme="dark"] #walkin-payment-method {
+    background: #19162F !important;
+    color: #F0EEFF !important;
+    border: 1px solid rgba(169, 154, 255, 0.3) !important;
+}
+
+html[data-theme="dark"] .admin-walkin-form-group select:disabled {
+    background: #302B49 !important;
+    color: #A9A5C1 !important;
+    opacity: 1;
+}
+
+html[data-theme="dark"] .admin-walkin-form-group input::placeholder {
+    color: #A9A5C1 !important;
+}
+
+html[data-theme="dark"] .admin-walkin-product-row button,
+html[data-theme="dark"] #walkin-add-product {
+    background: #55A9E8 !important;
+    color: #101426 !important;
+}
+
+html[data-theme="dark"] .admin-walkin-summary {
+    background: rgba(33, 29, 59, 0.95) !important;
+    border: 1px solid rgba(169, 154, 255, 0.22) !important;
+    color: #F0EEFF !important;
+}
+
+html[data-theme="dark"] .admin-walkin-summary > div {
+    color: #D8D5EF !important;
+}
+
+html[data-theme="dark"] .admin-walkin-summary strong {
+    color: #8BC5F0 !important;
+}
+
+html[data-theme="dark"] #walkin-complete-transaction {
+    background: #55A9E8 !important;
+    color: #101426 !important;
+}
+
+html[data-theme="dark"] #walkin-complete-transaction:disabled {
+    background: #514777 !important;
+    color: #C5C0DC !important;
+    opacity: 0.8;
+}
+
+/* Walk-In product table */
+html[data-theme="dark"] .admin-walkin-products .admin-table-wrapper {
+    background: #211D3B !important;
+    border-color: rgba(169, 154, 255, 0.2) !important;
+}
+
+html[data-theme="dark"] .admin-walkin-products .admin-orders-table tbody td {
+    background: #211D3B !important;
+    color: #D8D5EF !important;
+}
+
+html[data-theme="dark"] .admin-walkin-products .admin-orders-table tbody tr:nth-child(even) td {
+    background: #19162F !important;
+    color: #D8D5EF !important;
+}
+
+html[data-theme="dark"] .admin-walkin-products .admin-orders-table thead th {
+    background: #293451 !important;
+    color: #BFDCEF !important;
+}
+
+
+/* =========================================
+   ADMIN DARK THEME — ORDER FILTERS
+========================================= */
+
+html[data-theme="dark"] .admin-order-filters {
+    background: rgba(81, 71, 119, 0.55) !important;
+}
+
+html[data-theme="dark"] .admin-order-filters input,
+html[data-theme="dark"] .admin-order-filters select {
+    background: #19162F !important;
+    color: #F0EEFF !important;
+    border-color: rgba(169, 154, 255, 0.3) !important;
+}
+
+html[data-theme="dark"] .admin-order-filters input::placeholder {
+    color: #A9A5C1 !important;
+}
+
+html[data-theme="dark"] .admin-order-filters button {
+    background: #55A9E8 !important;
+    color: #101426 !important;
+}
+
+
+/* =========================================
+   ADMIN DARK THEME — MATCH SEARCH BARS
+========================================= */
+
+html[data-theme="dark"] .admin-order-filters {
+    background: transparent !important;
+    padding: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+html[data-theme="dark"] .admin-order-filters input,
+html[data-theme="dark"] .admin-order-filters select {
+    background: #17283D !important;
+    color: #EAF2FC !important;
+    border: 1px solid #405D7D !important;
+    border-radius: 13px !important;
+    min-height: 52px;
+}
+
+html[data-theme="dark"] .admin-order-filters input::placeholder {
+    color: #9FB5CC !important;
+}
+
+html[data-theme="dark"] .admin-order-filters button {
+    background: #55A9E8 !important;
+    color: #FFFFFF !important;
+    border: 1px solid #73B9EB !important;
+    border-radius: 13px !important;
+    min-height: 52px;
+}
+
+html[data-theme="dark"] .admin-order-filters button:hover {
+    background: #4298D8 !important;
+}
+
+
+/* Remove the highlighted background from Admin Menu header */
+
+html[data-theme="dark"] .admin-menu-panel .admin-menu-user {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+
+/* Divider below Admin profile header */
+
+html[data-theme="dark"] .admin-menu-panel .admin-menu-user {
+    border-bottom: 1px solid rgba(169, 154, 255, 0.25) !important;
+    padding-bottom: 14px;
+}

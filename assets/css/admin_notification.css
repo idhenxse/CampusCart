@@ -1,0 +1,314 @@
+/* =========================================
+   CAMPUSCART ADMIN NOTIFICATION POPUP
+========================================= */
+
+.admin-notification-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    z-index: 1100;
+}
+
+.admin-notification-trigger {
+    position: relative;
+    cursor: pointer;
+}
+
+.admin-notification-dot {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 9px;
+    height: 9px;
+    background: #ef4444;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+/* =========================================
+   POPUP PANEL
+========================================= */
+
+.admin-notification-panel {
+    position: absolute;
+    top: calc(100% + 14px);
+    right: 0;
+    width: 370px;
+    max-width: min(370px, calc(100vw - 30px));
+    max-height: min(450px, calc(100vh - 110px));
+
+    display: none;
+    flex-direction: column;
+
+    background: #ffffff;
+    border: 1px solid rgba(30, 64, 175, 0.12);
+    border-radius: 16px;
+
+    box-shadow: 0 12px 35px rgba(15, 23, 42, 0.18);
+
+    overflow: hidden;
+    z-index: 1100;
+}
+
+.admin-notification-panel.active {
+    display: flex;
+}
+
+/* =========================================
+   POPUP HEADER
+========================================= */
+
+.admin-notification-panel-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 48px;
+    padding: 10px 45px;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.admin-notification-panel-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.admin-notification-close {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+
+    color: #64748b;
+    font-size: 24px;
+    line-height: 1;
+
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.admin-notification-close:hover {
+    background: #f1f5f9;
+    color: #1e293b;
+}
+
+/* =========================================
+   NOTIFICATION LIST
+========================================= */
+
+.admin-notification-list {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    min-height: 0;
+    max-height: 390px;
+
+    gap: 10px;
+    padding: 13px;
+
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+/* =========================================
+   NOTIFICATION CARD
+========================================= */
+
+.admin-notification-item {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+
+    padding: 13px 14px;
+
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.admin-notification-item.unread {
+    background: #eff6ff;
+    border-color: rgba(59, 130, 246, 0.22);
+}
+
+.admin-notification-item.read {
+    background: #f8fafc;
+}
+
+.admin-notification-item-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.admin-notification-item h4 {
+    margin: 0 0 5px;
+    color: #1e293b;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.admin-notification-item p {
+    margin: 0 0 8px;
+    color: #475569;
+    font-size: 13px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.admin-notification-item time {
+    display: block;
+    color: #94a3b8;
+    font-size: 11px;
+}
+
+/* =========================================
+   UNREAD INDICATOR
+========================================= */
+
+.admin-notification-unread-indicator {
+    flex-shrink: 0;
+
+    width: 8px;
+    height: 8px;
+    margin-top: 5px;
+
+    background: #3b82f6;
+    border-radius: 50%;
+}
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.admin-notification-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 150px;
+    padding: 25px 15px;
+
+    text-align: center;
+}
+
+.admin-notification-empty p {
+    margin: 0 0 5px;
+    color: #334155;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.admin-notification-empty span {
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+/* =========================================
+   DARK MODE
+========================================= */
+
+html[data-theme="dark"] .admin-notification-panel {
+    background: #211D3B;
+    border: 1px solid rgba(169, 154, 255, 0.20);
+    box-shadow: 0 14px 38px rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme="dark"] .admin-notification-panel-header {
+    background: rgba(81, 71, 119, 0.30);
+    border-bottom: 1px solid rgba(169, 154, 255, 0.20);
+}
+
+html[data-theme="dark"] .admin-notification-panel-header h3 {
+    color: #F0EEFF;
+}
+
+html[data-theme="dark"] .admin-notification-close {
+    color: #B5B2CC;
+}
+
+html[data-theme="dark"] .admin-notification-close:hover {
+    background: rgba(169, 154, 255, 0.14);
+    color: #F0EEFF;
+}
+
+html[data-theme="dark"] .admin-notification-item {
+    background: rgba(33, 29, 59, 0.82);
+    border-color: rgba(169, 154, 255, 0.16);
+}
+
+html[data-theme="dark"] .admin-notification-item.unread {
+    background: rgba(85, 169, 232, 0.10);
+    border-color: rgba(85, 169, 232, 0.30);
+}
+
+html[data-theme="dark"] .admin-notification-item.read {
+    background: rgba(33, 29, 59, 0.82);
+}
+
+html[data-theme="dark"] .admin-notification-item h4 {
+    color: #F0EEFF;
+}
+
+html[data-theme="dark"] .admin-notification-item p {
+    color: #B5B2CC;
+}
+
+html[data-theme="dark"] .admin-notification-item time {
+    color: #9691B5;
+}
+
+html[data-theme="dark"] .admin-notification-unread-indicator {
+    background: #55A9E8;
+}
+
+html[data-theme="dark"] .admin-notification-empty p {
+    color: #F0EEFF;
+}
+
+html[data-theme="dark"] .admin-notification-empty span {
+    color: #B5B2CC;
+}
+
+/* =========================================
+   MOBILE RESPONSIVE
+========================================= */
+
+@media (max-width: 520px) {
+
+    .admin-notification-panel {
+        position: fixed;
+        top: 85px;
+        right: 12px;
+
+        width: 370px;
+        max-width: calc(100vw - 24px);
+        max-height: calc(100vh - 105px);
+    }
+
+    .admin-notification-list {
+        max-height: calc(100vh - 180px);
+    }
+}

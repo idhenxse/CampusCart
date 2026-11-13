@@ -10,8 +10,6 @@
     z-index: 1200;
 }
 
-
-
 /* MENU TRIGGER */
 
 .admin-menu-trigger {
@@ -46,7 +44,6 @@
     stroke-width: 1.8;
     stroke-linecap: round;
 }
-
 
 /* =========================================
    ADMIN MENU PANEL
@@ -90,19 +87,18 @@
 
     padding: 4px 2px 14px;
 
-    background: rgba(191, 220, 239, 0.25);
-    border: 1px solid rgba(191, 220, 239, 0.75);
-    border-radius: 12px;
+    border-bottom: 1px solid rgba(115, 179, 224, 0.25);
 }
 
 .admin-menu-avatar {
-    width: 48px;
-    height: 48px;
-    margin-left: 8px;
+    width: 54px;
+    height: 54px;
 
-    object-fit: contain;
+    object-fit: cover;
     border-radius: 50%;
-    background: #FFFFFF;
+
+    border: 2px solid #BFDCEF;
+    background: #EAF4FB;
 }
 
 .admin-menu-user-details {
@@ -114,7 +110,7 @@
 
 .admin-menu-user-details strong {
     color: #24384A;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 700;
     overflow-wrap: anywhere;
 }
@@ -183,6 +179,7 @@
     width: 8px;
     height: 8px;
     margin-left: auto;
+    flex-shrink: 0;
 
     background: #E74C4C;
     border-radius: 50%;
@@ -192,7 +189,7 @@
 
 .admin-menu-divider {
     height: 1px;
-    background: rgba(115, 179, 224, 0.35);
+    background: rgba(115, 179, 224, 0.25);
 }
 
 /* =========================================
@@ -202,13 +199,16 @@
 .admin-menu-theme {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 10px 9px;
+    justify-content: flex-start;
+    gap: 10px;
+
+    padding: 10px 0;
 }
 
 .admin-menu-theme > span {
-    color: #344F68;
-    font-size: 13px;
+    color: inherit;
+    font-size: inherit;
+    order: 2;
 }
 
 .admin-theme-toggle {
@@ -221,6 +221,7 @@
     background: transparent;
 
     cursor: pointer;
+    order: 1;
 }
 
 .admin-theme-icon {
@@ -289,11 +290,8 @@
 /* MOBILE */
 
 @media (max-width: 480px) {
-
     .admin-menu-panel {
         width: 285px;
         right: -5px;
     }
-
 }
-
