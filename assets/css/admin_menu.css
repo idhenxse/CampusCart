@@ -1,0 +1,299 @@
+
+/* =========================================
+   CAMPUSCART ADMIN MENU
+========================================= */
+
+.admin-menu-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    z-index: 1200;
+}
+
+
+
+/* MENU TRIGGER */
+
+.admin-menu-trigger {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.12);
+    color: #FFFFFF;
+
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.admin-menu-trigger:hover {
+    background: rgba(255, 255, 255, 0.22);
+}
+
+.admin-menu-trigger svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+}
+
+
+/* =========================================
+   ADMIN MENU PANEL
+========================================= */
+
+.admin-menu-panel {
+    position: absolute;
+    top: calc(100% + 14px);
+    right: 0;
+
+    width: 300px;
+    max-width: calc(100vw - 30px);
+    padding: 18px;
+
+    display: none;
+    flex-direction: column;
+    gap: 14px;
+
+    background: rgba(245, 249, 252, 0.96);
+    border: 1px solid rgba(191, 220, 239, 0.85);
+    border-radius: 20px;
+
+    box-shadow: 0 12px 35px rgba(49, 100, 145, 0.16);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    z-index: 1201;
+}
+
+.admin-menu-panel.active {
+    display: flex;
+}
+
+/* ADMIN INFORMATION */
+
+.admin-menu-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 4px 2px 14px;
+
+    background: rgba(191, 220, 239, 0.25);
+    border: 1px solid rgba(191, 220, 239, 0.75);
+    border-radius: 12px;
+}
+
+.admin-menu-avatar {
+    width: 48px;
+    height: 48px;
+    margin-left: 8px;
+
+    object-fit: contain;
+    border-radius: 50%;
+    background: #FFFFFF;
+}
+
+.admin-menu-user-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+}
+
+.admin-menu-user-details strong {
+    color: #24384A;
+    font-size: 13px;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+/* MENU SECTIONS */
+
+.admin-menu-section {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.admin-menu-label {
+    color: #7292AD;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0 9px 5px;
+}
+
+.admin-menu-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+    padding: 10px 11px;
+
+    border: none;
+    border-radius: 11px;
+    background: transparent;
+
+    color: #344F68;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: left;
+    text-decoration: none;
+
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.admin-menu-link svg,
+.admin-menu-signout svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.admin-menu-link:hover {
+    background: rgba(115, 179, 224, 0.17);
+    color: #245F98;
+}
+
+/* NOTIFICATION DOT */
+
+.admin-menu-notification-dot {
+    width: 8px;
+    height: 8px;
+    margin-left: auto;
+
+    background: #E74C4C;
+    border-radius: 50%;
+}
+
+/* DIVIDER */
+
+.admin-menu-divider {
+    height: 1px;
+    background: rgba(115, 179, 224, 0.35);
+}
+
+/* =========================================
+   THEME SETTING
+========================================= */
+
+.admin-menu-theme {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 9px;
+}
+
+.admin-menu-theme > span {
+    color: #344F68;
+    font-size: 13px;
+}
+
+.admin-theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 0;
+    border: none;
+    background: transparent;
+
+    cursor: pointer;
+}
+
+.admin-theme-icon {
+    color: #7292AD;
+    font-size: 14px;
+}
+
+.admin-theme-track {
+    width: 39px;
+    height: 21px;
+
+    display: flex;
+    align-items: center;
+    padding: 3px;
+
+    background: #BFDCEF;
+    border-radius: 20px;
+
+    transition: background 0.2s ease;
+}
+
+.admin-theme-thumb {
+    width: 15px;
+    height: 15px;
+
+    background: #FFFFFF;
+    border-radius: 50%;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+
+    transition: transform 0.2s ease;
+}
+
+.admin-theme-toggle[aria-pressed="true"] .admin-theme-track {
+    background: #318BD9;
+}
+
+.admin-theme-toggle[aria-pressed="true"] .admin-theme-thumb {
+    transform: translateX(18px);
+}
+
+/* =========================================
+   SIGN OUT
+========================================= */
+
+.admin-menu-signout {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 10px 11px;
+
+    border-radius: 11px;
+
+    color: #C45D65;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+
+    transition: background 0.2s ease;
+}
+
+.admin-menu-signout:hover {
+    background: rgba(220, 105, 115, 0.09);
+}
+
+/* MOBILE */
+
+@media (max-width: 480px) {
+
+    .admin-menu-panel {
+        width: 285px;
+        right: -5px;
+    }
+
+}
+

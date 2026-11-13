@@ -237,6 +237,7 @@ function paymentStatusLabel(?string $status): string
 
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="stylesheet" href="../assets/css/admin_menu.css">
 </head>
 
 <body class="admin-page">
@@ -290,13 +291,7 @@ function paymentStatusLabel(?string $status): string
         </svg>
     </a>
 
-    <!-- Sign Out -->
-    <a href="../logout.php" class="admin-header-icon"
-       title="Sign Out" aria-label="Sign Out">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M4 5h16M4 12h16M4 19h16"/>
-        </svg>
-    </a>
+    <?php include __DIR__ . '/includes/admin_menu.php'; ?>
 
 </nav>
 
@@ -812,6 +807,7 @@ function paymentStatusLabel(?string $status): string
 
 <script src="../assets/js/admin_payment_popup.js"></script>
 <script src="../assets/js/admin_walkin_sales.js"></script>
+<script src="../assets/js/admin_menu.js"></script>
 
 </body>
 </html>
