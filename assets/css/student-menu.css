@@ -391,6 +391,34 @@
     background: rgba(115, 179, 224, 0.28);
 }
 
+/* =========================================
+   PASSWORD CHANGE SUCCESS / ERROR MESSAGE
+========================================= */
+
+.password-change-message {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    padding: 12px 14px;
+    border-radius: 10px;
+
+    font-size: 13px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.password-change-message.success {
+    background: rgba(46, 160, 91, 0.10);
+    border: 1px solid rgba(46, 160, 91, 0.25);
+    color: #267A49;
+}
+
+.password-change-message.error {
+    background: rgba(220, 75, 85, 0.10);
+    border: 1px solid rgba(220, 75, 85, 0.25);
+    color: #B83240;
+}
+
 /* PASSWORD FORM */
 
 .student-password-card form {
@@ -440,4 +468,15 @@
         font-size: 19px;
     }
 
+}
+
+/* PASSWORD FORM STATES */
+
+.password-change-message[hidden] {
+    display: none;
+}
+
+.student-password-submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
 }

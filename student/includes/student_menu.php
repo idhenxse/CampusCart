@@ -20,6 +20,8 @@ $menu_student_email = $menu_student['email'] ?? '';
 
 // Default avatar.
 $menu_student_avatar = '../assets/images/student-avatar.png';
+$show_password_modal = !empty($_SESSION['password_change_message']);
+
 ?>
 
 <!-- =====================================
@@ -245,6 +247,7 @@ $menu_student_avatar = '../assets/images/student-avatar.png';
     class="student-account-modal"
     id="student-password-modal"
     aria-hidden="true"
+    data-open-after-message="<?= $show_password_modal ? 'true' : 'false' ?>"
 >
 
     <div class="student-account-card student-password-card">
@@ -255,11 +258,27 @@ $menu_student_avatar = '../assets/images/student-avatar.png';
 
         </div>
 
+        <!-- PASSWORD CHANGE MESSAGE -->
+        <div
+            id="password-change-message"
+            class="password-change-message"
+            role="status"
+            aria-live="polite"
+            hidden
+        ></div>
+
         <form
             id="student-change-password-form"
             method="POST"
-            action="change_password.php"
+            action="includes/change_password.php"
         >
+
+            <!-- CSRF TOKEN -->
+            <input
+                type="hidden"
+                name="csrf_token"
+                value="<?= htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES, 'UTF-8') ?>"
+            >
 
             <div class="student-profile-field">
                 <label for="old-password">Old Password</label>

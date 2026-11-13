@@ -2,6 +2,7 @@
 session_start();
 
 require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../config/notifications.php';
 
 // =========================================
 // STUDENT SESSION PROTECTION
@@ -73,14 +74,14 @@ function loadCheckoutCart(PDO $pdo, int $user_id, array $selected_ids): array
     $stmt = $pdo->prepare("
         SELECT
             ci.cart_item_id,
+            ci.variant_id,
             ci.quantity,
-            pv.variant_id,
-            pv.variant_name,
-            pv.size,
             pv.price,
             p.product_name,
-            p.product_image,
-            COALESCE(i.stock_quantity, 0) AS stock_quantity
+            p.is_archived,
+            COALESCE(i.stock_quantity, 0) AS stock_quantity,
+            i.inventory_id,
+            i.low_stock_threshold
         FROM carts c
         INNER JOIN cart_items ci
             ON ci.cart_id = c.cart_id
@@ -274,9 +275,11 @@ if (
                             ci.variant_id,
                             ci.quantity,
                             pv.price,
+                            p.product_name,
                             p.is_archived,
                             COALESCE(i.stock_quantity, 0) AS stock_quantity,
-                            i.inventory_id
+                            i.inventory_id,
+                            i.low_stock_threshold
                         FROM cart_items ci
                         INNER JOIN product_variants pv
                             ON pv.variant_id = ci.variant_id
@@ -404,6 +407,21 @@ if (
                                 'Stock changed while placing your order. Please review your cart.'
                             );
                         }
+
+                        // Check whether the stock level crossed a notification threshold.
+                        $previous_stock = (int) $item['stock_quantity'];
+                        $new_stock = $previous_stock - $quantity;
+                        $low_stock_threshold = (int) $item['low_stock_threshold'];
+
+                        notifyAdminStockLevel(
+                            $pdo,
+                            (int) $item['inventory_id'],
+                            $item['product_name'],
+                            $previous_stock,
+                            $new_stock,
+                            $low_stock_threshold
+                        );
+
                     }
 
                     // Create the payment record.
@@ -445,6 +463,26 @@ if (
                         'order_placed',
                         $order_id
                     ]);
+
+                    // Notify Admin about the new order.
+                    createAdminNotification(
+                        $pdo,
+                        'New Order Received',
+                        'A new order ' . $order_number . ' has been placed and is awaiting confirmation.',
+                        'new_order',
+                        (int) $order_id
+                    );
+
+                    // Notify Admin when a GCash payment is submitted.
+                    if ($payment_method === 'gcash') {
+                        createAdminNotification(
+                            $pdo,
+                            'Payment Submitted',
+                            'A GCash payment has been submitted for order ' . $order_number . ' and is awaiting verification.',
+                            'payment_submitted',
+                            (int) $order_id
+                        );
+                    }
 
                     // Remove only the selected items after successful order creation.
                     $clearCartStmt = $pdo->prepare("

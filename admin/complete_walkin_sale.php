@@ -2,6 +2,7 @@
 session_start();
 
 require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../config/notifications.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
@@ -98,6 +99,7 @@ try {
         SELECT
             i.inventory_id,
             i.stock_quantity,
+            i.low_stock_threshold,
             pv.variant_id,
             pv.variant_name,
             pv.size,
@@ -148,7 +150,8 @@ try {
             'unit_price' => number_format($unitPriceCents / 100, 2, '.', ''),
             'subtotal' => number_format($subtotalCents / 100, 2, '.', ''),
             'previous_stock' => $availableStock,
-            'new_stock' => $availableStock - $quantity
+            'new_stock' => $availableStock - $quantity,
+            'low_stock_threshold' => (int) $product['low_stock_threshold']
         ];
     }
 
@@ -234,6 +237,17 @@ try {
             $item['new_stock'],
             $reason
         ]);
+
+        // Notify Admin if stock crosses the low-stock or out-of-stock threshold.
+        notifyAdminStockLevel(
+            $pdo,
+            (int) $item['inventory_id'],
+            $item['product_name'],
+            (int) $item['previous_stock'],
+            (int) $item['new_stock'],
+            (int) $item['low_stock_threshold']
+        );
+
     }
 
     $pdo->commit();

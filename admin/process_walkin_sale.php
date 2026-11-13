@@ -5,6 +5,7 @@ session_start();
 header('Content-Type: application/json');
 
 require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../config/notifications.php';
 
 // =========================================
 // ADMIN SESSION PROTECTION
@@ -121,6 +122,7 @@ try {
         SELECT
             i.inventory_id,
             i.stock_quantity,
+            i.low_stock_threshold,
             pv.variant_id,
             pv.price,
             p.product_name,
@@ -160,11 +162,13 @@ try {
         $validatedItems[] = [
             'inventory_id' => (int) $product['inventory_id'],
             'variant_id' => (int) $product['variant_id'],
+            'product_name' => $product['product_name'],
             'quantity' => $quantity,
             'unit_price' => $unitPrice,
             'subtotal' => $subtotal,
             'previous_stock' => $availableStock,
-            'new_stock' => $availableStock - $quantity
+            'new_stock' => $availableStock - $quantity,
+            'low_stock_threshold' => (int) $product['low_stock_threshold']
         ];
 
         $totalAmount += $subtotal;
@@ -247,6 +251,17 @@ try {
             $item['new_stock'],
             'Walk-in sale ' . $saleNumber
         ]);
+
+        // Notify Admin if stock crosses the low-stock or out-of-stock threshold.
+        notifyAdminStockLevel(
+            $pdo,
+            (int) $item['inventory_id'],
+            $item['product_name'],
+            (int) $item['previous_stock'],
+            (int) $item['new_stock'],
+            (int) $item['low_stock_threshold']
+        );
+
     }
 
     $pdo->commit();

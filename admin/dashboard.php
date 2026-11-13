@@ -237,6 +237,7 @@ function paymentStatusLabel(?string $status): string
 
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="stylesheet" href="../assets/css/admin_notification.css">
     <link rel="stylesheet" href="../assets/css/admin_menu.css">
     <link rel="stylesheet" href="../assets/css/admin_dark_theme.css">
 </head>
@@ -283,15 +284,11 @@ function paymentStatusLabel(?string $status): string
         </svg>
     </a>
 
-    <!-- Notifications -->
-    <a href="notifications.php" class="admin-header-icon"
-       title="Notifications" aria-label="Notifications">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
-            <path d="M10 21h4"/>
-        </svg>
-    </a>
 
+    <!-- Notifications Popup -->
+    <?php include __DIR__ . '/includes/notification_panel.php'; ?>
+
+    <!-- Admin Menu Popup -->
     <?php include __DIR__ . '/includes/admin_menu.php'; ?>
 
 </nav>
@@ -808,6 +805,7 @@ function paymentStatusLabel(?string $status): string
 
 <script src="../assets/js/admin_payment_popup.js"></script>
 <script src="../assets/js/admin_walkin_sales.js"></script>
+<script src="../assets/js/admin_notification.js"></script>
 <script src="../assets/js/admin_menu.js"></script>
 <script src="../assets/js/theme.js"></script>
 

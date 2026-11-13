@@ -2,6 +2,7 @@
 session_start();
 
 require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../config/notifications.php';
 
 // ADMIN SESSION PROTECTION
 if (
@@ -53,9 +54,17 @@ try {
 
     // LOCK THE INVENTORY RECORD
     $stockStmt = $pdo->prepare("
-        SELECT inventory_id, stock_quantity
-        FROM inventory
-        WHERE inventory_id = ?
+        SELECT
+            i.inventory_id,
+            i.stock_quantity,
+            i.low_stock_threshold,
+            p.product_name
+        FROM inventory i
+        INNER JOIN product_variants pv
+            ON pv.variant_id = i.variant_id
+        INNER JOIN products p
+            ON p.product_id = pv.product_id
+        WHERE i.inventory_id = ?
         FOR UPDATE
     ");
 
@@ -121,6 +130,16 @@ try {
         $new_stock,
         $reason
     ]);
+
+    // Notify Admin if stock crosses the low-stock or out-of-stock threshold.
+    notifyAdminStockLevel(
+        $pdo,
+        (int) $inventory['inventory_id'],
+        $inventory['product_name'],
+        $previous_stock,
+        $new_stock,
+        (int) $inventory['low_stock_threshold']
+    );
 
     $pdo->commit();
 

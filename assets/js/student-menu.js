@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function () {
 
     const wrapper = document.getElementById('student-menu-wrapper');
@@ -6,6 +7,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const profileModal = document.getElementById('student-profile-modal');
     const passwordModal = document.getElementById('student-password-modal');
+    const passwordForm = document.getElementById('student-change-password-form');
+    const passwordMessage = document.getElementById('password-change-message');
 
     const openProfile = document.getElementById('open-student-profile');
     const closeProfile = document.getElementById('close-student-profile');
@@ -17,57 +20,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (
         !wrapper || !trigger || !menuPanel ||
-        !profileModal || !passwordModal
+        !profileModal || !passwordModal ||
+        !passwordForm || !passwordMessage
     ) {
         return;
     }
 
-    // Open Student Menu.
+    // =========================================
+    // STUDENT MENU
+    // =========================================
+
     function openStudentMenu() {
         menuPanel.classList.add('active');
         menuPanel.setAttribute('aria-hidden', 'false');
         trigger.setAttribute('aria-expanded', 'true');
     }
 
-    // Close Student Menu.
     function closeStudentMenu() {
         menuPanel.classList.remove('active');
         menuPanel.setAttribute('aria-hidden', 'true');
         trigger.setAttribute('aria-expanded', 'false');
     }
 
-    // Open My Profile.
-    function showProfile() {
-        closeStudentMenu();
-
-        profileModal.classList.add('active');
-        profileModal.setAttribute('aria-hidden', 'false');
-    }
-
-    // Close My Profile.
-    function hideProfile() {
-        profileModal.classList.remove('active');
-        profileModal.setAttribute('aria-hidden', 'true');
-    }
-
-    // Open Change Password.
-    function showPassword() {
-        hideProfile();
-
-        passwordModal.classList.add('active');
-        passwordModal.setAttribute('aria-hidden', 'false');
-    }
-
-    // Return to My Profile.
-    function returnToProfile() {
-        passwordModal.classList.remove('active');
-        passwordModal.setAttribute('aria-hidden', 'true');
-
-        profileModal.classList.add('active');
-        profileModal.setAttribute('aria-hidden', 'false');
-    }
-
-    // Toggle Student Menu.
     trigger.addEventListener('click', function (event) {
         event.stopPropagation();
 
@@ -78,12 +52,26 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Open My Profile.
+    // =========================================
+    // MY PROFILE
+    // =========================================
+
+    function showProfile() {
+        closeStudentMenu();
+
+        profileModal.classList.add('active');
+        profileModal.setAttribute('aria-hidden', 'false');
+    }
+
+    function hideProfile() {
+        profileModal.classList.remove('active');
+        profileModal.setAttribute('aria-hidden', 'true');
+    }
+
     if (openProfile) {
         openProfile.addEventListener('click', showProfile);
     }
 
-    // Back from My Profile to Student Menu.
     if (closeProfile) {
         closeProfile.addEventListener('click', function () {
             hideProfile();
@@ -91,24 +79,124 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Open Change Password.
+    // =========================================
+    // CHANGE PASSWORD POPUP
+    // =========================================
+
+    function showPassword() {
+        hideProfile();
+
+        passwordMessage.hidden = true;
+        passwordMessage.textContent = '';
+        passwordMessage.classList.remove('success', 'error');
+
+        passwordModal.classList.add('active');
+        passwordModal.setAttribute('aria-hidden', 'false');
+    }
+
+    function hidePassword() {
+        passwordModal.classList.remove('active');
+        passwordModal.setAttribute('aria-hidden', 'true');
+    }
+
+    function returnToProfile() {
+        hidePassword();
+
+        profileModal.classList.add('active');
+        profileModal.setAttribute('aria-hidden', 'false');
+    }
+
     if (openPassword) {
         openPassword.addEventListener('click', showPassword);
     }
 
-    // Back from Change Password to My Profile.
     if (backToProfile) {
         backToProfile.addEventListener('click', returnToProfile);
     }
 
-    // Close menu when clicking outside.
+    // =========================================
+    // CHANGE PASSWORD FORM SUBMISSION
+    // =========================================
+
+    passwordForm.addEventListener('submit', async function (event) {
+
+        event.preventDefault();
+
+        const submitButton = passwordForm.querySelector(
+            '.student-password-submit'
+        );
+
+        if (!submitButton) {
+            return;
+        }
+
+        submitButton.disabled = true;
+        submitButton.textContent = 'CHANGING...';
+
+        passwordMessage.hidden = true;
+        passwordMessage.textContent = '';
+        passwordMessage.classList.remove('success', 'error');
+
+        try {
+
+            const response = await fetch(passwordForm.action, {
+                method: 'POST',
+                body: new FormData(passwordForm),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(
+                    result.message || 'Unable to change your password.'
+                );
+            }
+
+            passwordMessage.textContent = result.success
+                ? 'Password Changed Successfully!'
+                : result.message;
+
+            passwordMessage.classList.add(
+                result.success ? 'success' : 'error'
+            );
+
+            passwordMessage.hidden = false;
+
+            if (result.success) {
+                passwordForm.reset();
+            }
+
+        } catch (error) {
+
+            passwordMessage.textContent =
+                error.message ||
+                'Unable to process your request. Please try again.';
+
+            passwordMessage.classList.add('error');
+            passwordMessage.hidden = false;
+
+        } finally {
+
+            submitButton.disabled = false;
+            submitButton.textContent = 'CHANGE';
+
+        }
+
+    });
+
+    // =========================================
+    // CLOSE POPUPS
+    // =========================================
+
     document.addEventListener('click', function (event) {
         if (!wrapper.contains(event.target)) {
             closeStudentMenu();
         }
     });
 
-    // Close popups when clicking their backdrop.
     profileModal.addEventListener('click', function (event) {
         if (event.target === profileModal) {
             hideProfile();
@@ -117,12 +205,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     passwordModal.addEventListener('click', function (event) {
         if (event.target === passwordModal) {
-            passwordModal.classList.remove('active');
-            passwordModal.setAttribute('aria-hidden', 'true');
+            hidePassword();
         }
     });
 
-    // Close open popups with Escape.
     document.addEventListener('keydown', function (event) {
 
         if (event.key !== 'Escape') {
@@ -130,17 +216,21 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         if (passwordModal.classList.contains('active')) {
-            passwordModal.classList.remove('active');
-            passwordModal.setAttribute('aria-hidden', 'true');
+            hidePassword();
         } else if (profileModal.classList.contains('active')) {
             hideProfile();
         } else {
             closeStudentMenu();
         }
+
     });
 
-    // Open the existing notification popup.
+    // =========================================
+    // NOTIFICATIONS
+    // =========================================
+
     if (notificationsLink) {
+
         notificationsLink.addEventListener('click', function () {
 
             closeStudentMenu();
@@ -151,7 +241,9 @@ document.addEventListener('DOMContentLoaded', function () {
             if (notificationTrigger) {
                 notificationTrigger.click();
             }
+
         });
+
     }
 
 });
