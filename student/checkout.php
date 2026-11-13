@@ -78,6 +78,7 @@ function loadCheckoutCart(PDO $pdo, int $user_id, array $selected_ids): array
             ci.quantity,
             pv.price,
             p.product_name,
+            p.product_image,
             p.is_archived,
             COALESCE(i.stock_quantity, 0) AS stock_quantity,
             i.inventory_id,
@@ -701,12 +702,9 @@ function checkoutVariantLabel(array $item): string
                         <?php foreach ($cart_items as $item): ?>
 
                             <?php
-                                $image_path = '';
-
-                                if (!empty($item['product_image'])) {
-                                    $image_path =
-                                        '../' . ltrim($item['product_image'], '/');
-                                }
+                                $image_path = !empty($item['product_image'])
+                                    ? '../' . ltrim($item['product_image'], '/')
+                                    : '../assets/images/products/Logo.jpg';
 
                                 $quantity = (int) $item['quantity'];
                                 $price = (float) $item['price'];
@@ -717,20 +715,11 @@ function checkoutVariantLabel(array $item): string
 
                                 <div class="checkout-product-image">
 
-                                    <?php if ($image_path !== ''): ?>
-                                        <img
-                                            src="<?= e($image_path) ?>"
-                                            alt="<?= e(checkoutProductName($item)) ?>"
-                                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                                        >
-                                    <?php endif; ?>
-
-                                    <div
-                                        class="checkout-image-placeholder"
-                                        style="<?= $image_path !== '' ? 'display:none;' : '' ?>"
+                                    <img
+                                        src="<?= e($image_path) ?>"
+                                        alt="<?= e(checkoutProductName($item)) ?>"
+                                        onerror="this.onerror=null; this.src='../assets/images/products/Logo.jpg';"
                                     >
-                                        Product Image
-                                    </div>
 
                                 </div>
 

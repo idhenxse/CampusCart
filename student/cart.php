@@ -503,34 +503,23 @@ $cart_subtotal = $totals['cart_subtotal'];
                         $variant_label[] = $item['variant_name'];
                     }
 
-                    $image_path = '';
+                    $image_path = !empty($item['product_image'])
+                        ? '../' . ltrim($item['product_image'], '/')
+                        : '../assets/images/products/Logo.jpg';
 
-                    if (!empty($item['product_image'])) {
-                        $image_path = '../' . ltrim($item['product_image'], '/');
-                    }
                 ?>
 
                 <div class="cart-item-row" data-cart-row="<?= $item_id ?>">
 
                     <!-- PRODUCT CARD -->
                     <article class="cart-item">
-
                         <div class="cart-item-image">
 
-                            <?php if ($image_path !== ''): ?>
-                                <img
-                                    src="<?= e($image_path) ?>"
-                                    alt="<?= e($item_name) ?>"
-                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                                >
-                            <?php endif; ?>
-
-                            <div
-                                class="cart-image-placeholder"
-                                style="<?= $image_path !== '' ? 'display:none;' : '' ?>"
+                            <img
+                                src="<?= e($image_path) ?>"
+                                alt="<?= e($item_name) ?>"
+                                onerror="this.onerror=null; this.src='../assets/images/products/Logo.jpg';"
                             >
-                                Product Image
-                            </div>
 
                         </div>
 

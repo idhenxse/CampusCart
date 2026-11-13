@@ -291,17 +291,14 @@ try {
                             <tr>
 
                                 <td>
-                                    <?php if (!empty($product['product_image'])): ?>
-                                        <img
-                                            src="../<?= e($product['product_image']) ?>"
-                                            alt="<?= e($product['product_name']) ?>"
-                                            class="admin-product-thumbnail"
-                                        >
-                                    <?php else: ?>
-                                        <div class="admin-product-image-placeholder">
-                                            No Image
-                                        </div>
-                                    <?php endif; ?>
+                                    <img
+                                        src="<?= !empty($product['product_image'])
+                                            ? '../' . e(ltrim($product['product_image'], '/'))
+                                            : '../assets/images/products/Logo.jpg' ?>"
+                                        alt="<?= e($product['product_name']) ?>"
+                                        class="admin-product-thumbnail"
+                                        onerror="this.onerror=null; this.src='../assets/images/products/Logo.jpg';"
+                                    >
                                 </td>
 
                                 <td>

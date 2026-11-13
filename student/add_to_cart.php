@@ -176,6 +176,8 @@ try {
     // =========================================
     if ($existingItem) {
 
+        $cart_item_id = (int) $existingItem['cart_item_id'];
+
         $updateStmt = $pdo->prepare("
             UPDATE cart_items
             SET quantity = ?,
@@ -185,7 +187,7 @@ try {
 
         $updateStmt->execute([
             $new_quantity,
-            $existingItem['cart_item_id']
+            $cart_item_id
         ]);
 
     } else {
@@ -206,6 +208,8 @@ try {
             $variant_id,
             $quantity
         ]);
+
+        $cart_item_id = (int) $pdo->lastInsertId();
     }
 
     // =========================================
@@ -215,7 +219,8 @@ try {
 
     echo json_encode([
         'success' => true,
-        'message' => 'Product successfully added to your cart!'
+        'message' => 'Product successfully added to your cart!',
+        'cart_item_id' => $cart_item_id
     ]);
 
 } catch (Exception $ex) {

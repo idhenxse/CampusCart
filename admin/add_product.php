@@ -143,7 +143,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ];
 
             if (!isset($allowedTypes[$mimeType])) {
-                $errors[] = 'Only JPG and PNG images are allowed.';
+                $errors[] = 'Only JPG, PNG, and WebP images are allowed.';
             } else {
 
                 $imageDirectory = __DIR__ . '/../assets/images/products/';
@@ -421,7 +421,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         accept=".jpg,.jpeg,.png,.webp"
                     >
 
-                    <small>Accepted formats: JPG and PNG. Maximum size: 5 MB.</small>
+                    <small>Accepted formats: JPG, PNG, and WebP. Maximum size: 5 MB.</small>
                 </div>
 
             </div>

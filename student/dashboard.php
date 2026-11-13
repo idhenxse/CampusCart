@@ -315,7 +315,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Dashboard | CampusCart</title>
     <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/student.css">
+    <link rel="stylesheet" href="../assets/css/student.css?v=2">
     <link rel="stylesheet" href="../assets/css/notifications.css">
     <link rel="stylesheet" href="../assets/css/student-menu.css">
     <link rel="stylesheet" href="../assets/css/dark_theme.css">
@@ -1063,6 +1063,8 @@ try {
                     <strong id="detail-product-stock">-</strong>
                 </div>
 
+            <div class="product-modal-actions">
+
                 <button
                     type="button"
                     id="detail-add-to-cart"
@@ -1070,6 +1072,15 @@ try {
                     disabled
                 >
                     Add to Cart
+                </button>
+
+                <button
+                    type="button"
+                    id="detail-proceed-checkout"
+                    class="product-modal-add-button"
+                    disabled
+                >
+                    Proceed to Checkout
                 </button>
 
             </div>
@@ -1098,6 +1109,7 @@ const detailProductPrice = document.getElementById('detail-product-price');
 const detailVariantSelect = document.getElementById('detail-variant-select');
 const detailProductStock = document.getElementById('detail-product-stock');
 const detailAddToCart = document.getElementById('detail-add-to-cart');
+const detailProceedCheckout = document.getElementById('detail-proceed-checkout');
 
 const detailProductQuantity = document.getElementById('detail-product-quantity');
 const csrfToken = document.getElementById('csrf-token');
@@ -1125,6 +1137,7 @@ function updateProductVariant() {
         detailProductPrice.textContent = 'Select a variant';
         detailProductStock.textContent = '-';
         detailAddToCart.disabled = true;
+        detailProceedCheckout.disabled = true;
         detailProductQuantity.value = 1;
         detailProductQuantity.max = 1;
         return;
@@ -1139,14 +1152,24 @@ function updateProductVariant() {
     detailProductQuantity.value = 1;
 
     if (stock > 0) {
+
         detailProductStock.textContent = `${stock} available`;
+
         detailProductStock.classList.remove('out-of-stock');
+
         detailAddToCart.disabled = false;
+        detailProceedCheckout.disabled = false;
+
     } else {
-        detailProductStock.textContent = 'Out of Stock';
-        detailProductStock.classList.add('out-of-stock');
-        detailAddToCart.disabled = true;
-    }
+
+    detailProductStock.textContent = 'Out of Stock';
+
+    detailProductStock.classList.add('out-of-stock');
+
+    detailAddToCart.disabled = true;
+    detailProceedCheckout.disabled = true;
+
+}
 }
 
 // Open Product Details popup.
@@ -1253,6 +1276,7 @@ function openProductDetails(productCard) {
         detailProductPrice.textContent = 'Price unavailable';
         detailProductStock.textContent = 'Stock unavailable';
         detailAddToCart.disabled = true;
+        detailProceedCheckout.disabled = true;
     }
 
     detailProductQuantity.value = 1;
@@ -1377,6 +1401,97 @@ detailAddToCart.addEventListener('click', async function() {
         detailAddToCart.disabled =
             !currentVariant ||
             Number(currentVariant.stock_quantity) < 1;
+    }
+
+});
+
+// =========================================
+// PROCEED DIRECTLY TO CHECKOUT
+// =========================================
+
+detailProceedCheckout.addEventListener('click', async function() {
+
+    const variantId = detailVariantSelect.value;
+    const quantity = Number(detailProductQuantity.value);
+
+    const selectedVariant = selectedProduct?.variants.find(item =>
+        String(item.variant_id) === variantId
+    );
+
+    if (!selectedVariant) {
+        alert('Please select a product variant.');
+        return;
+    }
+
+    if (
+        !Number.isInteger(quantity) ||
+        quantity < 1 ||
+        quantity > Number(selectedVariant.stock_quantity)
+    ) {
+        alert('Please enter a valid quantity within the available stock.');
+        return;
+    }
+
+    const formData = new FormData();
+
+    formData.append('variant_id', variantId);
+    formData.append('quantity', quantity);
+    formData.append('csrf_token', csrfToken.value);
+
+    detailAddToCart.disabled = true;
+    detailProceedCheckout.disabled = true;
+    detailProceedCheckout.textContent = 'Preparing Checkout...';
+
+    try {
+
+        const response = await fetch('add_to_cart.php', {
+            method: 'POST',
+            body: formData
+        });
+
+        const result = await response.json();
+
+        if (
+            !response.ok ||
+            !result.success ||
+            !result.cart_item_id
+        ) {
+            throw new Error(
+                result.message || 'Unable to proceed to checkout.'
+            );
+        }
+
+        // Submit the selected cart item to the existing Checkout page.
+        const checkoutForm = document.createElement('form');
+
+        checkoutForm.method = 'POST';
+        checkoutForm.action = 'checkout.php';
+
+        const csrfInput = document.createElement('input');
+        csrfInput.type = 'hidden';
+        csrfInput.name = 'csrf_token';
+        csrfInput.value = csrfToken.value;
+
+        const selectedItemInput = document.createElement('input');
+        selectedItemInput.type = 'hidden';
+        selectedItemInput.name = 'selected_items[]';
+        selectedItemInput.value = result.cart_item_id;
+
+        checkoutForm.appendChild(csrfInput);
+        checkoutForm.appendChild(selectedItemInput);
+
+        document.body.appendChild(checkoutForm);
+
+        checkoutForm.submit();
+
+    } catch (error) {
+
+        alert(error.message);
+
+        detailAddToCart.disabled = false;
+        detailProceedCheckout.disabled = false;
+        detailProceedCheckout.textContent = 'Proceed to Checkout';
+
     }
 
 });

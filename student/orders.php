@@ -362,11 +362,9 @@ function getOrderVariantText(array $item): string
                                 <?php
                                     $product_name = getOrderProductName($item);
 
-                                    $image_path = '';
-
-                                    if (!empty($item['product_image'])) {
-                                        $image_path = '../' . ltrim($item['product_image'], '/');
-                                    }
+                                    $image_path = !empty($item['product_image'])
+                                        ? '../' . ltrim($item['product_image'], '/')
+                                        : '../assets/images/products/Logo.jpg';
                                 ?>
 
                                 <div class="student-order-image-row">

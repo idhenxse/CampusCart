@@ -362,33 +362,20 @@ if (!empty($order['payment_screenshot'])) {
 
                             $variant_text = implode(' / ', $variant_parts);
 
-                            $image_path = '';
-
-                            if (!empty($item['product_image'])) {
-                                $image_path = '../' . ltrim($item['product_image'], '/');
-                            }
+                            $image_path = !empty($item['product_image'])
+                                ? '../' . ltrim($item['product_image'], '/')
+                                : '../assets/images/products/Logo.jpg';
                         ?>
 
                         <article class="order-details-product">
 
                             <div class="order-details-product-image">
 
-                                <?php if ($image_path !== ''): ?>
-
-                                    <img
-                                        src="<?= e($image_path) ?>"
-                                        alt="<?= e($product_name) ?>"
-                                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                                    >
-
-                                <?php endif; ?>
-
-                                <div
-                                    class="order-details-image-placeholder"
-                                    style="<?= $image_path !== '' ? 'display:none;' : '' ?>"
+                                <img
+                                    src="<?= e($image_path) ?>"
+                                    alt="<?= e($product_name) ?>"
+                                    onerror="this.onerror=null; this.src='../assets/images/products/Logo.jpg';"
                                 >
-                                    Product Image
-                                </div>
 
                             </div>
 

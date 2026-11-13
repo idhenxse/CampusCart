@@ -136,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ];
 
             if (!isset($allowedTypes[$mimeType])) {
-                $errors[] = 'Only JPG, PNG, and WEBP images are allowed.';
+                $errors[] = 'Only JPG, PNG, and WebP images are allowed.';
             } else {
 
                 $imageDirectory = __DIR__ . '/../assets/images/products/';
@@ -217,7 +217,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // REMOVE OLD IMAGE ONLY AFTER SUCCESSFUL UPDATE
             if (
                 $newImageFile !== null &&
-                !empty($oldImagePath)
+                !empty($oldImagePath) &&
+                basename($oldImagePath) !== 'Logo.jpg'
             ) {
                 $oldImageFile = __DIR__ . '/../' . $oldImagePath;
 
@@ -417,17 +418,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <label>Current Product Image</label>
 
-                    <?php if (!empty($currentImage)): ?>
-                        <img
-                            src="../<?= e($currentImage) ?>"
-                            alt="<?= e($productName) ?>"
-                            class="admin-product-edit-preview"
-                        >
-                    <?php else: ?>
-                        <div class="admin-product-image-placeholder">
-                            No Image Available
-                        </div>
-                    <?php endif; ?>
+                    <img
+                        src="<?= !empty($currentImage)
+                            ? '../' . e(ltrim($currentImage, '/'))
+                            : '../assets/images/products/Logo.jpg' ?>"
+                        alt="<?= e($productName) ?>"
+                        class="admin-product-edit-preview"
+                        onerror="this.onerror=null; this.src='../assets/images/products/Logo.jpg';"
+                    >
 
                     <label for="product_image">Replace Product Image (Optional)</label>
 
