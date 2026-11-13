@@ -37,7 +37,9 @@ function getCartTotals(PDO $pdo, int $user_id): array
         FROM carts c
         INNER JOIN cart_items ci ON ci.cart_id = c.cart_id
         INNER JOIN product_variants pv ON pv.variant_id = ci.variant_id
+        INNER JOIN products p ON p.product_id = pv.product_id
         WHERE c.user_id = ?
+        AND p.is_archived = 0
     ");
 
     $stmt->execute([$user_id]);
@@ -103,13 +105,19 @@ if (
             SELECT
                 ci.cart_item_id,
                 pv.price,
+                p.is_archived,
                 COALESCE(i.stock_quantity, 0) AS stock_quantity
             FROM cart_items ci
-            INNER JOIN carts c ON c.cart_id = ci.cart_id
-            INNER JOIN product_variants pv ON pv.variant_id = ci.variant_id
-            LEFT JOIN inventory i ON i.variant_id = pv.variant_id
+            INNER JOIN carts c
+                ON c.cart_id = ci.cart_id
+            INNER JOIN product_variants pv
+                ON pv.variant_id = ci.variant_id
+            INNER JOIN products p
+                ON p.product_id = pv.product_id
+            LEFT JOIN inventory i
+                ON i.variant_id = pv.variant_id
             WHERE ci.cart_item_id = ?
-              AND c.user_id = ?
+            AND c.user_id = ?
             FOR UPDATE
         ");
 
@@ -118,6 +126,12 @@ if (
 
         if (!$item) {
             throw new Exception('This cart item could not be found.');
+        }
+
+        if ((int) $item['is_archived'] === 1) {
+            throw new Exception(
+                'This item is no longer available.'
+            );
         }
 
         $stock = (int) $item['stock_quantity'];
@@ -271,6 +285,20 @@ $cart_items = [];
 if ($cart) {
     $cart_id = (int) $cart['cart_id'];
 
+        // Remove archived products from the student's cart.
+    $removeArchivedStmt = $pdo->prepare("
+        DELETE ci
+        FROM cart_items ci
+        INNER JOIN product_variants pv
+            ON pv.variant_id = ci.variant_id
+        INNER JOIN products p
+            ON p.product_id = pv.product_id
+        WHERE ci.cart_id = ?
+          AND p.is_archived = 1
+    ");
+
+    $removeArchivedStmt->execute([$cart_id]);
+
     $itemsStmt = $pdo->prepare("
         SELECT
             ci.cart_item_id,
@@ -291,6 +319,7 @@ if ($cart) {
         LEFT JOIN inventory i
             ON i.variant_id = pv.variant_id
         WHERE ci.cart_id = ?
+            AND p.is_archived = 0
         ORDER BY ci.added_at DESC
     ");
 

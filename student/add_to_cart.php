@@ -110,8 +110,11 @@ try {
             pv.variant_id,
             pv.price,
             pv.product_id,
+            p.is_archived,
             COALESCE(i.stock_quantity, 0) AS stock_quantity
         FROM product_variants pv
+        INNER JOIN products p
+            ON p.product_id = pv.product_id
         LEFT JOIN inventory i
             ON pv.variant_id = i.variant_id
         WHERE pv.variant_id = ?
@@ -124,6 +127,10 @@ try {
 
     if (!$variant) {
         throw new Exception('The selected product variant could not be found.');
+    }
+
+    if ((int) $variant['is_archived'] === 1) {
+    throw new Exception('This product is currently unavailable.');
     }
 
     $stock = (int) $variant['stock_quantity'];

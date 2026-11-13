@@ -92,6 +92,7 @@ function loadCheckoutCart(PDO $pdo, int $user_id, array $selected_ids): array
             ON i.variant_id = pv.variant_id
         WHERE c.user_id = ?
           AND ci.cart_item_id IN ($placeholders)
+          AND p.is_archived = 0
         ORDER BY ci.added_at DESC
     ");
 
@@ -273,11 +274,14 @@ if (
                             ci.variant_id,
                             ci.quantity,
                             pv.price,
+                            p.is_archived,
                             COALESCE(i.stock_quantity, 0) AS stock_quantity,
                             i.inventory_id
                         FROM cart_items ci
                         INNER JOIN product_variants pv
                             ON pv.variant_id = ci.variant_id
+                        INNER JOIN products p
+                            ON p.product_id = pv.product_id
                         LEFT JOIN inventory i
                             ON i.variant_id = pv.variant_id
                         WHERE ci.cart_id = ?
@@ -304,6 +308,12 @@ if (
 
                         $quantity = (int) $item['quantity'];
                         $stock = (int) $item['stock_quantity'];
+
+                        if ((int) $item['is_archived'] === 1) {
+                            throw new Exception(
+                                'One or more selected items are no longer available. Please return to your cart.'
+                            );
+                        }
 
                         if (empty($item['inventory_id'])) {
                             throw new Exception('An item in your cart has no inventory record.');

@@ -80,6 +80,7 @@ try {
         LEFT JOIN inventory i
             ON pv.variant_id = i.variant_id
         WHERE 1 = 1
+            AND p.is_archived = 0
     ";
 
     $params = [];

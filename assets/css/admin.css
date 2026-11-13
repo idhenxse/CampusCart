@@ -149,9 +149,10 @@ body.admin-page {
 
 .admin-summary-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 16px;
-    margin-bottom: 20px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    width: 100%;
+    margin-bottom: 24px;
 }
 
 .admin-summary-card {
@@ -828,4 +829,1327 @@ body.admin-page {
 
 .admin-payment-reject:hover {
     background: #F7D0D0;
+}
+
+/* =========================================
+   INVENTORY STOCK ADJUSTMENT POPUP
+========================================= */
+
+.admin-stock-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    padding: 20px;
+    background: rgba(20, 38, 58, 0.65);
+    backdrop-filter: blur(7px);
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-stock-modal.active {
+    display: flex;
+}
+
+.admin-stock-modal-content {
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.97);
+    box-shadow: 0 20px 55px rgba(20, 38, 58, 0.25);
+}
+
+.admin-stock-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.admin-stock-modal-header h3 {
+    margin: 0 0 5px;
+    color: #24384A;
+    font-size: 21px;
+}
+
+.admin-stock-modal-header p {
+    margin: 0;
+    color: #718398;
+    font-size: 14px;
+}
+
+#admin-stock-modal-close {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 50%;
+    background: #EAF4FB;
+    color: #2457A7;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.admin-stock-current {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 22px;
+    padding: 15px 17px;
+    border: 1px solid #D5E7F5;
+    border-radius: 11px;
+    background: #F0F6FB;
+    color: #24384A;
+}
+
+.admin-stock-current span {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.admin-stock-current strong {
+    color: #318BD9;
+    font-size: 23px;
+}
+
+.admin-stock-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.admin-stock-form-group label {
+    color: #24384A;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.admin-stock-form-group input,
+.admin-stock-form-group select,
+.admin-stock-form-group textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px 13px;
+    border: 1px solid #D5E2ED;
+    border-radius: 9px;
+    background: #FFFFFF;
+    color: #24384A;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.admin-stock-form-group textarea {
+    resize: vertical;
+}
+
+.admin-stock-form-group input:focus,
+.admin-stock-form-group select:focus,
+.admin-stock-form-group textarea:focus {
+    outline: 2px solid #BFDCEF;
+    border-color: #73B3E0;
+}
+
+.admin-stock-form-group small {
+    color: #718398;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.admin-stock-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.admin-stock-modal-actions button {
+    padding: 10px 17px;
+    border: none;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#admin-stock-cancel {
+    background: #EAF0F5;
+    color: #52677B;
+}
+
+.admin-stock-save {
+    background: #318BD9;
+    color: #FFFFFF;
+}
+
+.admin-stock-save:hover {
+    background: #2457A7;
+}
+
+@media (max-width: 600px) {
+    .admin-stock-modal-content {
+        padding: 19px;
+    }
+
+    .admin-stock-modal-actions button {
+        flex: 1;
+    }
+}
+
+
+/* =========================================
+   INVENTORY SUMMARY - FORCE FOUR COLUMNS
+========================================= */
+
+body.admin-page main.admin-content > section.admin-summary-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+    width: 100%;
+}
+
+body.admin-page main.admin-content > section.admin-summary-grid > .admin-summary-card {
+    width: 100%;
+    min-width: 0;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    body.admin-page main.admin-content > section.admin-summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+/* Mobile */
+@media (max-width: 550px) {
+    body.admin-page main.admin-content > section.admin-summary-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+
+/* =========================================
+   INVENTORY ACTION BUTTONS
+========================================= */
+
+.admin-inventory-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: nowrap;
+}
+
+.admin-inventory-actions form {
+    margin: 0;
+}
+
+.admin-stock-adjust-button,
+.admin-stock-archive-button,
+.admin-stock-restore-button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 20px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+/* Adjust Stock */
+.admin-stock-adjust-button {
+    background: #DCEEFF;
+    color: #2457A7;
+}
+
+.admin-stock-adjust-button:hover {
+    background: #C5E2F8;
+    transform: translateY(-1px);
+}
+
+/* Archive */
+.admin-stock-archive-button {
+    background: #FCE8E8;
+    color: #B04444;
+}
+
+.admin-stock-archive-button:hover {
+    background: #F7D4D4;
+    transform: translateY(-1px);
+}
+
+/* Restore */
+.admin-stock-restore-button {
+    background: #DDF3E7;
+    color: #26764B;
+}
+
+.admin-stock-restore-button:hover {
+    background: #C6E9D4;
+    transform: translateY(-1px);
+}
+
+/* Center the Restore button */
+.admin-inventory-section td form:has(.admin-stock-restore-button) {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+
+
+/* =========================================
+   INVENTORY TABLE IMPROVEMENTS
+========================================= */
+
+.admin-inventory-section .admin-table-wrapper {
+    overflow-x: auto;
+    border: 1px solid var(--admin-border);
+    border-radius: 12px;
+}
+
+.admin-inventory-section .admin-orders-table {
+    width: 100%;
+    min-width: 1050px;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+/* Table headings */
+.admin-inventory-section .admin-orders-table th {
+    padding: 15px 12px;
+    background: #EAF4FB;
+    color: #2457A7;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* Table content */
+.admin-inventory-section .admin-orders-table td {
+    padding: 14px 12px;
+    color: var(--admin-text);
+    font-size: 13px;
+    line-height: 1.5;
+    vertical-align: middle;
+}
+
+/* Product names */
+.admin-inventory-section .admin-orders-table td strong {
+    color: #2457A7;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* Subtle row separation */
+.admin-inventory-section .admin-orders-table tbody tr {
+    transition: background 0.2s ease;
+}
+
+.admin-inventory-section .admin-orders-table tbody tr:hover {
+    background: rgba(191, 220, 239, 0.28);
+}
+
+/* =========================================
+   INVENTORY STOCK STATUS BADGES
+========================================= */
+
+.admin-stock-badge {
+    display: inline-block;
+    min-width: 105px;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.admin-stock-badge.available {
+    background: #DDF3E7;
+    color: #26764B;
+}
+
+.admin-stock-badge.low {
+    background: #FFF0D8;
+    color: #95651D;
+}
+
+.admin-stock-badge.out {
+    background: #FCE2E2;
+    color: #A83F3F;
+}
+
+.admin-stock-badge.archived {
+    background: #E9EAF0;
+    color: #626B7A;
+}
+
+
+/* =========================================
+   INVENTORY TABLE - CONSISTENT FONT SIZE
+========================================= */
+
+/* Table headings */
+.admin-inventory-section .admin-orders-table th {
+    font-size: 14px !important;
+}
+
+/* All table contents */
+.admin-inventory-section .admin-orders-table td,
+.admin-inventory-section .admin-orders-table td strong,
+.admin-inventory-section .admin-orders-table td span {
+    font-size: 14px !important;
+}
+
+/* Stock status badges */
+.admin-inventory-section .admin-stock-badge {
+    font-size: 14px !important;
+}
+
+/* Action buttons */
+.admin-inventory-section .admin-stock-adjust-button,
+.admin-inventory-section .admin-stock-archive-button,
+.admin-inventory-section .admin-stock-restore-button {
+    font-size: 14px !important;
+}
+
+/* =========================================
+   ONLINE ORDERS TABLE - MATCH INVENTORY
+========================================= */
+
+/* Table structure */
+.admin-content .admin-orders-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: rgba(255, 255, 255, 0.55);
+}
+
+/* Column headings */
+.admin-content .admin-orders-table th {
+    padding: 15px 12px !important;
+    background: #EAF4FB !important;
+    color: #2457A7 !important;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    text-align: center;
+    white-space: nowrap;
+    border-bottom: 1px solid var(--admin-border);
+}
+
+/* Table contents */
+.admin-content .admin-orders-table td {
+    padding: 14px 12px !important;
+    color: #24384A !important;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px !important;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--admin-border);
+}
+
+/* Order ID - same blue bold style as inventory product names */
+.admin-content .admin-orders-table td:first-child strong {
+    color: #2457A7 !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+}
+
+/* Other bold table contents */
+.admin-content .admin-orders-table td strong {
+    font-size: 14px !important;
+    font-weight: 700 !important;
+}
+
+/* Dates and supporting information */
+.admin-content .admin-orders-table td small {
+    display: block;
+    margin-top: 4px;
+    color: #718398 !important;
+    font-size: 14px !important;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* Total amount */
+.admin-content .admin-orders-table .admin-table-total {
+    color: #24384A !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    white-space: nowrap;
+}
+
+/* Payment details */
+.admin-content .admin-orders-table td strong {
+    color: #24384A;
+}
+
+/* Payment and order status badges */
+.admin-content .admin-orders-table .admin-status-badge {
+    display: inline-block;
+    max-width: none;
+    min-width: 105px;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    line-height: 1.5;
+    text-align: center;
+    white-space: normal;
+}
+
+/* Screenshot reference number */
+.admin-content .admin-orders-table .admin-reference-number {
+    display: block;
+    margin-top: 5px;
+    color: #718398 !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+}
+
+/* View Screenshot link */
+.admin-content .admin-orders-table .admin-screenshot-link {
+    display: inline-block;
+    margin-top: 7px;
+    padding: 7px 12px;
+    border-radius: 20px;
+    background: #EAF4FB;
+    color: #2457A7 !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    text-decoration: none;
+}
+
+.admin-content .admin-orders-table .admin-screenshot-link:hover {
+    background: #D5E9F8;
+}
+
+/* Order status dropdown */
+.admin-content .admin-orders-table .admin-order-status-select {
+    width: 100%;
+    max-width: 145px;
+    padding: 7px 8px;
+    border: 1px solid var(--admin-border);
+    border-radius: 20px;
+    background: #EAF4FB;
+    color: #2457A7;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px !important;
+    font-weight: 700;
+    text-align: center;
+    text-align-last: center;
+}
+
+/* Row hover - same as Inventory */
+.admin-content .admin-orders-table tbody tr {
+    transition: background 0.2s ease;
+}
+
+.admin-content .admin-orders-table tbody tr:hover {
+    background: rgba(191, 220, 239, 0.28);
+}
+
+/* Remove bottom border from final row */
+.admin-content .admin-orders-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =========================================
+   SEPARATE DASHBOARD AND INVENTORY GRIDS
+========================================= */
+
+/* Dashboard: 3 equal-width cards */
+body.admin-page main.admin-content
+> section.admin-dashboard-summary-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    width: 100% !important;
+    gap: 18px !important;
+}
+
+/* Inventory: 4 equal-width cards */
+body.admin-page main.admin-content
+> section.admin-inventory-summary-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    width: 100% !important;
+    gap: 18px !important;
+}
+
+/* Allow cards to fill their grid columns */
+.admin-dashboard-summary-grid > .admin-summary-card,
+.admin-inventory-summary-grid > .admin-summary-card {
+    width: 100% !important;
+    min-width: 0;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    body.admin-page main.admin-content
+    > section.admin-dashboard-summary-grid,
+    body.admin-page main.admin-content
+    > section.admin-inventory-summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+/* Mobile */
+@media (max-width: 550px) {
+    body.admin-page main.admin-content
+    > section.admin-dashboard-summary-grid,
+    body.admin-page main.admin-content
+    > section.admin-inventory-summary-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+
+/* =========================================
+   ADMIN PRODUCTS PAGE
+========================================= */
+
+.admin-products-panel {
+    padding: 20px;
+}
+
+.admin-products-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 0 0 15px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid var(--admin-border);
+}
+
+.admin-products-heading h2 {
+    margin: 0;
+    color: var(--admin-text);
+    font-size: 18px;
+}
+
+.admin-product-add-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 17px;
+    border: none;
+    border-radius: 20px;
+    background: var(--admin-blue);
+    color: #FFFFFF;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.admin-product-add-button:hover {
+    background: var(--admin-blue-dark);
+    transform: translateY(-1px);
+}
+
+.admin-products-table {
+    min-width: 1050px;
+}
+
+.admin-products-table th,
+.admin-products-table td {
+    font-size: 13px;
+}
+
+.admin-product-thumbnail,
+.admin-product-image-placeholder {
+    width: 90px;
+    height: 90px;
+    border: 1px solid var(--admin-border);
+    border-radius: 12px;
+    object-fit: contain;
+    background: #FFFFFF;
+    flex-shrink: 0;
+}
+
+.admin-product-image-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--admin-muted);
+    font-size: 11px;
+}
+
+.admin-product-description {
+    max-width: 250px;
+    line-height: 1.5;
+}
+
+.admin-product-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    white-space: nowrap;
+}
+
+.admin-product-actions form {
+    margin: 0;
+}
+
+.admin-product-edit-button,
+.admin-product-archive-button,
+.admin-product-restore-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 20px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.admin-product-edit-button {
+    background: #DDEEFF;
+    color: #2457A7;
+}
+
+.admin-product-edit-button:hover {
+    background: #C9E3F8;
+}
+
+.admin-product-archive-button {
+    background: #FCE5E5;
+    color: #B43D3D;
+}
+
+.admin-product-archive-button:hover {
+    background: #F7D0D0;
+}
+
+.admin-product-restore-button {
+    background: #DDF3E6;
+    color: #247448;
+}
+
+.admin-product-restore-button:hover {
+    background: #C6E9D4;
+}
+
+@media (max-width: 600px) {
+    .admin-products-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .admin-product-add-button {
+        width: 100%;
+    }
+
+    .admin-product-actions {
+        flex-direction: column;
+    }
+}
+
+-------------------------------------
+
+
+/* =========================================
+   ADMIN ADD PRODUCT FORM
+========================================= */
+
+.admin-product-form-panel {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 25px;
+}
+
+.admin-product-form-panel > form {
+    width: 100%;
+}
+
+.admin-product-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.admin-product-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.admin-product-form-group label {
+    color: var(--admin-text);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.admin-product-form-group input,
+.admin-product-form-group select,
+.admin-product-form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #C9D9E7;
+    border-radius: 9px;
+    background: #FFFFFF;
+    color: var(--admin-text);
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.admin-product-form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.admin-product-form-group input:focus,
+.admin-product-form-group select:focus,
+.admin-product-form-group textarea:focus {
+    outline: 2px solid var(--admin-blue-light);
+    border-color: var(--admin-blue);
+}
+
+.admin-product-form-group small {
+    color: var(--admin-muted);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.admin-product-form-full {
+    grid-column: 1 / -1;
+}
+
+.admin-product-form-divider {
+    height: 1px;
+    margin: 27px 0 22px;
+    background: var(--admin-border);
+}
+
+.admin-product-form-subtitle {
+    margin: 0 0 20px;
+    color: var(--admin-blue-dark);
+    font-size: 17px;
+}
+
+.admin-product-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--admin-border);
+}
+
+.admin-product-cancel-button,
+.admin-product-save-button {
+    min-width: 125px;
+    padding: 11px 18px;
+    border: none;
+    border-radius: 22px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.admin-product-cancel-button {
+    background: #EAF0F5;
+    color: #52677B;
+}
+
+.admin-product-cancel-button:hover {
+    background: #DCE5ED;
+}
+
+.admin-product-save-button {
+    background: var(--admin-blue);
+    color: #FFFFFF;
+}
+
+.admin-product-save-button:hover {
+    background: var(--admin-blue-dark);
+}
+
+.admin-product-form-panel .admin-alert ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+@media (max-width: 650px) {
+    .admin-product-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-product-form-full {
+        grid-column: auto;
+    }
+
+    .admin-product-form-panel {
+        padding: 17px;
+    }
+
+    .admin-product-form-actions {
+        flex-direction: column-reverse;
+    }
+
+    .admin-product-cancel-button,
+    .admin-product-save-button {
+        width: 100%;
+    }
+}
+
+
+/* =========================================
+   ADD PRODUCT FORM - LAYOUT AND STYLING
+========================================= */
+
+.admin-product-form-panel .admin-product-form-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 25px;
+    width: 100%;
+}
+
+.admin-product-form-panel .admin-product-form-group {
+    display: flex !important;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    min-width: 0;
+}
+
+.admin-product-form-panel .admin-product-form-group label {
+    display: block;
+    color: var(--admin-text);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.admin-product-form-panel .admin-product-form-group input,
+.admin-product-form-panel .admin-product-form-group select,
+.admin-product-form-panel .admin-product-form-group textarea {
+    display: block;
+    width: 100%;
+    min-height: 43px;
+    padding: 11px 13px;
+    border: 1px solid #C9D9E7;
+    border-radius: 9px;
+    background: #FFFFFF;
+    color: var(--admin-text);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+.admin-product-form-panel .admin-product-form-group textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.admin-product-form-panel .admin-product-form-group input[type="file"] {
+    padding: 9px;
+    background: #F8FBFE;
+}
+
+.admin-product-form-panel .admin-product-form-group input:focus,
+.admin-product-form-panel .admin-product-form-group select:focus,
+.admin-product-form-panel .admin-product-form-group textarea:focus {
+    outline: 2px solid var(--admin-blue-light);
+    border-color: var(--admin-blue);
+}
+
+.admin-product-form-panel .admin-product-form-group small {
+    color: var(--admin-muted);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.admin-product-form-panel .admin-product-form-full {
+    grid-column: 1 / -1;
+}
+
+.admin-product-form-panel .admin-product-form-divider {
+    height: 1px;
+    margin: 28px 0 22px;
+    background: var(--admin-border);
+}
+
+.admin-product-form-panel .admin-product-form-subtitle {
+    margin: 0 0 20px;
+    color: var(--admin-blue-dark);
+    font-size: 18px;
+}
+
+.admin-product-form-panel .admin-product-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--admin-border);
+}
+
+.admin-product-form-panel .admin-product-cancel-button,
+.admin-product-form-panel .admin-product-save-button {
+    min-width: 130px;
+    padding: 11px 20px;
+    border: none;
+    border-radius: 22px;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.admin-product-form-panel .admin-product-cancel-button {
+    background: #EAF0F5;
+    color: #52677B;
+}
+
+.admin-product-form-panel .admin-product-save-button {
+    background: var(--admin-blue);
+    color: #FFFFFF;
+}
+
+.admin-product-form-panel .admin-product-save-button:hover {
+    background: var(--admin-blue-dark);
+}
+
+@media (max-width: 650px) {
+    .admin-product-form-panel .admin-product-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-product-form-panel .admin-product-form-full {
+        grid-column: auto;
+    }
+
+    .admin-product-form-panel .admin-product-form-actions {
+        flex-direction: column-reverse;
+    }
+
+    .admin-product-form-panel .admin-product-cancel-button,
+    .admin-product-form-panel .admin-product-save-button {
+        width: 100%;
+    }
+}
+
+
+/* =========================================
+   EDIT PRODUCT IMAGE PREVIEW
+========================================= */
+
+.admin-product-edit-preview {
+    display: block;
+    width: 150px;
+    height: 150px;
+    padding: 8px;
+    object-fit: contain;
+    background: #F5F9FC;
+    border: 1px solid var(--admin-border);
+    border-radius: 12px;
+}
+
+.admin-product-form-panel .admin-product-image-placeholder {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F0F6FB;
+    border: 1px dashed #A9CDE8;
+    border-radius: 12px;
+    color: var(--admin-muted);
+    font-size: 12px;
+    text-align: center;
+}
+
+
+/* =========================================
+   MANAGE PRODUCTS - MATCH INVENTORY TABLE TYPOGRAPHY
+========================================= */
+
+/* Table headings */
+.admin-products-table th {
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    color: #2457A7 !important;
+}
+
+/* Table contents */
+.admin-products-table td {
+    font-size: 14px !important;
+    font-weight: 400;
+    color: #24384A;
+    line-height: 1.5;
+}
+
+/* Product names */
+.admin-products-table td strong {
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    color: #2457A7 !important;
+}
+
+/* Product descriptions */
+.admin-products-table .admin-product-description {
+    font-size: 14px !important;
+}
+
+/* Availability badges */
+.admin-products-table .admin-stock-badge {
+    font-size: 14px !important;
+    font-weight: 700;
+}
+
+/* Action buttons */
+.admin-products-table .admin-product-edit-button,
+.admin-products-table .admin-product-archive-button,
+.admin-products-table .admin-product-restore-button {
+    font-size: 14px !important;
+    font-weight: 700;
+}
+
+
+/* Center product images in Manage Products table */
+.admin-products-table td:first-child {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.admin-products-table .admin-product-thumbnail,
+.admin-products-table .admin-product-image-placeholder {
+    display: block;
+    margin: 0 auto;
+}
+
+
+/* Manage Products - Larger Section Heading and Add Button */
+
+.admin-products-heading h2 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.admin-product-add-button {
+    padding: 12px 20px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+/* Admin Dashboard - Larger Section Headings */
+#online-orders .admin-panel-title,
+#walk-in-sales .admin-panel-title {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+
+/* =========================================
+   WALK-IN SALES FORM
+========================================= */
+
+.admin-walkin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid var(--admin-border);
+    border-radius: 14px;
+}
+
+/* Transaction heading */
+.admin-walkin-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    background: #EAF4FB;
+    border: 1px solid var(--admin-border);
+    border-radius: 10px;
+}
+
+.admin-walkin-heading strong {
+    font-size: 15px;
+    color: var(--admin-text);
+}
+
+.admin-walkin-heading span {
+    padding: 8px 12px;
+    background: #DCECF9;
+    border-radius: 8px;
+    color: var(--admin-blue-dark);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* Section headings */
+.admin-walkin-products h3,
+.admin-walkin-summary h3 {
+    margin: 0 0 16px;
+    color: var(--admin-text);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+/* Product selection layout */
+.admin-walkin-product-row {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 0.8fr auto;
+    align-items: end;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.admin-walkin-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.admin-walkin-form-group label {
+    color: var(--admin-text);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.admin-walkin-form-group input,
+.admin-walkin-form-group select {
+    width: 100%;
+    min-height: 42px;
+    padding: 10px 12px;
+    border: 1px solid #C9DDED;
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--admin-text);
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+}
+
+.admin-walkin-form-group input:focus,
+.admin-walkin-form-group select:focus {
+    border-color: var(--admin-blue);
+    box-shadow: 0 0 0 3px rgba(49, 139, 217, 0.12);
+}
+
+.admin-walkin-form-group select:disabled {
+    background: #EDF2F7;
+    cursor: not-allowed;
+}
+
+/* Add product button */
+#walkin-add-product {
+    min-height: 42px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 9px;
+    background: var(--admin-blue);
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#walkin-add-product:hover {
+    background: var(--admin-blue-dark);
+}
+
+/* Product table */
+.admin-walkin-products .admin-table-wrapper {
+    margin-top: 10px;
+}
+
+/* Transaction summary */
+.admin-walkin-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 20px;
+    background: #F5F9FC;
+    border: 1px solid var(--admin-border);
+    border-radius: 12px;
+}
+
+.admin-walkin-summary > div:not(.admin-walkin-form-group) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--admin-text);
+    font-size: 14px;
+}
+
+.admin-walkin-summary > div strong {
+    color: var(--admin-blue-dark);
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* Complete transaction button */
+#walkin-complete-transaction {
+    min-height: 44px;
+    padding: 11px 20px;
+    border: none;
+    border-radius: 9px;
+    background: var(--admin-blue);
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#walkin-complete-transaction:disabled {
+    background: #B9C9D8;
+    cursor: not-allowed;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+    .admin-walkin-product-row {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-walkin-heading {
+        align-items: flex-start;
+        gap: 10px;
+        flex-direction: column;
+    }
+}
+
+/* WALK-IN SALES REMOVE BUTTON */
+.admin-walkin-remove-button {
+    padding: 7px 14px;
+    border: none;
+    border-radius: 20px;
+    background: #FDE8E8;
+    color: #C53D3D;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.admin-walkin-remove-button:hover {
+    background: #F9D2D2;
+    transform: translateY(-1px);
 }

@@ -51,6 +51,47 @@ if (!$admin) {
 
 $admin_name = $admin['full_name'];
 
+
+// =========================================
+// WALK-IN SALES PRODUCT OPTIONS
+// =========================================
+$walkinProducts = [];
+
+try {
+    $walkinStmt = $pdo->query("
+        SELECT
+            p.product_id,
+            p.product_name,
+            pv.variant_id,
+            pv.variant_name,
+            pv.size,
+            pv.price,
+            i.stock_quantity
+
+        FROM products p
+
+        INNER JOIN product_variants pv
+            ON pv.product_id = p.product_id
+
+        INNER JOIN inventory i
+            ON i.variant_id = pv.variant_id
+
+        WHERE p.is_archived = 0
+          AND i.stock_quantity > 0
+
+        ORDER BY
+            p.product_name,
+            pv.variant_name,
+            pv.size
+    ");
+
+    $walkinProducts = $walkinStmt->fetchAll(PDO::FETCH_ASSOC);
+
+} catch (PDOException $exception) {
+    error_log('Walk-in product loading error: ' . $exception->getMessage());
+}
+
+
 // =========================================
 // DASHBOARD SUMMARY
 // =========================================
@@ -211,40 +252,53 @@ function paymentStatusLabel(?string $status): string
         </div>
     </div>
 
-    <nav class="admin-header-actions" aria-label="Admin navigation">
+<nav class="admin-header-actions" aria-label="Admin navigation">
 
-        <a href="#online-orders" class="admin-header-icon"
-           title="Online Orders" aria-label="Online Orders">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M4 7h16l1 14H3L4 7Z"/>
-                <path d="M8 7a4 4 0 0 1 8 0"/>
-            </svg>
-        </a>
+    <!-- Dashboard -->
+    <a href="dashboard.php" class="admin-header-icon"
+       title="Dashboard" aria-label="Dashboard">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 10.5 12 3l9 7.5"/>
+            <path d="M5 9.5V21h14V9.5M9 21v-7h6v7"/>
+        </svg>
+    </a>
 
-        <a href="#walk-in-sales" class="admin-header-icon"
-           title="Walk-In Sales" aria-label="Walk-In Sales">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="5" y="3" width="14" height="18" rx="2"/>
-                <path d="M9 8h6M9 12h6M9 16h3"/>
-            </svg>
-        </a>
+    <!-- Products -->
+    <a href="products.php" class="admin-header-icon"
+       title="Products" aria-label="Products">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 8h18l-1 13H4L3 8Z"/>
+            <path d="M8 8a4 4 0 0 1 8 0"/>
+        </svg>
+    </a>
 
-        <a href="#online-orders" class="admin-header-icon"
-           title="Notifications" aria-label="Notifications">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
-                <path d="M10 21h4"/>
-            </svg>
-        </a>
+    <!-- Inventory -->
+    <a href="inventory.php" class="admin-header-icon"
+       title="Inventory" aria-label="Inventory">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="5" y="3" width="14" height="18" rx="2"/>
+            <path d="M9 8h6M9 12h6M9 16h3"/>
+        </svg>
+    </a>
 
-        <a href="../logout.php" class="admin-header-icon"
-           title="Sign Out" aria-label="Sign Out">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M4 5h16M4 12h16M4 19h16"/>
-            </svg>
-        </a>
+    <!-- Notifications -->
+    <a href="notifications.php" class="admin-header-icon"
+       title="Notifications" aria-label="Notifications">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
+            <path d="M10 21h4"/>
+        </svg>
+    </a>
 
-    </nav>
+    <!-- Sign Out -->
+    <a href="../logout.php" class="admin-header-icon"
+       title="Sign Out" aria-label="Sign Out">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 5h16M4 12h16M4 19h16"/>
+        </svg>
+    </a>
+
+</nav>
 
 </header>
 
@@ -263,7 +317,7 @@ function paymentStatusLabel(?string $status): string
     <?php endif; ?>
 
     <!-- DASHBOARD SUMMARY -->
-    <section class="admin-summary-grid">
+    <section class="admin-summary-grid admin-dashboard-summary-grid">
 
         <article class="admin-summary-card">
             <h3>Total Products</h3>
@@ -599,23 +653,124 @@ function paymentStatusLabel(?string $status): string
 
         <h2 class="admin-panel-title">Walk-In Sales</h2>
 
-        <div class="admin-walkin-placeholder">
+    <div class="admin-walkin-form">
 
-            <div class="admin-walkin-heading">
-                <strong>New Transaction</strong>
-                <span>Cooperative Counter Sale</span>
+        <div class="admin-walkin-heading">
+            <strong>New Transaction</strong>
+            <span>Cooperative Counter Sale</span>
+        </div>
+
+        <div class="admin-walkin-products">
+
+            <h3>Product Selection</h3>
+
+            <div class="admin-walkin-product-row">
+
+                <div class="admin-walkin-form-group">
+                    <label for="walkin-product">Product</label>
+                    <select id="walkin-product">
+                        <option value="">Select Product</option>
+                        <?php
+                        $uniqueProducts = [];
+
+                        foreach ($walkinProducts as $product) {
+                            $uniqueProducts[$product['product_id']] =
+                                $product['product_name'];
+                        }
+                        ?>
+
+                        <?php foreach ($uniqueProducts as $productId => $productName): ?>
+                            <option value="<?= (int) $productId ?>">
+                                <?= e($productName) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+                <div class="admin-walkin-form-group">
+                    <label for="walkin-variant">Variant / Size</label>
+                    <select id="walkin-variant" disabled>
+                        <option value="">Select Variant</option>
+                    </select>
+                </div>
+
+                <div class="admin-walkin-form-group">
+                    <label for="walkin-quantity">Quantity</label>
+                    <input
+                        type="number"
+                        id="walkin-quantity"
+                        min="1"
+                        step="1"
+                        value="1"
+                    >
+                </div>
+
+                <button type="button" id="walkin-add-product">
+                    + Add Product
+                </button>
+
             </div>
 
-            <p>
-                Record purchases made directly at the cooperative.
-            </p>
+            <div class="admin-table-wrapper">
+                <table class="admin-orders-table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Variant / Size</th>
+                            <th>Unit Price</th>
+                            <th>Quantity</th>
+                            <th>Subtotal</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
 
-            <p class="admin-coming-soon">
-                The walk-in sales transaction form will be connected
-                in the next development step.
-            </p>
+                    <tbody id="walkin-cart-items">
+                        <tr>
+                            <td colspan="6" class="admin-empty-table">
+                                No products added yet.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
         </div>
+
+        <div class="admin-walkin-summary">
+
+            <h3>Transaction Summary</h3>
+
+            <div>
+                <span>Total Items</span>
+                <strong id="walkin-total-items">0</strong>
+            </div>
+
+            <div>
+                <span>Total Amount</span>
+                <strong id="walkin-total-amount">₱0.00</strong>
+            </div>
+
+            <div class="admin-walkin-form-group">
+                <label for="walkin-payment-method">Payment Method</label>
+                <select id="walkin-payment-method">
+                    <option value="cash">Cash</option>
+                    <option value="gcash">GCash</option>
+                </select>
+            </div>
+
+            <input
+                type="hidden"
+                id="walkin-csrf-token"
+                value="<?= e($_SESSION['csrf_token']) ?>"
+            >
+            
+            <button type="button" id="walkin-complete-transaction" disabled>
+                Complete Transaction
+            </button>
+
+        </div>
+
+    </div>
 
     </section>
 
@@ -648,8 +803,15 @@ function paymentStatusLabel(?string $status): string
     © <?= date('Y') ?> CampusCart | Pamantasan ng Lungsod ng Maynila
 </footer>
 
+<script type="application/json" id="walkin-products-data">
+<?= json_encode(
+    $walkinProducts,
+    JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT
+) ?>
+</script>
+
 <script src="../assets/js/admin_payment_popup.js"></script>
+<script src="../assets/js/admin_walkin_sales.js"></script>
 
 </body>
 </html>
-
