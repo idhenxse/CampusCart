@@ -751,6 +751,25 @@ function paymentStatusLabel(?string $status): string
                 </select>
             </div>
 
+            <div
+                class="admin-walkin-form-group"
+                id="walkin-reference-group"
+                hidden
+                style="display: none !important;"
+            >
+                <label for="walkin-reference-number">
+                    GCash Reference Number <span class="required">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="walkin-reference-number"
+                    placeholder="Enter GCash reference number"
+                    maxlength="13"
+                    autocomplete="off"
+                >
+            </div>
+
             <input
                 type="hidden"
                 id="walkin-csrf-token"
@@ -804,7 +823,7 @@ function paymentStatusLabel(?string $status): string
 </script>
 
 <script src="../assets/js/admin_payment_popup.js"></script>
-<script src="../assets/js/admin_walkin_sales.js"></script>
+<script src="../assets/js/admin_walkin_sales.js?v=2"></script>
 <script src="../assets/js/admin_notification.js"></script>
 <script src="../assets/js/admin_menu.js"></script>
 <script src="../assets/js/theme.js"></script>

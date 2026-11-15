@@ -135,6 +135,7 @@ try {
             ws.sale_date,
             ws.total_amount,
             ws.payment_method,
+            ws.reference_number,
             ws.sale_status,
             ws.cancellation_reason,
 
@@ -200,6 +201,7 @@ try {
             ws.sale_date,
             ws.total_amount,
             ws.payment_method,
+            ws.reference_number,
             ws.sale_status,
             ws.cancellation_reason
 
@@ -877,6 +879,16 @@ try {
                                         <strong>Payment Method:</strong>
                                         <?= e(strtoupper($sale['payment_method'])) ?>
                                     </p>
+
+                                    <?php if (
+                                        $sale['payment_method'] === 'gcash' &&
+                                        !empty($sale['reference_number'])
+                                    ): ?>
+                                        <p>
+                                            <strong>GCash Reference Number:</strong>
+                                            <?= e($sale['reference_number']) ?>
+                                        </p>
+                                    <?php endif; ?>
 
                                     <p>
                                         <strong>Status:</strong>

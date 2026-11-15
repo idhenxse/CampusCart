@@ -76,19 +76,6 @@
                 Inventory
             </a>
 
-            <a href="notifications.php" class="admin-menu-link">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
-                    <path d="M10 21h4"/>
-                </svg>
-
-                Notifications
-
-                <?php if (!empty($admin_unread_notifications) && $admin_unread_notifications > 0): ?>
-                    <span class="admin-menu-notification-dot"></span>
-                <?php endif; ?>
-            </a>
-
             <a href="walkin_sales_history.php" class="admin-menu-link">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M3 12a9 9 0 1 0 2.6-6.4"/>

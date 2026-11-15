@@ -221,7 +221,11 @@ try {
                 value="<?= e($searchQuery) ?>"
             >
 
-            <select name="category">
+            <select
+                name="category"
+                id="product-category-filter"
+                onchange="this.form.submit()"
+            >
                 <option value="">All Categories</option>
 
                 <?php foreach ($categories as $category): ?>

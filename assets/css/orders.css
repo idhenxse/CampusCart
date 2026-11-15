@@ -766,7 +766,7 @@
     }
 
     .student-order-image-column {
-        display: none;
+        display: flex;
     }
 
     .student-order-middle-column {
@@ -1130,7 +1130,14 @@
 
 @media (max-width: 520px) {
     .student-order-image-column {
-        display: none;
+        display: flex;
+    }
+
+    .student-order-product-image {
+        width: 160px !important;
+        height: 160px !important;
+        min-width: 160px;
+        min-height: 160px;
     }
 
     .student-order-main-layout {
@@ -1289,3 +1296,5 @@
         font-size: 21px;
     }
 }
+
+

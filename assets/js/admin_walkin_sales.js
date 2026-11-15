@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function () {
     const productSelect = document.getElementById('walkin-product');
     const variantSelect = document.getElementById('walkin-variant');
@@ -11,7 +12,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const productsData = document.getElementById('walkin-products-data');
 
-    if (!productSelect || !variantSelect || !productsData) {
+    // Payment details
+    const paymentMethod = document.getElementById('walkin-payment-method');
+    const referenceGroup = document.getElementById('walkin-reference-group');
+    const referenceInput = document.getElementById('walkin-reference-number');
+
+    if (
+        !productSelect ||
+        !variantSelect ||
+        !productsData ||
+        !paymentMethod ||
+        !referenceGroup ||
+        !referenceInput ||
+        !addButton ||
+        !cartItems ||
+        !totalItemsDisplay ||
+        !totalAmountDisplay ||
+        !completeButton
+    ) {
         return;
     }
 
@@ -23,6 +41,33 @@ document.addEventListener('DOMContentLoaded', function () {
         currency: 'PHP',
         minimumFractionDigits: 2
     });
+
+    // Show the reference number field only when GCash is selected.
+    function toggleReferenceField() {
+        const isGcash = paymentMethod.value.trim().toLowerCase() === 'gcash';
+
+        if (isGcash) {
+            referenceGroup.style.setProperty('display', 'flex', 'important');
+            referenceGroup.hidden = false;
+            referenceInput.disabled = false;
+            referenceInput.required = true;
+        } else {
+            referenceGroup.style.setProperty('display', 'none', 'important');
+            referenceGroup.hidden = true;
+            referenceInput.disabled = true;
+            referenceInput.required = false;
+            referenceInput.value = '';
+        }
+    }
+
+    paymentMethod.addEventListener('change', toggleReferenceField);
+    toggleReferenceField();
+
+    // Listen for payment method changes.
+    paymentMethod.addEventListener('change', toggleReferenceField);
+
+    // Apply the correct visibility when the page loads.
+    toggleReferenceField();
 
     // Load variants when a product is selected.
     productSelect.addEventListener('change', function () {
@@ -66,7 +111,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         matchingVariants.forEach(function (product) {
-
             const option = document.createElement('option');
 
             option.value = product.variant_id;
@@ -119,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const product = walkinProducts.find(function (item) {
             return String(item.variant_id) === selectedVariantId &&
-                   String(item.product_id) === selectedProductId;
+                String(item.product_id) === selectedProductId;
         });
 
         if (!product) {
@@ -252,7 +296,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         renderTransaction();
     });
-    
 
     // Complete and save the walk-in transaction.
     completeButton.addEventListener('click', async function () {
@@ -262,10 +305,19 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         const csrfToken = document.getElementById('walkin-csrf-token');
-        const paymentMethod = document.getElementById('walkin-payment-method');
 
-        if (!csrfToken || !paymentMethod) {
+        if (!csrfToken) {
             alert('Transaction information is missing. Please refresh the page.');
+            return;
+        }
+
+        const selectedPaymentMethod = paymentMethod.value;
+        const referenceNumber = referenceInput.value.trim();
+
+        // Require a reference number for GCash transactions.
+        if (selectedPaymentMethod === 'gcash' && !referenceNumber) {
+            alert('Please enter the GCash reference number.');
+            referenceInput.focus();
             return;
         }
 
@@ -282,7 +334,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 },
                 body: JSON.stringify({
                     csrf_token: csrfToken.value,
-                    payment_method: paymentMethod.value,
+                    payment_method: selectedPaymentMethod,
+                    reference_number: selectedPaymentMethod === 'gcash'
+                        ? referenceNumber
+                        : null,
                     items: transactionItems.map(function (item) {
                         return {
                             variant_id: item.variant_id,
@@ -316,5 +371,4 @@ document.addEventListener('DOMContentLoaded', function () {
             completeButton.textContent = originalText;
         }
     });
-    
 });

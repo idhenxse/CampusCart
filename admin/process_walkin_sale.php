@@ -57,9 +57,10 @@ if (
 }
 
 // =========================================
-// VALIDATE PAYMENT METHOD AND ITEMS
+// VALIDATE PAYMENT METHOD AND REFERENCE
 // =========================================
 $paymentMethod = $data['payment_method'] ?? '';
+$referenceNumber = trim($data['reference_number'] ?? '');
 $items = $data['items'] ?? [];
 
 if (!in_array($paymentMethod, ['cash', 'gcash'], true)) {
@@ -71,6 +72,31 @@ if (!in_array($paymentMethod, ['cash', 'gcash'], true)) {
     exit;
 }
 
+// Require a reference number for GCash transactions.
+if ($paymentMethod === 'gcash' && $referenceNumber === '') {
+    http_response_code(422);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Please enter the GCash reference number.'
+    ]);
+    exit;
+}
+
+// Validate reference number length.
+if (strlen($referenceNumber) > 100) {
+    http_response_code(422);
+    echo json_encode([
+        'success' => false,
+        'message' => 'The GCash reference number cannot exceed 100 characters.'
+    ]);
+    exit;
+}
+
+// Cash transactions do not need a reference number.
+if ($paymentMethod === 'cash') {
+    $referenceNumber = null;
+}
+
 if (!is_array($items) || empty($items)) {
     http_response_code(422);
     echo json_encode([
@@ -80,7 +106,9 @@ if (!is_array($items) || empty($items)) {
     exit;
 }
 
-// Combine repeated variant IDs and validate quantities.
+// =========================================
+// VALIDATE PRODUCT QUANTITIES
+// =========================================
 $quantities = [];
 
 foreach ($items as $item) {
@@ -175,24 +203,27 @@ try {
     }
 
     // Generate a unique walk-in sale number.
-    $saleNumber = 'WI-' . date('Ymd') . '-' . strtoupper(bin2hex(random_bytes(4)));
+    $saleNumber = 'WI-' . date('Ymd') . '-' .
+        strtoupper(bin2hex(random_bytes(4)));
 
-    // Save the main sale record.
+    // Save the main sale record, including the GCash reference number.
     $saleStmt = $pdo->prepare("
         INSERT INTO walkin_sales (
             admin_id,
             sale_number,
             sale_date,
             total_amount,
-            payment_method
-        ) VALUES (?, ?, NOW(), ?, ?)
+            payment_method,
+            reference_number
+        ) VALUES (?, ?, NOW(), ?, ?, ?)
     ");
 
     $saleStmt->execute([
         $admin_id,
         $saleNumber,
         $totalAmount,
-        $paymentMethod
+        $paymentMethod,
+        $referenceNumber
     ]);
 
     $saleId = (int) $pdo->lastInsertId();
@@ -261,7 +292,6 @@ try {
             (int) $item['new_stock'],
             (int) $item['low_stock_threshold']
         );
-
     }
 
     $pdo->commit();

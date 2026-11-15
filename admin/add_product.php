@@ -275,6 +275,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="stylesheet" href="../assets/css/admin_notification.css">
+    <link rel="stylesheet" href="../assets/css/admin_menu.css">
+    <link rel="stylesheet" href="../assets/css/admin_dark_theme.css">
 </head>
 
 <body class="admin-page">
@@ -292,44 +295,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <nav class="admin-header-actions" aria-label="Admin navigation">
 
+        <!-- Dashboard -->
         <a href="dashboard.php" class="admin-header-icon"
-           title="Dashboard" aria-label="Dashboard">
+        title="Dashboard" aria-label="Dashboard">
             <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M3 10.5 12 3l9 7.5"/>
                 <path d="M5 9.5V21h14V9.5M9 21v-7h6v7"/>
             </svg>
         </a>
 
+        <!-- Products -->
         <a href="products.php" class="admin-header-icon"
-           title="Products" aria-label="Products">
+        title="Products" aria-label="Products">
             <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M3 8h18l-1 13H4L3 8Z"/>
                 <path d="M8 8a4 4 0 0 1 8 0"/>
             </svg>
         </a>
 
+        <!-- Inventory -->
         <a href="inventory.php" class="admin-header-icon"
-           title="Inventory" aria-label="Inventory">
+        title="Inventory" aria-label="Inventory">
             <svg viewBox="0 0 24 24" aria-hidden="true">
                 <rect x="5" y="3" width="14" height="18" rx="2"/>
                 <path d="M9 8h6M9 12h6M9 16h3"/>
             </svg>
         </a>
 
-        <a href="notifications.php" class="admin-header-icon"
-           title="Notifications" aria-label="Notifications">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
-                <path d="M10 21h4"/>
-            </svg>
-        </a>
+        <!-- Notifications Popup -->
+        <?php include __DIR__ . '/includes/notification_panel.php'; ?>
 
-        <a href="../logout.php" class="admin-header-icon"
-           title="Sign Out" aria-label="Sign Out">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M4 5h16M4 12h16M4 19h16"/>
-            </svg>
-        </a>
+        <!-- Admin Menu Popup -->
+        <?php include __DIR__ . '/includes/admin_menu.php'; ?>
 
     </nav>
 
@@ -525,6 +522,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <footer class="admin-footer">
     © <?= date('Y') ?> CampusCart | Pamantasan ng Lungsod ng Maynila
 </footer>
+
+<script src="../assets/js/admin_notification.js"></script>
+<script src="../assets/js/admin_menu.js"></script>
+<script src="../assets/js/theme.js"></script>
 
 </body>
 </html>

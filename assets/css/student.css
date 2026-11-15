@@ -2527,3 +2527,149 @@ body {
     flex-direction: column;
     gap: 12px;
 }
+
+
+/* =========================================
+   MOBILE HEADER WIDTH FIX
+   ========================================= */
+
+@media (max-width: 700px) {
+
+    .student-header {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px 15px;
+        gap: 8px;
+    }
+
+    .student-header-brand {
+        min-width: 0;
+        flex-shrink: 1;
+        gap: 7px;
+    }
+
+    .student-header-brand img {
+        flex-shrink: 0;
+    }
+
+    .student-header-brand h1 {
+        white-space: nowrap;
+    }
+
+    .student-header-actions {
+        flex-shrink: 0;
+        gap: 6px;
+    }
+
+}
+
+
+
+/* =========================================
+   STUDENT DASHBOARD - MOBILE RESPONSIVENESS
+========================================= */
+
+@media (max-width: 700px) {
+
+    .student-content {
+        width: calc(100% - 30px);
+        max-width: 100%;
+        min-width: 0;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+
+    /* Welcome and weather: full mobile width */
+    .dashboard-intro {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) !important;
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+    .dashboard-intro > .welcome-section,
+    .dashboard-intro > .weather-panel {
+        grid-column: 1 / -1;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+    /* Catalogue and sidebar */
+    .dashboard-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+    .catalogue-panel,
+    .student-sidebar,
+    .sidebar-panel {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Preserve horizontal product scrolling */
+    .category-products {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        max-width: 100%;
+        -webkit-overflow-scrolling: touch;
+    }
+
+}
+
+/* =========================================
+   MOBILE HEADER - PREVENT NAVIGATION OVERLAP
+========================================= */
+
+@media (max-width: 450px) {
+
+    .student-header {
+        box-sizing: border-box;
+        padding: 8px 10px;
+        gap: 8px;
+    }
+
+    .student-header-brand {
+        flex: 1 1 auto;
+        min-width: 0;
+        gap: 6px;
+    }
+
+    .student-header-brand img {
+        width: 34px;
+        height: 34px;
+        flex-shrink: 0;
+    }
+
+    .student-header-brand h1 {
+        font-size: 16px;
+        white-space: nowrap;
+    }
+
+    .student-header-actions {
+        flex: 0 0 auto;
+        gap: 4px;
+    }
+
+    .header-action {
+        width: 32px;
+        height: 32px;
+        flex-shrink: 0;
+    }
+
+    .header-action svg {
+        width: 15px;
+        height: 15px;
+    }
+}
+
