@@ -14,6 +14,9 @@ The system has two user roles:
 - Admin (Cooperative Staff) – Can manage products, inventory, student orders, payments, and walk-in sales.
 
 # Main Features
+CampusCart provides a centralized platform for monitoring school uniform availability and managing student purchases. Its main feature is the integration of online ordering and inventory monitoring, allowing students to check product availability and submit orders while cooperative staff can manage stock levels and process transactions.
+
+The system also supports automatic inventory deduction when orders are submitted, manual stock adjustments, GCash payment verification, and low-stock notifications to help maintain accurate inventory records and streamline cooperative operations.
 
 # Student Features
 - Student registration and login
@@ -80,15 +83,15 @@ CampusCart uses MySQL and consists of 15 related database tables:
 6. stock_adjustments
 7. carts
 8. cart_items
-9. favorites
-10. orders
-11. order_items
-12. payments
-13. walkin_sales
-14. walkin_sale_items
-15. notifications
+9. orders
+10. order_items
+11. payments
+12. walkin_sales
+13. walkin_sale_items
+14. notifications
 
 # Installation and Setup
+CampusCart can be installed and run locally using XAMPP, PHP, and MySQL, or accessed online through its deployed website hosted on InfinityFree. Follow the setup instructions below for local installation, or visit the live application using the provided deployment link.
 
 # Requirements
 
